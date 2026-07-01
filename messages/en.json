@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "cashback": "Cashback",
+    "referral": "Referral",
+    "charity": "Charity",
+    "producers": "Producers",
+    "about": "About Us",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Contact",
+    "login": "Sign In",
+    "register": "Sign Up",
+    "dashboard": "Dashboard",
+    "logout": "Sign Out"
+  },
+  "home": {
+    "hero": {
+      "badge": "Referral reward up to 35%",
+      "headline": "Sign up free. Invite loved ones.",
+      "subline1": "Referral credit goes to the inviter: up to 35% on invited customers' purchases",
+      "subline2": "Every order donates 1% to Il Segreto di Aladino for ethical projects",
+      "cta_register": "Sign up free",
+      "cta_shop": "Browse the Shop",
+      "microcopy": "Become a customer with a single purchase of any amount. You always pay 100% of the published price."
+    },
+    "how_it_works": {
+      "title": "How It Works",
+      "step1_title": "Sign up free",
+      "step1_desc": "Create your account in seconds, at no cost",
+      "step2_title": "Shop",
+      "step2_desc": "One purchase of any amount makes you a Whe&Back® customer",
+      "step3_title": "Invite friends",
+      "step3_desc": "Share your link: receive a referral reward up to 35% on their purchases",
+      "step4_title": "Give 1%",
+      "step4_desc": "Every order funds ethical projects with Il Segreto di Aladino"
+    },
+    "referral_highlight": {
+      "title": "Earn by inviting",
+      "desc": "Referral credit does not go to the buyer, but to whoever shared the link. If you invite a new customer, you receive up to 35% of what they spend. Internal credit for future Whe&Back® purchases only.",
+      "cta": "Get your referral link"
+    },
+    "cta_grid": {
+      "register": "Sign up free and start earning",
+      "charity": "Discover our charitable causes",
+      "referral": "Invite friends with your unique link",
+      "shop": "Go to the Shop"
+    },
+    "welcome": {
+      "eyebrow": "Life is a circle",
+      "title": "Welcome",
+      "body": "This is the world's first true solidarity e-commerce platform. Sign up free, invite people you know and receive a referral reward up to 35% on their purchases. Every order donates 1% to Il Segreto di Aladino.",
+      "cta": "Sign up free"
+    },
+    "charity": {
+      "badge": "Charity",
+      "title": "Il Segreto di Aladino",
+      "stat_label": "of monthly revenue",
+      "desc": "1% of all revenue is donated monthly to Il Segreto di Aladino to fund ambitious ethical projects.",
+      "cta": "Learn more"
+    },
+    "featured_products": {
+      "title": "Trending products",
+      "cta": "View all products"
+    }
+  },
+  "shop": {
+    "title": "Shop",
+    "filters": "Filters",
+    "categories": "Categories",
+    "sort": "Sort by",
+    "cashback_label": "Cashback",
+    "add_to_cart": "Add to Cart",
+    "no_products": "No products found"
+  },
+  "cashback": {
+    "title": "Your Cashback",
+    "balance": "Available Balance",
+    "pending": "Pending Confirmation",
+    "info_title": "How Cashback Works",
+    "info_desc": "Cashback is activated only after product delivery and the expiry of the right of withdrawal (14 days). The balance can only be used as credit for new purchases and can never be withdrawn as cash.",
+    "history": "Cashback History"
+  },
+  "referral": {
+    "title": "Your Referral Link",
+    "desc": "Invite unlimited friends and earn multi-level rewards",
+    "your_link": "Your Personal Link",
+    "copy_link": "Copy Link",
+    "copied": "Copied!",
+    "stats": "Your Statistics",
+    "invited": "Friends Invited",
+    "earned": "Earned from Referrals"
+  },
+  "charity": {
+    "title": "Charity & Transparency",
+    "desc": "Every month we donate 1% of total revenue to the \"Il Segreto di Aladino\" Association",
+    "reports": "Monthly Reports",
+    "download": "Download Documentation"
+  },
+  "auth": {
+    "login_title": "Sign in to Whe&Back®",
+    "register_title": "Create your Account",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "login_btn": "Sign In",
+    "register_btn": "Sign Up",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?",
+    "age_confirm": "I confirm I am at least 18 years old",
+    "privacy_accept": "I accept the Privacy Policy and Terms & Conditions",
+    "forgot_password": "Forgot password?"
+  },
+  "footer": {
+    "company": "Buy All Free LTD",
+    "company_number": "Company Number: 13803002",
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "terms": "Terms & Conditions",
+    "court": "Jurisdiction: Milan Court"
+  }
+}

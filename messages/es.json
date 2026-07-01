@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "shop": "Tienda",
+    "cashback": "Cashback",
+    "referral": "Referidos",
+    "charity": "Beneficencia",
+    "producers": "Productores",
+    "about": "Quiénes Somos",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "dashboard": "Panel de Control",
+    "logout": "Cerrar Sesión"
+  },
+  "home": {
+    "hero": {
+      "badge": "Premio referral hasta el 35%",
+      "headline": "Regístrate gratis. Invita a quien quieras.",
+      "subline1": "El crédito referral va a quien invita: hasta el 35% en las compras de los clientes invitados",
+      "subline2": "Cada pedido destina el 1% a Il Segreto di Aladino para proyectos éticos",
+      "cta_register": "Regístrate gratis",
+      "cta_shop": "Descubre la Tienda",
+      "microcopy": "Te conviertes en cliente con una sola compra, de cualquier importe. Siempre pagas el 100% del precio publicado."
+    },
+    "how_it_works": {
+      "title": "Cómo Funciona",
+      "step1_title": "Regístrate gratis",
+      "step1_desc": "Crea tu cuenta en segundos, sin coste",
+      "step2_title": "Compra",
+      "step2_desc": "Una compra de cualquier importe te convierte en cliente Whe&Back®",
+      "step3_title": "Invita amigos",
+      "step3_desc": "Comparte tu enlace: recibe un premio referral hasta el 35% de sus compras",
+      "step4_title": "Donas el 1%",
+      "step4_desc": "Cada pedido financia proyectos éticos con Il Segreto di Aladino"
+    },
+    "referral_highlight": {
+      "title": "Gana invitando",
+      "desc": "El crédito referral no va a quien compra, sino a quien compartió el enlace. Si invitas a un nuevo cliente, recibes hasta el 35% de lo que gaste. Crédito interno utilizable solo en Whe&Back®.",
+      "cta": "Obtén tu enlace referral"
+    },
+    "cta_grid": {
+      "register": "Regístrate gratis y empieza a ganar",
+      "charity": "Descubre nuestras causas benéficas",
+      "referral": "Invita amigos con tu enlace único",
+      "shop": "Ir a la Tienda"
+    },
+    "welcome": {
+      "eyebrow": "La vida es un círculo",
+      "title": "Bienvenidos",
+      "body": "Este es el primer verdadero e-commerce solidario del mundo. Regístrate gratis, invita a quien conozcas y recibe un premio referral hasta el 35% de sus compras. Cada pedido destina el 1% a Il Segreto di Aladino.",
+      "cta": "Regístrate gratis"
+    },
+    "charity": {
+      "badge": "Beneficencia",
+      "title": "Il Segreto di Aladino",
+      "stat_label": "de la facturación mensual",
+      "desc": "El 1% de la facturación se dona mensualmente a Il Segreto di Aladino para financiar proyectos éticos.",
+      "cta": "Saber Más"
+    },
+    "featured_products": {
+      "title": "Productos destacados",
+      "cta": "Ver toda la tienda"
+    }
+  },
+  "shop": {
+    "title": "Tienda",
+    "filters": "Filtros",
+    "categories": "Categorías",
+    "sort": "Ordenar por",
+    "cashback_label": "Cashback",
+    "add_to_cart": "Añadir al Carrito",
+    "no_products": "No se encontraron productos"
+  },
+  "cashback": {
+    "title": "Tu Cashback",
+    "balance": "Saldo Disponible",
+    "pending": "Pendiente de Confirmación",
+    "info_title": "Cómo Funciona el Cashback",
+    "info_desc": "El cashback se activa solo después de la entrega del producto y la expiración del derecho de desistimiento (14 días). El saldo solo se puede usar como crédito para nuevas compras y nunca se puede retirar como dinero.",
+    "history": "Historial de Cashback"
+  },
+  "referral": {
+    "title": "Tu Enlace de Referido",
+    "desc": "Invita amigos ilimitados y gana recompensas multinivel",
+    "your_link": "Tu Enlace Personal",
+    "copy_link": "Copiar Enlace",
+    "copied": "¡Copiado!",
+    "stats": "Tus Estadísticas",
+    "invited": "Amigos Invitados",
+    "earned": "Ganado con Referidos"
+  },
+  "charity": {
+    "title": "Beneficencia & Transparencia",
+    "desc": "Cada mes donamos el 1% de la facturación total a la Asociación \"Il Segreto di Aladino\"",
+    "reports": "Informes Mensuales",
+    "download": "Descargar Documentación"
+  },
+  "auth": {
+    "login_title": "Iniciar sesión en Whe&Back®",
+    "register_title": "Crear tu Cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirm_password": "Confirmar Contraseña",
+    "login_btn": "Iniciar Sesión",
+    "register_btn": "Registrarse",
+    "no_account": "¿No tienes una cuenta?",
+    "have_account": "¿Ya tienes una cuenta?",
+    "age_confirm": "Confirmo que tengo al menos 18 años",
+    "privacy_accept": "Acepto la Política de Privacidad y los Términos y Condiciones",
+    "forgot_password": "¿Olvidaste tu contraseña?"
+  },
+  "footer": {
+    "company": "Buy All Free LTD",
+    "company_number": "Número de empresa: 13803002",
+    "rights": "Todos los derechos reservados",
+    "privacy": "Política de Privacidad",
+    "cookies": "Política de Cookies",
+    "terms": "Términos y Condiciones",
+    "court": "Jurisdicción: Tribunal de Milán"
+  }
+}

@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Brand colors */
+  --color-brand-green: #00b295;
+  --color-brand-blue: #253866;
+  --color-brand-green-light: #00c9a7;
+  --color-brand-blue-light: #2d4a8a;
+
+  /* Semantic colors */
+  --color-background: #ffffff;
+  --color-foreground: #253866;
+  --color-surface: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-muted: #64748b;
+
+  /* Cashback status colors */
+  --color-cashback-pending: #f59e0b;
+  --color-cashback-active: #00b295;
+
+  /* Font */
+  --font-sans: "Montserrat", sans-serif;
+  --font-mono: "Montserrat", sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #253866;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

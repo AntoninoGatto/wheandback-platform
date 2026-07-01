@@ -1,0 +1,126 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "cashback": "Cashback",
+    "referral": "Referral",
+    "charity": "Beneficenza",
+    "producers": "Produttori",
+    "about": "Chi Siamo",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Contatti",
+    "login": "Accedi",
+    "register": "Registrati",
+    "dashboard": "Dashboard",
+    "logout": "Esci"
+  },
+  "home": {
+    "hero": {
+      "badge": "Premio referral fino al 35%",
+      "headline": "Registrati gratis. Invita chi ami.",
+      "subline1": "Il credito referral va a chi invita: fino al 35% sui acquisti dei clienti invitati",
+      "subline2": "Ogni ordine destina l'1% a Il Segreto di Aladino per progetti etici",
+      "cta_register": "Registrati gratis",
+      "cta_shop": "Scopri lo Shop",
+      "microcopy": "Diventi cliente con un solo acquisto, di qualsiasi importo. Paghi sempre il 100% del prezzo pubblicato."
+    },
+    "how_it_works": {
+      "title": "Come Funziona",
+      "step1_title": "Registrati gratis",
+      "step1_desc": "Crea il tuo account in pochi secondi, senza costi",
+      "step2_title": "Acquista",
+      "step2_desc": "Un acquisto di qualsiasi importo e sei cliente Whe&Back®",
+      "step3_title": "Invita amici",
+      "step3_desc": "Condividi il tuo link: ricevi un premio referral fino al 35% sui loro acquisti",
+      "step4_title": "Doni l'1%",
+      "step4_desc": "Ogni ordine finanzia progetti etici con Il Segreto di Aladino"
+    },
+    "referral_highlight": {
+      "title": "Guadagna invitando",
+      "desc": "Il credito referral non va a chi acquista, ma a chi ha condiviso il link. Se inviti un nuovo cliente, ricevi fino al 35% dell'importo da lui speso. Credito interno, utilizzabile solo per nuovi acquisti su Whe&Back®.",
+      "cta": "Ottieni il tuo link referral"
+    },
+    "cta_grid": {
+      "register": "Registrati gratis e inizia a guadagnare",
+      "charity": "Scopri le nostre cause benefiche",
+      "referral": "Invita amici con il tuo link unico",
+      "shop": "Vai allo Shop"
+    },
+    "welcome": {
+      "eyebrow": "La vita è un cerchio",
+      "title": "Benvenuti",
+      "body": "Questo è il primo vero e-commerce solidale al mondo. Registrati gratis, invita chi conosci e ricevi un premio referral fino al 35% sui loro acquisti. Ogni ordine destina l'1% all'Associazione Il Segreto di Aladino.",
+      "cta": "Registrati gratis"
+    },
+    "charity": {
+      "badge": "Beneficenza",
+      "title": "Il Segreto di Aladino",
+      "stat_label": "di ogni fatturato mensile",
+      "desc": "L'1% di ogni fatturato viene donato mensilmente all'Associazione Il Segreto di Aladino per finanziare progetti etici e ambiziosi.",
+      "cta": "Scopri di più"
+    },
+    "featured_products": {
+      "title": "Prodotti di tendenza",
+      "cta": "Vedi tutto lo Shop"
+    }
+  },
+  "shop": {
+    "title": "Shop",
+    "filters": "Filtri",
+    "categories": "Categorie",
+    "sort": "Ordina per",
+    "cashback_label": "Cashback",
+    "add_to_cart": "Aggiungi al Carrello",
+    "no_products": "Nessun prodotto trovato"
+  },
+  "cashback": {
+    "title": "Il Tuo Cashback",
+    "balance": "Saldo Disponibile",
+    "pending": "In Attesa di Conferma",
+    "info_title": "Come funziona il Cashback",
+    "info_desc": "Il cashback si attiva solo dopo la consegna del prodotto e la scadenza del diritto di recesso (14 giorni). Il saldo è utilizzabile esclusivamente come credito per nuovi acquisti e non è mai prelevabile in denaro.",
+    "history": "Storico Cashback"
+  },
+  "referral": {
+    "title": "Il Tuo Link Referral",
+    "desc": "Invita amici illimitati e guadagna premi multilivello",
+    "your_link": "Il Tuo Link Personale",
+    "copy_link": "Copia Link",
+    "copied": "Copiato!",
+    "stats": "Le Tue Statistiche",
+    "invited": "Amici Invitati",
+    "earned": "Guadagnato con Referral"
+  },
+  "charity": {
+    "title": "Beneficenza & Trasparenza",
+    "desc": "Ogni mese devolviamo l'1% del fatturato totale all'Associazione \"Il Segreto di Aladino\"",
+    "reports": "Report Mensili",
+    "download": "Scarica Documentazione"
+  },
+  "auth": {
+    "login_title": "Accedi a Whe&Back®",
+    "register_title": "Crea il tuo Account",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Conferma Password",
+    "login_btn": "Accedi",
+    "register_btn": "Registrati",
+    "register": "Registrati",
+    "login": "Accedi",
+    "no_account": "Non hai un account?",
+    "have_account": "Hai già un account?",
+    "age_confirm": "Confermo di avere almeno 18 anni",
+    "privacy_accept": "Accetto la Privacy Policy e i Termini e Condizioni",
+    "forgot_password": "Password dimenticata?"
+  },
+  "footer": {
+    "company": "Buy All Free LTD",
+    "company_number": "Company Number: 13803002",
+    "rights": "Tutti i diritti riservati",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "terms": "Termini e Condizioni",
+    "court": "Foro Competente: Milano"
+  }
+}
