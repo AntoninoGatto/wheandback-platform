@@ -19,7 +19,12 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("home.featured_products");
-  const products = await fetchTrendingProducts(8);
+  let products: Awaited<ReturnType<typeof fetchTrendingProducts>> = [];
+  try {
+    products = await fetchTrendingProducts(8);
+  } catch {
+    products = [];
+  }
 
   return (
     <div className="min-h-screen flex flex-col">

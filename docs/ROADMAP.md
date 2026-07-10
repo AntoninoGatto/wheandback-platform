@@ -1,32 +1,35 @@
 # ROADMAP — Whe&Back®
 
-## Fase 0 — Ordine e proprietà codice ⬅ **SIAMO QUI**
+## Fase 0 — Ordine e proprietà codice ✅ COMPLETATA
 
 - [x] Prototipo funzionante (Next.js + Supabase)
 - [x] Documentazione stato attuale
 - [x] Decisioni tecniche registrate
-- [ ] Git installato su PC sviluppo
-- [ ] Repository GitHub privato creato
-- [ ] Codice pushato (branch `main` + `develop`)
-- [ ] Rotazione chiavi API compromesse
-- [ ] Approvazione Antonino Gatti su piano migrazione
+- [x] Git installato
+- [x] Repository GitHub privato (`AntoninoGatto/wheandback-platform`)
+- [x] Codice pushato (`main` + `develop`)
+- [x] Rotazione chiavi API (Step 6)
+- [x] Approvazione Antonino Gatti + React Native
 
-**Freeze feature:** nessuna nuova funzione sul prototipo fino a fine Fase 0.
+**Prototipo:** freeze feature — solo demo e bugfix critici.
 
 ---
 
-## Fase 1 — Foundation Medusa/Mercur
+## Fase 1 — Foundation Medusa/Mercur ⬅ **QUASI COMPLETA**
 
-- Scaffold monorepo `wheandback-platform`
-- Docker: PostgreSQL + Redis + Medusa
-- Mercur marketplace base
-- CI/CD base (lint, test, build)
+Vedi guida dettagliata: [`docs/FASE-1-GUIDA.md`](FASE-1-GUIDA.md)
+
+- [x] Installare Docker Desktop
+- [x] Avviare PostgreSQL + Redis (`infrastructure/docker/docker-compose.yml`)
+- [x] Creare backend Mercur (`services/mercur-marketplace`)
+- [x] Verificare admin + vendor panel in locale (porta 9000)
+- [ ] Commit + push su branch `develop`
 
 ---
 
 ## Fase 2 — MVP commerce
 
-- Storefront Next.js (UI migrata)
+- Storefront Next.js (UI migrata da prototipo)
 - Catalogo, carrello, checkout
 - Stripe pagamenti test
 - Account cliente
@@ -36,7 +39,7 @@
 ## Fase 3 — Marketplace & fornitori
 
 - Vendor dashboard (Mercur)
-- Onboarding partner (equivalente flusso TGP)
+- Onboarding partner (flusso TGP)
 - Approvazione prodotti
 - Import CSV + CJ service
 
@@ -50,7 +53,7 @@
 
 ---
 
-## Fase 5 — App mobile
+## Fase 5 — App mobile (React Native + Expo)
 
 - Login, cashback, referral, ordini
 - Push notifications

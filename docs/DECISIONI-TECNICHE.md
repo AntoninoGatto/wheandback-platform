@@ -158,16 +158,33 @@ wheandback-platform/
 
 ---
 
-## Decisioni aperte (da confermare con Antonino Gatti)
+## Decisioni confermate (Antonino Gatti — 2026-06-24)
+
+| # | Decisione | Scelta |
+|---|-----------|--------|
+| 1 | Stack commerce backend | **Medusa.js + Mercur** |
+| 2 | Storefront web | **Next.js** (migrare UI prototipo) |
+| 3 | App mobile | **React Native + Expo** |
+| 4 | Database | **PostgreSQL** |
+| 5 | Cache / code | **Redis** |
+| 6 | Versionamento | **GitHub privato** `AntoninoGatto/wheandback-platform` |
+| 7 | Prototipo Supabase | **Conservato** — riferimento per migrazione, freeze feature |
+| 8 | Piano approvato | Sì — procedere con Fase 1 |
+
+### Perché React Native (e non Flutter)
+
+- Il sito è già **React/Next.js** → stesso ecosistema TypeScript
+- Condivisione tipi/API/validatori nel monorepo
+- MVP app (login, cashback, referral, ordini) non richiede Flutter
+- Flutter resta opzione futura solo se cambia strategia team
+
+## Decisioni ancora aperte
 
 | # | Domanda | Opzioni |
 |---|---------|---------|
-| 1 | App mobile | Flutter vs React Native |
-| 2 | Hosting produzione | Vercel + Railway? AWS? |
-| 3 | Email transazionali | Resend vs SendGrid |
-| 4 | Dominio inviti partner | wheback.com vs localhost dev |
-| 5 | Nome repo GitHub | `wheandback-platform` vs `wheback-platform` |
-| 6 | Intestatario repo | Buy All Free LTD / Antonino Gatti |
+| 1 | Hosting produzione | Vercel + Railway? AWS? |
+| 2 | Email transazionali | Resend vs SendGrid |
+| 3 | Supabase prototipo vs DB Medusa | Tenere entrambi in fase transizione |
 
 ---
 

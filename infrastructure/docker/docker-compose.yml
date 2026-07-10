@@ -1,0 +1,40 @@
+# PostgreSQL + Redis for local Medusa/Mercur development
+# Start: docker compose -f infrastructure/docker/docker-compose.yml up -d
+# Stop:  docker compose -f infrastructure/docker/docker-compose.yml down
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: wheback-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: wheback
+      POSTGRES_PASSWORD: wheback_dev
+      POSTGRES_DB: wheback_medusa
+    volumes:
+      - wheback_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wheback -d wheback_medusa"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: wheback-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - wheback_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  wheback_postgres_data:
+  wheback_redis_data:
