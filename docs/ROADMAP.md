@@ -15,7 +15,7 @@
 
 ---
 
-## Fase 1 — Foundation Medusa/Mercur ⬅ **QUASI COMPLETA**
+## Fase 1 — Foundation Medusa/Mercur ✅ COMPLETATA
 
 Vedi guida dettagliata: [`docs/FASE-1-GUIDA.md`](FASE-1-GUIDA.md)
 
@@ -23,7 +23,10 @@ Vedi guida dettagliata: [`docs/FASE-1-GUIDA.md`](FASE-1-GUIDA.md)
 - [x] Avviare PostgreSQL + Redis (`infrastructure/docker/docker-compose.yml`)
 - [x] Creare backend Mercur (`services/mercur-marketplace`)
 - [x] Verificare admin + vendor panel in locale (porta 9000)
-- [ ] Commit + push su branch `develop`
+- [x] Script `build:panels` + documentazione avvio
+- [x] Commit + push su branch `develop`
+
+**Prossimo:** Fase 2 — attendere OK Antonino.
 
 ---
 

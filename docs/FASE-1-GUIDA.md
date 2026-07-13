@@ -1,18 +1,72 @@
 # FASE 1 — Guida operativa (Medusa + Mercur)
 
-**Stato:** in corso  
+**Stato:** ✅ COMPLETATA (2026-07-13)  
 **Approvato da:** Antonino Gatti (2026-06-24)  
 **Stack:** Medusa.js + Mercur + Next.js + React Native (Expo) + PostgreSQL + Redis
 
 ---
 
-## Cosa facciamo in Fase 1
+## Cosa abbiamo fatto in Fase 1
 
-1. Installare **Docker Desktop** (PostgreSQL + Redis locali)
-2. Creare il **backend marketplace Mercur** accanto al prototipo
-3. Organizzare il **monorepo** (cartelle `apps/` e `services/`)
-4. Verificare che backend + admin + vendor panel partano in locale
-5. **Non** spegnere ancora il prototipo Next.js + Supabase (resta per demo)
+1. Installato **Docker Desktop** (PostgreSQL + Redis locali)
+2. Creato il **backend marketplace Mercur** (`services/mercur-marketplace`)
+3. Organizzato lo **scheletro monorepo** (`apps/`, `services/`, `packages/`, `infrastructure/`)
+4. Verificato **API + admin + vendor panel** in locale (porta 9000)
+5. Mantenuto il **prototipo Next.js + Supabase** su `:3000` per demo
+
+---
+
+## Avvio rapido (dopo ogni riavvio PC)
+
+### 1. Docker
+
+Apri **Docker Desktop** e attendi **Engine running**, poi:
+
+```powershell
+cd C:\Users\Nino\Desktop\wheback-platform
+docker compose -f infrastructure/docker/docker-compose.yml up -d
+```
+
+### 2. Build pannelli (solo la prima volta, o dopo `git pull`)
+
+`dev:api` avvia solo il backend. Admin e vendor vanno **compilati** prima:
+
+```powershell
+cd C:\Users\Nino\Desktop\wheback-platform\services\mercur-marketplace
+npm.cmd run build:panels
+```
+
+Richiede ~1 minuto. I file finiscono in `apps/admin/dist` e `apps/vendor/dist` (non su GitHub — sono in `.gitignore`).
+
+### 3. Avvia Mercur API
+
+```powershell
+cd C:\Users\Nino\Desktop\wheback-platform\services\mercur-marketplace
+npm.cmd run dev:api
+```
+
+Attendi: `Server is ready on port: 9000`
+
+### 4. Browser
+
+| Servizio | URL |
+|----------|-----|
+| Admin (operatore) | http://localhost:9000/dashboard |
+| Vendor (fornitori) | http://localhost:9000/seller |
+| API | http://localhost:9000 |
+
+### 5. Primo account admin (una tantum)
+
+Se non esiste ancora un admin, in un **secondo** terminale:
+
+```powershell
+cd C:\Users\Nino\Desktop\wheback-platform\services\mercur-marketplace\packages\api
+npx medusa user --email TUO_EMAIL@esempio.com --password "TuaPasswordSicura123!"
+```
+
+Poi accedi su http://localhost:9000/dashboard/login
+
+> La pagina di login **non** crea account: serve solo per utenti già creati via CLI.
 
 ---
 
@@ -35,8 +89,6 @@ docker compose version
 
 ## Step 2 — Avvia database locale
 
-Dalla cartella del progetto:
-
 ```powershell
 cd C:\Users\Nino\Desktop\wheback-platform
 docker compose -f infrastructure/docker/docker-compose.yml up -d
@@ -49,8 +101,6 @@ Redis → porta `6379`
 
 ## Step 3 — Crea il progetto Mercur
 
-Mercur fornisce un CLI che crea il marketplace completo (Medusa + vendor panel + admin).
-
 ```powershell
 cd C:\Users\Nino\Desktop\wheback-platform
 npx @mercurjs/cli@2.1.6 create services/mercur-marketplace --db-connection-string "postgres://wheback:wheback_dev@localhost:5432/wheback_medusa"
@@ -62,42 +112,31 @@ npx @mercurjs/cli@2.1.6 create services/mercur-marketplace --db-connection-strin
 
 ## Step 4 — Avvia Mercur
 
-**Importante:** usa solo il backend API (admin e vendor sono su porta 9000).
+**Su Windows:** non usare `npm run dev` (turbo) — può fallire con `virtual:medusa/layouts`.
+
+Usa invece:
 
 ```powershell
-cd C:\Users\Nino\Desktop\wheback-platform\services\mercur-marketplace
-npm.cmd run dev:api
+npm.cmd run build:panels   # prima volta o dopo aggiornamenti
+npm.cmd run dev:api        # backend + serve i pannelli su :9000
 ```
-
-Verifica nel browser:
-
-| Servizio | URL |
-|----------|-----|
-| Backend + Admin | http://localhost:9000/dashboard |
-| Pannello fornitori | http://localhost:9000/seller |
-
-> Non usare `npm run dev` (turbo) su Windows finché non serve: avvia anche :7000/:7001 che possono dare errore `virtual:medusa/layouts`. L'API su :9000 è sufficiente per Fase 1.
 
 ---
 
-## Step 5 — Struttura monorepo (obiettivo)
+## Step 5 — Struttura monorepo
 
 ```text
 wheandback-platform/
-  apps/
-    storefront-next/       ← prototipo Next.js (spostamento graduale)
-    mobile-app/            ← React Native Expo (Fase 5)
+  apps/                    ← placeholder (storefront e mobile in Fase 2+)
   services/
-    mercur-marketplace/    ← backend Medusa + Mercur (Step 3)
-  packages/
-    shared-types/
-    ui-components/
+    mercur-marketplace/    ← backend Medusa + Mercur
+  packages/                ← placeholder (tipi condivisi, UI)
   infrastructure/
-    docker/
+    docker/                ← PostgreSQL + Redis
   docs/
 ```
 
-Il prototipo attuale resta nella **root** finché non migriamo pagina per pagina in `apps/storefront-next/`.
+Il prototipo attuale resta nella **root** finché non migriamo pagina per pagina in `apps/storefront-next/` (Fase 2).
 
 ---
 
@@ -117,8 +156,8 @@ Il prototipo attuale resta nella **root** finché non migriamo pagina per pagina
 
 - Il sito **localhost:3000** (prototipo) resta per demo
 - **Non** aggiungere feature al prototipo salvo bug critici
-- Ogni progresso Fase 1 → commit su branch `develop` + push GitHub
 - Non committare mai `.env` o `.env.local`
+- I build `dist/` dei pannelli sono locali — rigenerarli con `npm.cmd run build:panels`
 
 ---
 
@@ -126,10 +165,20 @@ Il prototipo attuale resta nella **root** finché non migriamo pagina per pagina
 
 | Problema | Soluzione |
 |----------|-----------|
+| `ERR_CONNECTION_REFUSED` su :9000 | Mercur non avviato → `npm.cmd run dev:api` |
+| `Dashboard not built` | Manca build → `npm.cmd run build:panels` |
+| Login non fa nulla | Nessun admin nel DB → `npx medusa user --email ... --password ...` |
 | `docker` non riconosciuto | Installa Docker Desktop e riavvia PC |
+| `EADDRINUSE` porta 9000 | Chiudi il processo Mercur vecchio o riavvia il terminale |
 | Memoria insufficiente | Chiudi altri programmi; un solo `npm run dev` alla volta |
 | Porta 5432 occupata | Ferma altri PostgreSQL o cambia porta in docker-compose |
 
 ---
 
-*Aggiornare questo file ad ogni step completato.*
+## Prossimo passo: Fase 2
+
+Vedi [`docs/ROADMAP.md`](ROADMAP.md). **Attendere OK esplicito di Antonino** prima di iniziare.
+
+---
+
+*Aggiornato al completamento Fase 1 — 2026-07-13.*
