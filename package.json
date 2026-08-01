@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "node --max-old-space-size=8192 ./node_modules/next/dist/bin/next dev --webpack",
+    "dev:mercur": "npm run dev:api --prefix services/mercur-marketplace",
+    "dev:storefront": "npm run dev --prefix apps/storefront-next",
+    "build:mercur-panels": "npm run build:panels --prefix services/mercur-marketplace",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

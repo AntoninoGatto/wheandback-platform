@@ -46,10 +46,10 @@ export default function Navbar() {
   return (
     <nav className="bg-white border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between min-h-[4.5rem] py-2">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-1 flex-shrink-0">
-            <Image src="/logo.png" alt="Whe&Back®" width={140} height={40} className="h-9 w-auto" priority />
+            <Image src="/logo.png" alt="Whe&Back®" width={200} height={56} className="h-12 w-auto sm:h-14" priority />
             <sup className="text-xs font-bold -ml-1 -mt-3" style={{ color: "#253866" }}>®</sup>
           </Link>
 

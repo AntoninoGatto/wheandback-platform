@@ -8,7 +8,8 @@ services:
     container_name: wheback-postgres
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      # Host 5433: native PostgreSQL Windows often already owns 5432
+      - "5433:5432"
     environment:
       POSTGRES_USER: wheback
       POSTGRES_PASSWORD: wheback_dev

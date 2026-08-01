@@ -30,20 +30,8 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (never commit secrets)
-.env
-.env.local
-.env.*.local
-!.env.example
-
-# Cursor local handoff / transfer (SSD-first; do not push secrets or dumps)
-.cursor/CHAT-EXPORT*.md
-.cursor/transcripts-raw/
-.cursor/transfer/*.sql
-.cursor/transfer/*.dump
-.cursor/transfer/*.tar
-.cursor/transfer/*.gz
-.cursor/local/
+# env files (can opt-in for committing if needed)
+.env*
 
 # vercel
 .vercel
