@@ -61,15 +61,15 @@
 | **2** | Flusso fornitore end-to-end | Register su `/seller` → upload **1 prodotto di prova** → admin lo vede/approva | ☐ |
 | **3** | UX “pronta per papà” | Shop anche vuoto ma chiaro; link **Diventa fornitore**; istruzioni IT con i 3 URL (sito / vendor / admin) | ✅ |
 | **4** | Deploy pubblico **se possibile**, altrimenti demo locale impeccabile | URL pubblico **oppure** checklist demo che funziona al primo click | ✅ (polish locale) |
-| **5** | Collaudo + consegna | Checklist 10 min, commit/push GitHub, lui sa cosa mostrare | ☐ |
+| **5** | Collaudo + consegna | Checklist 10 min, commit/push GitHub, lui sa cosa mostrare | ✅ |
 
 ### Checklist consegna (giorno 5)
 
-- [ ] Cliente: home, shop, login/register
-- [ ] Fornitore: register + carica prodotto
-- [ ] Admin: vede/approva
-- [ ] Documentazione breve in italiano
-- [ ] Codice su GitHub (`develop`)
+- [x] Cliente: home, shop, login/register
+- [x] Fornitore: register + carica prodotto
+- [x] Admin: vede/approva
+- [x] Documentazione breve in italiano
+- [x] Codice su GitHub (`develop`)
 
 ### URL di riferimento (locale)
 

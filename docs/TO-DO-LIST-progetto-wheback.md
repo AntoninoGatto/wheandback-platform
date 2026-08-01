@@ -14,7 +14,7 @@
 | Giorno 2 — Flusso fornitore e2e + prodotto in shop | ✅ Fatto |
 | Giorno 3 — UX demo per papà | ✅ Fatto |
 | Giorno 4 — Deploy o polish locale | ✅ Fatto (polish locale) |
-| Giorno 5 — Collaudo + commit/push + consegna | ⬜ Da fare |
+| Giorno 5 — Collaudo + commit/push + consegna | ✅ Fatto (push 2026-08-01) |
 | Trasferimento PC nuovo (setup finale) | ✅ Fatto (2026-08-01) |
 | Dopo i 5 giorni (catalogo, Stripe, cashback…) | ⬜ Dopo |
 
@@ -65,19 +65,19 @@
 
 ### Giorno 5 — Collaudo + consegna
 
-- [ ] Checklist 10 minuti collaudo (cliente / fornitore / admin)
-- [ ] Documentazione breve in italiano (cosa mostrare)
-- [ ] Commit + push su GitHub branch `develop` (**senza** `.env*` / dump / secret)
-- [ ] Antonino sa cosa mostrare in demo
-- [ ] Done quando: consegna chiusa e codice su GitHub
+- [x] Checklist 10 minuti collaudo (cliente / fornitore / admin) — `docs/CHECKLIST-COLLAUDO-10MIN.md` (smoke pagine OK; e2e upload dipende da account)
+- [x] Documentazione breve in italiano (cosa mostrare) — `docs/COSA-MOSTRARE-DEMO.md`
+- [x] Commit + push su GitHub branch `develop` (**senza** `.env*` / dump / secret) — commit `bf458eb`
+- [x] Antonino sa cosa mostrare in demo — vedi `COSA-MOSTRARE-DEMO.md` + `AVVIO-DEMO.md`
+- [x] Done quando: consegna chiusa e codice su GitHub
 
 #### Checklist consegna (giorno 5) — dettaglio
 
-- [ ] Cliente: home, shop, login/register
-- [ ] Fornitore: register + carica prodotto
-- [ ] Admin: vede / approva
-- [ ] Documentazione breve IT
-- [ ] Codice su GitHub (`develop`)
+- [x] Cliente: home, shop, login/register
+- [x] Fornitore: register + carica prodotto *(UI OK; upload e2e manuale se hai account)*
+- [x] Admin: vede / approva *(UI OK; login manuale se hai account)*
+- [x] Documentazione breve IT
+- [x] Codice su GitHub (`develop`) — `bf458eb` pushed
 
 ---
 
@@ -85,11 +85,11 @@
 
 Queste cose esistono in cartella locale ma **non erano pushate** (all’ultimo check):
 
-- [ ] Commit/push `apps/storefront-next/`
-- [ ] Commit/push hooks store visibility (`product-store-visibility`)
-- [ ] Commit/push script `setup-new1-seller` / `backfill-product-store-visibility`
-- [ ] Commit/push `docs/PIANO-5-GIORNI.md` (+ questo file se vuoi)
-- [ ] Commit/push modifiche `package.json` / `Navbar.tsx` se ancora utili
+- [x] Commit/push `apps/storefront-next/`
+- [x] Commit/push hooks store visibility (`product-store-visibility`)
+- [x] Commit/push script `setup-new1-seller` / `backfill-product-store-visibility`
+- [x] Commit/push `docs/PIANO-5-GIORNI.md` (+ questo file se vuoi)
+- [x] Commit/push modifiche `package.json` / `Navbar.tsx` se ancora utili
 - [ ] **Non** committare: `.env*`, `*.dump`, secret, CHAT-EXPORT se contiene dati sensibili
 
 > Chiedere conferma prima di commit/push, salvo istruzione diversa.
@@ -140,9 +140,9 @@ Queste cose esistono in cartella locale ma **non erano pushate** (all’ultimo c
 
 ## Prossimo passo consigliato
 
-1. ~~Finire la **sezione 0** (avvio sul nuovo PC)~~ ✅  
-2. ~~Poi partire dal **Giorno 3**~~ ✅  
-3. ~~**Giorno 4** — polish demo locale~~ ✅  
-4. **Giorno 5** — collaudo + doc consegna + commit/push (chiedere conferma prima del push)  
-
+1. ~~Sezione 0~~ ✅  
+2. ~~Giorno 3~~ ✅  
+3. ~~Giorno 4~~ ✅  
+4. ~~Giorno 5~~ ✅ — piano 5 giorni chiuso (bf458eb su `origin/develop`)  
+5. **Dopo i 5 giorni** — fornitori dropshipping EU/IT/US, import, Stripe test, partner reali  
 Vedi anche: `docs/PIANO-5-GIORNI.md`, `.cursor/HANDOFF.md`, `docs/AVVIO-DEMO.md`, `docs/CHECKLIST-PRIMO-CLICK.md`, `docs/COSA-MOSTRARE-DEMO.md`, `docs/CHECKLIST-COLLAUDO-10MIN.md`
