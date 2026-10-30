@@ -64,5 +64,23 @@ module.exports = withMercur({
         ],
       },
     },
+    {
+      // Stripe test/live: set STRIPE_API_KEY in packages/api/.env (sk_test_… then sk_live_…)
+      // Enable provider on the Region in Admin → Settings → Regions.
+      resolve: '@medusajs/medusa/payment',
+      options: {
+        providers: [
+          {
+            resolve: '@medusajs/medusa/payment-stripe',
+            id: 'stripe',
+            options: {
+              apiKey: process.env.STRIPE_API_KEY,
+              webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
+              capture: true,
+            },
+          },
+        ],
+      },
+    },
   ],
 })

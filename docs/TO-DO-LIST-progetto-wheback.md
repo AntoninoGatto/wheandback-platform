@@ -16,7 +16,7 @@
 | Giorno 4 — Deploy o polish locale | ✅ Fatto (polish locale) |
 | Giorno 5 — Collaudo + commit/push + consegna | ✅ Fatto (push 2026-08-01) |
 | Trasferimento PC nuovo (setup finale) | ✅ Fatto (2026-08-01) |
-| Dopo i 5 giorni (catalogo, Stripe, cashback…) | ⬜ Dopo |
+| Dopo i 5 giorni (ordine bloccante) | 🔄 Step 1–2 docs pronti; poi Stripe → vendite → cashback → referral → app |
 
 ---
 
@@ -96,22 +96,47 @@ Queste cose esistono in cartella locale ma **non erano pushate** (all’ultimo c
 
 ---
 
-## 3) Dopo i 5 giorni (settimane 2–6)
+## 3) Dopo i 5 giorni — ordine bloccante (rischio basso)
 
-- [ ] Collegare 1–3 fornitori dropshipping affidabili (EU/IT/US) — **non** CJ come cuore del catalogo
-- [ ] Import prodotti (CSV/API/admin) con regole qualità + spedizione di Antonino
-- [ ] Checkout Stripe in modalità **test** → poi live
-- [ ] Onboarding partner reali (es. TGP) via registrazione vendor
-- [ ] Riempire gradualmente lo shop (solo prodotti approvati)
+> **Non fare tutto insieme.** Sequenza obbligatoria: catalogo/fornitori → Stripe → vendite vere → cashback → referral → app.
+
+### Step 1–2 — Catalogo + fornitori (ORA)
+
+- [x] Docs shortlist fornitori EU/IT/US — `docs/FORNITORI-SHORTLIST.md` (**non** CJ come cuore)
+- [x] Regole qualità import — `docs/REGOLE-QUALITA-IMPORT.md`
+- [x] Piano ingresso prodotti Mercur/shop — `docs/INGRESSO-PRODOTTI-MERCUR.md`
+- [ ] Compilare 1–3 fornitori scelti (tabella in FORNITORI-SHORTLIST) con Antonino
+- [ ] Onboarding partner reali (es. TGP) via `/seller` (path A ingresso prodotti)
+- [ ] Riempire shop gradualmente (≥10 prodotti approved che passano le regole)
+
+### Step 3 — Checkout Stripe
+
+- [ ] Stripe **test** su storefront Mercur — vedi `docs/STRIPE-CHECKOUT.md`
+- [ ] Stripe **live** solo dopo test ok
+
+### Step 4 — Prime vendite vere
+
+- [ ] Checklist ordini reali — `docs/CHECKLIST-PRIME-VENDITE.md`
+- [ ] Almeno qualche ordine pagato + spedizione + margine verificati
+
+### Step 5 — Cashback (solo dopo step 4)
+
+- [ ] Spec + implementazione — `docs/CASHBACK-DOPO-VENDITE.md` (bloccato finché non ci sono vendite vere)
+
+### Step 6 — Referral (solo dopo step 5)
+
+- [ ] Spec + implementazione — `docs/REFERRAL-DOPO-CASHBACK.md`
+
+### Step 7 — App mobile (ultima)
+
+- [ ] Spec — `docs/APP-MOBILE-ULTIMA.md`
 
 ---
 
-## 4) Più avanti (mesi successivi)
+## 4) Ancora più avanti (dopo step 4+)
 
-- [ ] Cashback + referral (ledger, dashboard cliente)
 - [ ] Beneficenza / reportistica
 - [ ] Più fornitori marketplace (meno dipendenza dal solo dropshipping)
-- [ ] App React Native (login, ordini, cashback)
 - [ ] Produzione: hosting stabile, sicurezza, backup, MFA
 
 ---
@@ -120,9 +145,9 @@ Queste cose esistono in cartella locale ma **non erano pushate** (all’ultimo c
 
 - Catalogo pieno tipo Amazon
 - CJ come cuore del catalogo
-- Cashback/referral completi nei 5 giorni
-- App mobile nei 5 giorni
+- Cashback/referral/app **prima** delle vendite vere
 - Scala Amazon
+- Prototipo `:3000` (freeze)
 
 ---
 
@@ -140,9 +165,9 @@ Queste cose esistono in cartella locale ma **non erano pushate** (all’ultimo c
 
 ## Prossimo passo consigliato
 
-1. ~~Sezione 0~~ ✅  
-2. ~~Giorno 3~~ ✅  
-3. ~~Giorno 4~~ ✅  
-4. ~~Giorno 5~~ ✅ — piano 5 giorni chiuso (bf458eb su `origin/develop`)  
-5. **Dopo i 5 giorni** — fornitori dropshipping EU/IT/US, import, Stripe test, partner reali  
-Vedi anche: `docs/PIANO-5-GIORNI.md`, `.cursor/HANDOFF.md`, `docs/AVVIO-DEMO.md`, `docs/CHECKLIST-PRIMO-CLICK.md`, `docs/COSA-MOSTRARE-DEMO.md`, `docs/CHECKLIST-COLLAUDO-10MIN.md`
+1. ~~Macchina 5 giorni~~ ✅  
+2. **Compilare shortlist fornitori** con Antonino (`FORNITORI-SHORTLIST.md`) + 10 SKU qualità  
+3. Stripe test (`STRIPE-CHECKOUT.md`)  
+4. Prime vendite vere — **poi** cashback → referral → app  
+
+Vedi anche: `docs/CHI-FA-COSA-POST-MACCHINA.md`, `docs/FORNITORI-SHORTLIST.md`, `docs/REGOLE-QUALITA-IMPORT.md`, `docs/INGRESSO-PRODOTTI-MERCUR.md`, `docs/STRIPE-CHECKOUT.md`, `docs/PIANO-5-GIORNI.md`, `docs/AVVIO-DEMO.md`

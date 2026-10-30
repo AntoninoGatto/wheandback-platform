@@ -63,6 +63,12 @@ export default function CartPage() {
         </div>
 
         <Link
+          href={`/${locale}/checkout`}
+          className="mt-4 inline-flex rounded-xl bg-[#00b295] px-4 py-2.5 text-sm font-semibold text-white hover:opacity-95"
+        >
+          Vai al checkout
+        </Link>
+        <Link
           href={`/${locale}/shop`}
           className="mt-6 inline-block text-sm font-semibold text-[#253866] hover:opacity-80"
         >

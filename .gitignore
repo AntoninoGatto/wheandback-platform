@@ -44,6 +44,12 @@ yarn-error.log*
 .cursor/transfer/*.tar
 .cursor/transfer/*.gz
 .cursor/local/
+.cursor/*.log
+
+# Accidental / local noise (do not commit)
+services/mercur-marketplacenpm.cmd/
+**/.env.bak*
+**/.env.bak-*/
 
 # vercel
 .vercel

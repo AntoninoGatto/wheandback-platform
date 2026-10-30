@@ -85,15 +85,16 @@
 
 ## To-do — dopo i 5 giorni
 
-### Fase subito dopo (settimane 2–6)
+### Fase subito dopo (ordine bloccante)
 
 | # | To-do | Stato |
 |---|--------|--------|
-| 1 | Collegare **1–3 fornitori dropshipping affidabili** (EU/IT/US), **non** CJ come cuore del catalogo | ☐ |
-| 2 | Import prodotti (CSV/API/admin) con regole qualità + spedizione di Antonino | ☐ |
-| 3 | Checkout Stripe **test** → poi modalità live | ☐ |
-| 4 | Onboarding partner reali (es. **TGP**) via registrazione vendor | ☐ |
-| 5 | Riempire gradualmente lo shop (prodotti approvati, non spazzatura) | ☐ |
+| 1–2 | Catalogo + fornitori (shortlist, qualità, ingresso Mercur) — docs operativi | ✅ docs; ⬜ scelta fornitori/SKU |
+| 3 | Checkout Stripe test → live — `docs/STRIPE-CHECKOUT.md` | 🔄 wiring pronto |
+| 4 | Prime vendite vere — `docs/CHECKLIST-PRIME-VENDITE.md` | ☐ dopo Stripe |
+| 5 | Cashback — solo dopo 4 — `docs/CASHBACK-DOPO-VENDITE.md` | ☐ bloccato |
+| 6 | Referral — solo dopo 5 — `docs/REFERRAL-DOPO-CASHBACK.md` | ☐ bloccato |
+| 7 | App mobile — ultima — `docs/APP-MOBILE-ULTIMA.md` | ☐ bloccato |
 
 ### Poi (mesi successivi)
 
