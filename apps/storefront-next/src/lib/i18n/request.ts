@@ -10,6 +10,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   return {
     locale,
-    messages: (await import(`../../../../../messages/${locale}.json`)).default,
+    // Local copy under apps/storefront-next so Vercel Root Directory builds resolve messages
+    messages: (await import(`../../../messages/${locale}.json`)).default,
   };
 });

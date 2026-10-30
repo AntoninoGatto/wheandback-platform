@@ -39,8 +39,52 @@ export type StoreCreateCartResponse = {
   cart: { id: string };
 };
 
-export async function createCart() {
-  return medusaFetch<StoreCreateCartResponse>("/store/carts", { method: "POST" });
+export async function createCart(regionId?: string) {
+  return medusaFetch<StoreCreateCartResponse>("/store/carts", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(regionId ? { region_id: regionId } : {}),
+  });
+}
+
+export async function ensureCartId(regionId?: string) {
+  if (typeof window !== "undefined") {
+    const existing = window.localStorage.getItem("wb_cart_id");
+    if (existing) return existing;
+  }
+  const data = await createCart(regionId);
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem("wb_cart_id", data.cart.id);
+  }
+  return data.cart.id;
+}
+
+export async function listRegions() {
+  return medusaFetch<{ regions: { id: string; name?: string; currency_code?: string }[] }>(
+    "/store/regions"
+  );
+}
+
+export type StoreOffer = {
+  id: string;
+  sku?: string | null;
+  calculated_price?: { calculated_amount?: number; currency_code?: string } | null;
+};
+
+export async function listOffers(params?: {
+  product_id?: string;
+  region_id?: string;
+  limit?: number;
+}) {
+  const qs = new URLSearchParams();
+  if (params?.product_id) qs.set("product_id", params.product_id);
+  if (params?.region_id) qs.set("region_id", params.region_id);
+  if (params?.limit) qs.set("limit", String(params.limit));
+  qs.set("fields", "+calculated_price");
+  const query = qs.toString();
+  return medusaFetch<{ offers: StoreOffer[] }>(
+    `/store/offers${query ? `?${query}` : ""}`
+  );
 }
 
 export async function addLineItem(cartId: string, variantId: string, quantity: number) {
@@ -48,6 +92,15 @@ export async function addLineItem(cartId: string, variantId: string, quantity: n
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ variant_id: variantId, quantity }),
+  });
+}
+
+/** Mercur cart line items use offer_id (not variant_id). */
+export async function addOfferToCart(cartId: string, offerId: string, quantity: number) {
+  return medusaFetch(`/store/carts/${encodeURIComponent(cartId)}/line-items`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ offer_id: offerId, quantity }),
   });
 }
 

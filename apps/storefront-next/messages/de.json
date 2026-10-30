@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "shop": "Shop",
+    "cashback": "Cashback",
+    "referral": "Empfehlung",
+    "charity": "Wohltätigkeit",
+    "producers": "Produzenten",
+    "about": "Über Uns",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "dashboard": "Dashboard",
+    "logout": "Abmelden"
+  },
+  "home": {
+    "hero": {
+      "badge": "Referral-Prämie bis zu 35%",
+      "headline": "Kostenlos registrieren. Liebste einladen.",
+      "subline1": "Das Referral-Guthaben geht an den Einladenden: bis zu 35% auf Einkäufe eingeladener Kunden",
+      "subline2": "Jede Bestellung spendet 1% an Il Segreto di Aladino für ethische Projekte",
+      "cta_register": "Kostenlos registrieren",
+      "cta_shop": "Shop entdecken",
+      "microcopy": "Werden Sie Kunde mit einem einzigen Einkauf in beliebiger Höhe. Sie zahlen immer 100% des veröffentlichten Preises."
+    },
+    "how_it_works": {
+      "title": "So Funktioniert Es",
+      "step1_title": "Kostenlos registrieren",
+      "step1_desc": "Erstellen Sie Ihr Konto in Sekunden, ohne Kosten",
+      "step2_title": "Einkaufen",
+      "step2_desc": "Ein Einkauf in beliebiger Höhe macht Sie zum Whe&Back®-Kunden",
+      "step3_title": "Freunde einladen",
+      "step3_desc": "Teilen Sie Ihren Link: erhalten Sie eine Referral-Prämie bis zu 35% auf deren Einkäufe",
+      "step4_title": "1% spenden",
+      "step4_desc": "Jede Bestellung finanziert ethische Projekte mit Il Segreto di Aladino"
+    },
+    "referral_highlight": {
+      "title": "Verdienen durch Einladen",
+      "desc": "Das Referral-Guthaben geht nicht an den Käufer, sondern an die Person, die den Link geteilt hat. Wenn Sie einen neuen Kunden einladen, erhalten Sie bis zu 35% dessen, was er ausgibt. Internes Guthaben nur für Whe&Back®-Einkäufe.",
+      "cta": "Ihren Referral-Link erhalten"
+    },
+    "cta_grid": {
+      "register": "Kostenlos registrieren und verdienen",
+      "charity": "Unsere wohltätigen Projekte entdecken",
+      "referral": "Freunde mit Ihrem Link einladen",
+      "shop": "Zum Shop"
+    },
+    "welcome": {
+      "eyebrow": "Das Leben ist ein Kreis",
+      "title": "Willkommen",
+      "body": "Dies ist der erste echte Solidaritäts-E-Commerce der Welt. Registrieren Sie sich kostenlos, laden Sie Bekannte ein und erhalten Sie eine Referral-Prämie bis zu 35% auf deren Einkäufe. Jede Bestellung spendet 1% an Il Segreto di Aladino.",
+      "cta": "Kostenlos registrieren"
+    },
+    "charity": {
+      "badge": "Wohltätigkeit",
+      "title": "Il Segreto di Aladino",
+      "stat_label": "des monatlichen Umsatzes",
+      "desc": "1% des Umsatzes wird monatlich an Il Segreto di Aladino gespendet, um ethische Projekte zu finanzieren.",
+      "cta": "Mehr Erfahren"
+    },
+    "featured_products": {
+      "title": "Empfohlene Produkte",
+      "cta": "Alle Produkte ansehen"
+    }
+  },
+  "shop": {
+    "title": "Shop",
+    "filters": "Filter",
+    "categories": "Kategorien",
+    "sort": "Sortieren nach",
+    "cashback_label": "Cashback",
+    "add_to_cart": "In den Warenkorb",
+    "no_products": "Keine Produkte gefunden"
+  },
+  "cashback": {
+    "title": "Ihr Cashback",
+    "balance": "Verfügbares Guthaben",
+    "pending": "Ausstehende Bestätigung",
+    "info_title": "So Funktioniert Cashback",
+    "info_desc": "Cashback wird nur nach Produktlieferung und Ablauf des Widerrufsrechts (14 Tage) aktiviert. Das Guthaben kann nur als Gutschrift für neue Käufe verwendet werden und kann niemals als Bargeld ausgezahlt werden.",
+    "history": "Cashback-Verlauf"
+  },
+  "referral": {
+    "title": "Ihr Empfehlungslink",
+    "desc": "Laden Sie unbegrenzt Freunde ein und verdienen Sie mehrstufige Prämien",
+    "your_link": "Ihr Persönlicher Link",
+    "copy_link": "Link Kopieren",
+    "copied": "Kopiert!",
+    "stats": "Ihre Statistiken",
+    "invited": "Eingeladene Freunde",
+    "earned": "Mit Empfehlungen Verdient"
+  },
+  "charity": {
+    "title": "Wohltätigkeit & Transparenz",
+    "desc": "Jeden Monat spenden wir 1% des Gesamtumsatzes an den Verein \"Il Segreto di Aladino\"",
+    "reports": "Monatsberichte",
+    "download": "Dokumentation Herunterladen"
+  },
+  "auth": {
+    "login_title": "Bei Whe&Back® Anmelden",
+    "register_title": "Konto Erstellen",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirm_password": "Passwort Bestätigen",
+    "login_btn": "Anmelden",
+    "register_btn": "Registrieren",
+    "no_account": "Noch kein Konto?",
+    "have_account": "Haben Sie bereits ein Konto?",
+    "age_confirm": "Ich bestätige, dass ich mindestens 18 Jahre alt bin",
+    "privacy_accept": "Ich akzeptiere die Datenschutzrichtlinie und die Allgemeinen Geschäftsbedingungen",
+    "forgot_password": "Passwort vergessen?"
+  },
+  "footer": {
+    "company": "Buy All Free LTD",
+    "company_number": "Unternehmensnummer: 13803002",
+    "rights": "Alle Rechte vorbehalten",
+    "privacy": "Datenschutzrichtlinie",
+    "cookies": "Cookie-Richtlinie",
+    "terms": "Allgemeine Geschäftsbedingungen",
+    "court": "Zuständiges Gericht: Mailand"
+  }
+}

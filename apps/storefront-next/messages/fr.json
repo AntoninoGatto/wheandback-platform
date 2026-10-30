@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "shop": "Boutique",
+    "cashback": "Cashback",
+    "referral": "Parrainage",
+    "charity": "Charité",
+    "producers": "Producteurs",
+    "about": "Qui Sommes-Nous",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Contact",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "dashboard": "Tableau de bord",
+    "logout": "Déconnexion"
+  },
+  "home": {
+    "hero": {
+      "badge": "Prime de parrainage jusqu'à 35%",
+      "headline": "Inscrivez-vous gratuitement. Invitez vos proches.",
+      "subline1": "Le crédit de parrainage va à celui qui invite : jusqu'à 35% sur les achats des clients invités",
+      "subline2": "Chaque commande reverse 1% à Il Segreto di Aladino pour des projets éthiques",
+      "cta_register": "S'inscrire gratuitement",
+      "cta_shop": "Découvrir la Boutique",
+      "microcopy": "Devenez client avec un seul achat, de n'importe quel montant. Vous payez toujours 100% du prix affiché."
+    },
+    "how_it_works": {
+      "title": "Comment ça Marche",
+      "step1_title": "Inscrivez-vous",
+      "step1_desc": "Créez votre compte en quelques secondes, sans frais",
+      "step2_title": "Achetez",
+      "step2_desc": "Un achat de n'importe quel montant fait de vous un client Whe&Back®",
+      "step3_title": "Invitez des amis",
+      "step3_desc": "Partagez votre lien : recevez une prime de parrainage jusqu'à 35% sur leurs achats",
+      "step4_title": "Donnez 1%",
+      "step4_desc": "Chaque commande finance des projets éthiques avec Il Segreto di Aladino"
+    },
+    "referral_highlight": {
+      "title": "Gagnez en invitant",
+      "desc": "Le crédit de parrainage ne va pas à l'acheteur, mais à celui qui a partagé le lien. Si vous invitez un nouveau client, vous recevez jusqu'à 35% de son achat. Crédit interne utilisable uniquement sur Whe&Back®.",
+      "cta": "Obtenir votre lien de parrainage"
+    },
+    "cta_grid": {
+      "register": "Inscrivez-vous gratuitement et commencez à gagner",
+      "charity": "Découvrez nos causes caritatives",
+      "referral": "Invitez des amis avec votre lien unique",
+      "shop": "Aller à la Boutique"
+    },
+    "welcome": {
+      "eyebrow": "La vie est un cercle",
+      "title": "Bienvenue",
+      "body": "C'est le premier vrai e-commerce solidaire au monde. Inscrivez-vous gratuitement, invitez vos proches et recevez une prime de parrainage jusqu'à 35% sur leurs achats. Chaque commande reverse 1% à Il Segreto di Aladino.",
+      "cta": "S'inscrire gratuitement"
+    },
+    "charity": {
+      "badge": "Charité",
+      "title": "Il Segreto di Aladino",
+      "stat_label": "du chiffre d'affaires mensuel",
+      "desc": "1% du chiffre d'affaires est reversé mensuellement à Il Segreto di Aladino pour financer des projets éthiques.",
+      "cta": "En Savoir Plus"
+    },
+    "featured_products": {
+      "title": "Produits en vedette",
+      "cta": "Voir toute la boutique"
+    }
+  },
+  "shop": {
+    "title": "Boutique",
+    "filters": "Filtres",
+    "categories": "Catégories",
+    "sort": "Trier par",
+    "cashback_label": "Cashback",
+    "add_to_cart": "Ajouter au Panier",
+    "no_products": "Aucun produit trouvé"
+  },
+  "cashback": {
+    "title": "Votre Cashback",
+    "balance": "Solde Disponible",
+    "pending": "En Attente de Confirmation",
+    "info_title": "Comment fonctionne le Cashback",
+    "info_desc": "Le cashback est activé uniquement après la livraison du produit et l'expiration du droit de rétractation (14 jours). Le solde ne peut être utilisé que comme crédit pour de nouveaux achats et ne peut jamais être retiré en espèces.",
+    "history": "Historique Cashback"
+  },
+  "referral": {
+    "title": "Votre Lien de Parrainage",
+    "desc": "Invitez des amis illimités et gagnez des récompenses multi-niveaux",
+    "your_link": "Votre Lien Personnel",
+    "copy_link": "Copier le Lien",
+    "copied": "Copié!",
+    "stats": "Vos Statistiques",
+    "invited": "Amis Invités",
+    "earned": "Gagné avec le Parrainage"
+  },
+  "charity": {
+    "title": "Charité & Transparence",
+    "desc": "Chaque mois nous reversons 1% du chiffre d'affaires total à l'Association \"Il Segreto di Aladino\"",
+    "reports": "Rapports Mensuels",
+    "download": "Télécharger la Documentation"
+  },
+  "auth": {
+    "login_title": "Connexion à Whe&Back®",
+    "register_title": "Créer votre Compte",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirm_password": "Confirmer le mot de passe",
+    "login_btn": "Se Connecter",
+    "register_btn": "S'inscrire",
+    "no_account": "Pas encore de compte?",
+    "have_account": "Vous avez déjà un compte?",
+    "age_confirm": "Je confirme avoir au moins 18 ans",
+    "privacy_accept": "J'accepte la Politique de confidentialité et les Conditions générales",
+    "forgot_password": "Mot de passe oublié?"
+  },
+  "footer": {
+    "company": "Buy All Free LTD",
+    "company_number": "Numéro d'entreprise: 13803002",
+    "rights": "Tous droits réservés",
+    "privacy": "Politique de Confidentialité",
+    "cookies": "Politique de Cookies",
+    "terms": "Conditions Générales",
+    "court": "Juridiction: Tribunal de Milan"
+  }
+}
