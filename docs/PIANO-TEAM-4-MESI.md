@@ -1,9 +1,10 @@
 # Piano team Whe&Back — 4 mesi (Gabriele · Cursor · Grok Bot · Antonino)
 
 > **OVERRIDE ATTIVO (nov 2026):** sprint compresso **15 giorni** — vedi  
-> [`SPRINT-15-GIORNI-OPERATIVO.md`](./SPRINT-15-GIORNI-OPERATIVO.md) e  
+> [`SPRINT-15-GIORNI-OPERATIVO.md`](./SPRINT-15-GIORNI-OPERATIVO.md),  
+> [`GROK-BOT-COLLEGAMENTO.md`](./GROK-BOT-COLLEGAMENTO.md),  
 > [`PROTOCOLLO-ESCALATION-ANTONINO.md`](./PROTOCOLLO-ESCALATION-ANTONINO.md).  
-> Grok Bot = motore giornaliero; email/WA verso Antonino per conferme.
+> **Grok Bot** = app teammate (computer cloud), **non** il modello Grok nell’IDE.
 
 **Obiettivo (piano lungo, se lo sprint slitta):** negozio + cashback + referral.  
 **App mobile:** fuori.  
@@ -17,7 +18,7 @@
 |-------|-----|----------------|
 | **Ops / click** | Gabriele | Account (Stripe, Vercel, GoDaddy, host API), env, test browser, 5 h/sett, coordina papà |
 | **Dev A** | Cursor (questa chat / Composer) | Codice, fix, docs, commit/push, guide click-by-click |
-| **Dev B** | Grok Bot (Cursor + modello Grok) | Stesso repo: feature, debug, alternative, sessioni parallele se Gabriele vuole |
+| **Dev B** | **Grok Bot** (app teammate) | Computer cloud 24/7; codice via Cloud Agent su GitHub; email/WA ad Antonino |
 | **Business** | Antonino (papà) | Fornitori, catalogo vero, margini, ok live, **regole ufficiali cashback/referral**, testi azienda |
 
 **Regola d’oro:** Cursor e Grok Bot **non** si contraddicono sul processo. Fonte di verità = repo GitHub + docs in `docs/`. Decisioni business = solo Antonino (scritte in `DECISIONI-DA-CHATGPT-VS-ROADMAP.md`).
@@ -26,20 +27,11 @@
 
 ## 2) Come collegare Grok Bot a questo progetto
 
-Grok Bot **non** è un servizio separato: è **Cursor con modello Grok**, stesso abbonamento.
+Istruzioni complete: **[`GROK-BOT-COLLEGAMENTO.md`](./GROK-BOT-COLLEGAMENTO.md)**.
 
-1. Apri Cursor sulla cartella **`C:\Progetti\wheback-platform`** (non HSKacer).  
-2. Apri una chat **Agent** (o Composer).  
-3. Nel selettore modello scegli **Grok** (quello del tuo piano Cursor).  
-4. Lavora sullo stesso GitHub: `AntoninoGatto/wheandback-platform` (branch `main` / `develop` come da deploy).  
-5. In chat digli: *“Leggi `docs/PIANO-TEAM-4-MESI.md` e `docs/PERCORSO-PUBBLICAZIONE-STEP-BY-STEP.md`. Lavoriamo solo Whe&Back.”*
+In sintesi: app **Grok Bot** (non modello IDE) → GitHub Integration su `AntoninoGatto/wheandback-platform` → Bot “WheBack” → Cloud Agent per il codice → email `@mail.grokbot.com` / Gmail + WhatsApp sul computer del Bot.
 
-**Sincronia Cursor ↔ Grok Bot**
-- Stesso codice = **git pull** prima di lavorare; **commit + push** a fine sessione (regola Gabriele).  
-- Se due chat toccano gli stessi file: una alla volta, o branch separati.  
-- Dopo ogni modifica rilevante: push → Vercel si aggiorna da solo.
-
-Non serve “collegare” Grok a LinfaTech o a un altro tool: apre lo stesso progetto in Cursor.
+**Sincronia IDE ↔ Grok Bot:** tutto passa da **GitHub** (PR/branch). File solo locali non pushati il Bot non li vede.
 
 ---
 

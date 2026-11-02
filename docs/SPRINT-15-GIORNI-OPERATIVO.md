@@ -98,21 +98,23 @@ Finché non arriva una risposta diversa, si implementa così (allineato a `DECIS
 
 | Quando | Canale | Chi | Contenuto |
 |--------|--------|-----|-----------|
-| Fine ogni blocco lavoro (~2–4 h) | Email (preferito) | Grok → `info.buyallfree@gmail.com` | Stato + prossimo step + se serve click |
-| Blocco che ferma il codice | Email + testo WA (inoltro) | Grok → Gabriele/Antonino | Domanda sì/no con default proposto |
-| Mattina (opz.) | Email digest | Automation / Grok | Cosa fatto ieri / oggi / bloccanti |
-| Solo urgenze | WhatsApp | Umano o bridge | Max 1–2 msg/giorno salvo emergenza |
+| Fine ogni blocco lavoro (~2–4 h) | Email | **Grok Bot** → `info.buyallfree@gmail.com` | Stato + prossimo step + se serve click |
+| Blocco che ferma il codice | Email + WhatsApp | Grok Bot → Antonino/Gabriele | Domanda sì/no con default proposto |
+| Mattina (opz.) | Email digest | Grok Bot (routine) | Cosa fatto ieri / oggi / bloccanti |
+| Solo urgenze | WhatsApp | Grok Bot (computer cloud) | Max 1–2 msg/giorno salvo emergenza |
 
 ---
 
 ## Checklist avvio (Gabriele, una volta)
 
-1. [ ] Aprire Cursor su `wheback-platform`, chat Agent, modello **Grok**  
-2. [ ] Dire a Grok: *segui `docs/SPRINT-15-GIORNI-OPERATIVO.md` e `docs/PROTOCOLLO-ESCALATION-ANTONINO.md`*  
-3. [ ] Collegare Gmail in Cursor (MCP Gmail) sull’account che può scrivere a `info.buyallfree@gmail.com` **oppure** da cui inviare  
-4. [ ] GitHub: push funzionante (account con accesso a `AntoninoGatto/wheandback-platform`)  
-5. [ ] Inviare ad Antonino il messaggio di avvio sprint (template nel protocollo)  
-6. [ ] (Opz.) Bridge WhatsApp CallMeBot/Twilio → poi Grok può notificare anche su WA  
+Seguire per intero **`GROK-BOT-COLLEGAMENTO.md`**. In sintesi:
+
+1. [ ] App **Grok Bot** + Bot dedicato **WheBack**  
+2. [ ] cursor.com → Integrations → **GitHub** → `AntoninoGatto/wheandback-platform`  
+3. [ ] Email Bot `@mail.grokbot.com` e/o Connect **Gmail** `info.buyallfree@gmail.com`  
+4. [ ] WhatsApp Web/wacli sul computer del Bot → test a papà  
+5. [ ] Messaggio di avvio sprint ad Antonino (template nel protocollo)  
+6. [ ] Prompt: *Inizia sprint, primo blocco Stripe test*  
 
 ---
 

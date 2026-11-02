@@ -54,16 +54,18 @@ Default se ok silenzio 24h: …
 Dettagli: email [oggetto]
 ```
 
-Finché non c’è API WhatsApp: Grok mette il testo WA in coda all’email con oggetto `[WA-COPY]` e Gabriele inoltra in 10 secondi.
+**Canale preferito WA:** Grok Bot sul suo computer cloud (WhatsApp Web o wacli) — vedi `GROK-BOT-COLLEGAMENTO.md`.  
+Se WA non è collegato: testo in email con oggetto `[WA-COPY]` e Gabriele inoltra.
 
 ---
 
-## Bridge WhatsApp (opzionale, dopo)
+## Bridge WhatsApp (alternative)
 
-1. **CallMeBot** (semplice, personale): Antonino attiva il bot una volta → API key → env `WHATSAPP_CALLMEBOT_KEY` (mai in git).  
-2. **Twilio WhatsApp** (più solido, a pagamento).  
+1. **WhatsApp Web / wacli** sul computer Grok Bot (via principale)  
+2. **WhatsApp Business** plugin Cursor (account Business Meta)  
+3. CallMeBot / Twilio se serve API esterna  
 
-Finché non configurato: **email = canale ufficiale**; WA = inoltro manuale.
+Finché WA non è stabile: **email = canale ufficiale**.
 
 ---
 
