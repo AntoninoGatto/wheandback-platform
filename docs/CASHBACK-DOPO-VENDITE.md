@@ -1,7 +1,10 @@
 # Cashback — solo dopo vendite vere
 
-**Stato:** BLOCCATO fino a step 4 ([`CHECKLIST-PRIME-VENDITE.md`](./CHECKLIST-PRIME-VENDITE.md)).  
-**Non implementare** ledger/UI finché non esistono ordini pagati reali.
+**Stato (sprint 15 gg nov 2026):** **SBLOCCATO in parallelo** ai pagamenti —  
+vedi [`SPRINT-15-GIORNI-OPERATIVO.md`](./SPRINT-15-GIORNI-OPERATIVO.md).  
+Ledger/UI si implementano subito con default A1–A5; collaudo E2E resta legato a ordini test/live.
+
+**Stato (piano lungo):** BLOCCATO fino a step 4 ([`CHECKLIST-PRIME-VENDITE.md`](./CHECKLIST-PRIME-VENDITE.md)).
 
 ---
 

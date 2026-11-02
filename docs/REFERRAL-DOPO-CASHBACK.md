@@ -1,6 +1,9 @@
 # Referral — solo dopo cashback
 
-**Stato:** BLOCCATO fino a step 5 ([`CASHBACK-DOPO-VENDITE.md`](./CASHBACK-DOPO-VENDITE.md)).
+**Stato (sprint 15 gg nov 2026):** **SBLOCCATO in coda al cashback MVP** nello stesso sprint  
+([`SPRINT-15-GIORNI-OPERATIVO.md`](./SPRINT-15-GIORNI-OPERATIVO.md)) — single-tier (B1=A).
+
+**Stato (piano lungo):** BLOCCATO fino a step 5 ([`CASHBACK-DOPO-VENDITE.md`](./CASHBACK-DOPO-VENDITE.md)).
 
 ---
 

@@ -12,15 +12,18 @@ Dove c’è contraddizione, papà sceglie **una sola regola ufficiale**.
 
 ## Scelte da firmare (Antonino)
 
+> **Sprint 15 gg:** default sotto già in vigore per il codice. Antonino conferma con  
+> “OK DEFAULT” su email/WA (`PROTOCOLLO-ESCALATION-ANTONINO.md`) o override in una riga.
+
 ### A) Cashback
 
 | # | Domanda | Opzioni | Scelta |
 |---|---------|---------|--------|
-| A1 | Forma del beneficio | Solo credito interno checkout / Anche prelievo contanti | ☐ |
-| A2 | Base calcolo | % su prezzo vendita / % su margine | ☐ |
-| A3 | % tipica (configurabile, non hardcode) | es. 5–35% — valore ufficiale: ____ | ☐ |
-| A4 | Giorni sblocco dopo consegna | 14 / 30 / altro: ____ | ☐ |
-| A5 | Reso / refund | Annulla pending + available non usato | ☐ sì (consigliato) |
+| A1 | Forma del beneficio | Solo credito interno checkout / Anche prelievo contanti | ☑ **credito interno** (default sprint) |
+| A2 | Base calcolo | % su prezzo vendita / % su margine | ☑ **prezzo vendita** (default sprint) |
+| A3 | % tipica (configurabile, non hardcode) | es. 5–35% — valore ufficiale: ____ | ☑ **5%** (default sprint) |
+| A4 | Giorni sblocco dopo consegna | 14 / 30 / altro: ____ | ☑ **14** (default sprint) |
+| A5 | Reso / refund | Annulla pending + available non usato | ☑ **sì** (default sprint) |
 
 **Raccomandazione MVP:** A1 = solo credito interno → niente KYC prelievo in fase 1.
 
@@ -28,9 +31,9 @@ Dove c’è contraddizione, papà sceglie **una sola regola ufficiale**.
 
 | # | Domanda | Opzioni | Scelta |
 |---|---------|---------|--------|
-| B1 | Livelli | **A)** single-tier (più sicuro) / **B)** multilivello 5/2/1 | ☐ |
-| B2 | Quando matura | Solo ordine pagato + non rimborsato | ☐ |
-| B3 | Self-referral | Bloccato | ☐ sì |
+| B1 | Livelli | **A)** single-tier (più sicuro) / **B)** multilivello 5/2/1 | ☑ **A single-tier** (default sprint) |
+| B2 | Quando matura | Solo ordine pagato + non rimborsato | ☑ **sì** (default sprint) |
+| B3 | Self-referral | Bloccato | ☑ **sì** (default sprint) |
 
 **Finché B1 non è firmato (e se multi: parere legale), non si codifica il carpeto.**
 
