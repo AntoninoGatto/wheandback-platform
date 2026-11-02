@@ -4,40 +4,37 @@
 **Obiettivo:** negozio online funzionante + **cashback MVP** + **referral 1 livello**.  
 **Sostituisce** il piano “4 mesi / 5 h” per questa finestra. Documento team precedente: `PIANO-TEAM-4-MESI.md` (riferimento ruoli).
 
+**Grok Bot** = app teammate Cursor (computer cloud), **non** il modello Grok nell’IDE.  
+Setup: [`GROK-BOT-COLLEGAMENTO.md`](./GROK-BOT-COLLEGAMENTO.md).
+
 ---
 
 ## Modello operativo (i 4)
 
 | Ruolo | Chi | Come lavora in questi 15 giorni |
 |-------|-----|----------------------------------|
-| **Motore codice** | **Grok Bot** (Cursor + modello Grok) | Sessioni lunghe sul repo `wheback-platform`; implementa, pusha, aggiorna stato |
-| **Backup / review** | Cursor (Composer) | Allineamento, review, sblocchi difficili, stesso repo |
-| **Ops click** | Gabriele | Account, DNS, Stripe, host, auth GitHub, conferma deploy |
-| **Business / firma** | Antonino | Risponde a email/WhatsApp: regole cashback/referral, fornitori, ok live |
+| **Motore 24/7** | **Grok Bot** (app teammate, computer cloud) | Codice via Cloud Agent su GitHub; email; WhatsApp; continua a PC spento |
+| **Backup locale** | Cursor IDE (questa chat) | Docs, review, sblocchi quando Gabriele è al PC |
+| **Ops click** | Gabriele | Approva carte Grok Bot, GitHub, DNS, Stripe, QR WhatsApp |
+| **Business / firma** | Antonino | Risponde email/WhatsApp: regole cashback/referral, fornitori, ok live |
 
 **Canali umani (solo questi):**
-- Email: `info.buyallfree@gmail.com`
+- Email: `info.buyallfree@gmail.com` (+ eventuale `*@mail.grokbot.com` del Bot)
 - WhatsApp Antonino: `+39 347 229 5125`
 
-Protocollo messaggi: `PROTOCOLLO-ESCALATION-ANTONINO.md`.
+Protocollo: `PROTOCOLLO-ESCALATION-ANTONINO.md`.
 
 ---
 
 ## Cosa Grok Bot può e non può fare da solo
 
-| Può | Non può (serve setup o umano) |
-|-----|-------------------------------|
-| Codificare cashback/referral/storefront/API | Mandare WhatsApp “magicamente” senza API collegata |
-| Aprire PR / commit (se git auth ok) | Click Stripe Dashboard / GoDaddy / Vercel account Gabriele |
-| Scrivere bozze email/WA e (con Gmail collegato) inviare email | Firnare regole business al posto di Antonino |
-| Aggiornare checklist e `STATO-ATTUALE.md` | Girare 24/7 se Cursor/PC/Cloud Agent è spento |
-
-**“Tutto il giorno” in pratica**
-1. PC acceso + chat Agent con modello **Grok** sul folder `C:\Progetti\wheback-platform`, oppure  
-2. **Cloud Agents / Automations** Cursor sul repo GitHub (digest + lavoro a orari fissi), oppure  
-3. Entrambi: Grok in giornata continua + digest serale automatico a email.
-
-WhatsApp verso papà: finché non c’è un bridge (es. CallMeBot / Twilio WhatsApp), Grok **prepara il testo** e lo manda via **email** a `info.buyallfree@gmail.com` (e/o Gabriele inoltra su WA in 1 tap). Vedi protocollo.
+| Può (dopo setup) | Non può / serve umano |
+|------------------|------------------------|
+| Codice su GitHub via Cloud Agent → branch/PR | Vedere file solo locali non pushati |
+| Email da `@mail.grokbot.com` o Gmail collegato | Saltare approval su email da routine |
+| WhatsApp (Web/wacli sul suo computer) | WA senza primo QR / re-link post-refresh |
+| Routine + skill, lavoro a laptop chiuso | Click 2FA / captcha / account non collegati |
+| Aggiornare stato e chiedere conferme ad Antonino | Firmare regole business al posto suo |
 
 ---
 
@@ -56,7 +53,7 @@ Finché non arriva una risposta diversa, si implementa così (allineato a `DECIS
 | B2 | Premio solo ordine **pagato** non rimborsato |
 | B3 | Self-referral **bloccato** |
 
-**Override:** messaggio di Antonino su email/WA con “A3=10%” ecc. → Grok aggiorna config + conferma reply.
+**Override:** messaggio di Antonino su email/WA con “A3=10%” ecc. → Grok Bot aggiorna config + conferma reply.
 
 ---
 
