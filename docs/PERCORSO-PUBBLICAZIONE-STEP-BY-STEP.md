@@ -83,8 +83,10 @@ Guida: `docs/STRIPE-CHECKOUT.md`.
 
 ## STEP 6 — Hosting API Mercur (produzione)
 **Chi:** Gabriele (+ Cursor per config)  
+**Stato config:** 2026-11-11 — host deciso (**Railway**) e file nel repo. Restano i click sul pannello. Guida: `docs/BLOCCO-1-DEPLOY.md`.  
+**Non fare qui:** DNS, `wheback.com`, `api.wheback.com`.
 
-1. Scegliere host: Railway **o** Fly **o** VPS  
+1. Host: **Railway** (Postgres + Redis plugin). Dockerfile già in `services/mercur-marketplace`
 2. Provisionare **Postgres** + **Redis**  
 3. Deploy pacchetto API Mercur  
 4. Env produzione: `DATABASE_URL`, `REDIS_URL`, `STRIPE_API_KEY` (ancora test), `STRIPE_WEBHOOK_SECRET`, secret JWT, ecc.  
@@ -97,8 +99,9 @@ Guida: `docs/STRIPE-CHECKOUT.md`.
 
 ## STEP 7 — Deploy storefront su Vercel
 **Chi:** Gabriele  
+**Stato config:** 2026-11-11 — `apps/storefront-next/vercel.json`, `.env.example`, Node 22. Il click sulla Root Directory è ancora manuale (`docs/BLOCCO-1-DEPLOY.md`).
 
-1. Progetto Vercel → Settings → **Root Directory** = `apps/storefront-next`  
+1. Progetto Vercel → Settings → **Root Directory** = `apps/storefront-next`
 2. Environment Variables:  
    - `NEXT_PUBLIC_MEDUSA_BACKEND_URL` = URL API dello STEP 6  
    - `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` = publishable key  
@@ -202,5 +205,6 @@ cliente compra → paga → riceve email → riceve pacco → margine accettabil
 
 ## Prossimo step da fare adesso
 
-Parti dallo **STEP 1**, poi **STEP 2** (prodotti) e **STEP 3** (Stripe test).  
-Senza questi tre verdi, deploy e dominio sono prematuri.
+STEP 1 e STEP 2 sono già verdi in locale.  
+Il blocco aperto è **STEP 6 → STEP 7** (Railway + Vercel) seguendo `docs/BLOCCO-1-DEPLOY.md`.  
+Non toccare il DNS. Stripe test (STEP 3) può procedere in parallelo sull’API, prima in locale e poi sull’URL Railway.

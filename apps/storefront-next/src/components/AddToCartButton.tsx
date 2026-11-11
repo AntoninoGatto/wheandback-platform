@@ -6,6 +6,7 @@ import {
   ensureCartId,
   listOffers,
   listRegions,
+  pickDefaultRegionId,
 } from "@/lib/medusa/store";
 import { MedusaError } from "@/lib/medusa/http";
 
@@ -20,7 +21,7 @@ export function AddToCartButton({ productId }: { productId: string }) {
       let regionId = window.localStorage.getItem("wb_region_id") || undefined;
       if (!regionId) {
         const { regions } = await listRegions();
-        regionId = regions[0]?.id;
+        regionId = pickDefaultRegionId(regions);
         if (regionId) window.localStorage.setItem("wb_region_id", regionId);
       }
 
@@ -35,7 +36,7 @@ export function AddToCartButton({ productId }: { productId: string }) {
         return;
       }
 
-      const cartId = await ensureCartId();
+      const cartId = await ensureCartId(regionId);
       await addOfferToCart(cartId, offer.id, 1);
       const price = offer.calculated_price?.calculated_amount;
       setMessage(

@@ -219,6 +219,14 @@ export default async function seedDemoData({ container }: ExecArgs) {
     });
 
     publishableApiKey = publishableApiKeyResult
+    const createdToken = (
+      publishableApiKeyResult as { token?: string } | undefined
+    )?.token
+    if (createdToken) {
+      logger.info(
+        `Publishable API key token (NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY): ${createdToken}`
+      )
+    }
   }
 
   // Link sales channel to API key (idempotent)

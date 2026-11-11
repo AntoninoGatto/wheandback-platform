@@ -4,10 +4,14 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./src/lib/i18n/request.ts");
 
+// This app is not a workspace of the repo root. The prototype lockfile one
+// level up would otherwise become the Turbopack and file-tracing root on Vercel.
+const appRoot = path.join(__dirname);
+
 const nextConfig: NextConfig = {
-  // Monorepo: avoid picking the repo-root lockfile as Turbopack root on Vercel
+  outputFileTracingRoot: appRoot,
   turbopack: {
-    root: path.join(__dirname),
+    root: appRoot,
   },
 };
 

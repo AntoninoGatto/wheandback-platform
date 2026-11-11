@@ -28,7 +28,7 @@ export async function registerAction(
     jar.set("wb_customer_token", token, {
       httpOnly: true,
       sameSite: "lax",
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
       path: "/",
     });
   } catch (e) {

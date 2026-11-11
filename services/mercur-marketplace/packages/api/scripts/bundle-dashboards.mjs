@@ -91,14 +91,19 @@ for (const panel of PANELS) {
   console.log(`[bundle-dashboards] ${panel.name}: apps/${panel.name}/dist -> ${path.relative(apiDir, target)}`)
 }
 
-// `medusa build` copies this package.json verbatim into the artifact. Strip workspace-protocol
+// `medusa build` copies this package.json verbatim into the artifact. Strip workspace
 // dependencies — they exist only so the panel sources travel with this package (Turborepo
 // pruning follows the workspace dependency graph), and they cannot be installed from a registry.
+// This repo's npm workspaces pin those panels as `"*"`, not `"workspace:*"`.
 const artifactPkgPath = path.join(artifactDir, 'package.json')
 const artifactPkg = JSON.parse(fs.readFileSync(artifactPkgPath, 'utf8'))
 for (const field of ['dependencies', 'devDependencies']) {
   for (const [dep, version] of Object.entries(artifactPkg[field] ?? {})) {
-    if (typeof version === 'string' && version.startsWith('workspace:')) {
+    // npm workspaces in this repo use "*" (not the pnpm/bun "workspace:" protocol).
+    const workspacePointer =
+      typeof version === 'string' &&
+      (version.startsWith('workspace:') || version === '*')
+    if (workspacePointer || dep.startsWith('@acme/')) {
       delete artifactPkg[field][dep]
     }
   }

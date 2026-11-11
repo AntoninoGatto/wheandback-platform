@@ -39,7 +39,7 @@ export default async function orderPlacedEmailHandler({
     filters: { id: orderId },
   })
 
-  const order = (orders || [])[0] as
+  const order = (orders || [])[0] as unknown as
     | {
         id: string
         display_id?: number

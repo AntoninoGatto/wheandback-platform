@@ -111,18 +111,20 @@ export default async function seedStep2Catalog({ container }: ExecArgs) {
     ],
   })
 
-  const seller = (sellers || []).find(
-    (s: {
-      status?: string
-      stock_locations?: { id: string }[]
-      shipping_profiles?: { id: string }[]
-      members?: { id: string }[]
-    }) =>
-      (s.status === "open" || s.status === "active") &&
-      (s.stock_locations?.length ?? 0) > 0 &&
-      (s.shipping_profiles?.length ?? 0) > 0 &&
-      (s.members?.length ?? 0) > 0
-  ) as
+  const seller = (sellers || []).find((s) => {
+    const row = s as {
+      status?: string | null
+      stock_locations?: unknown[] | null
+      shipping_profiles?: unknown[] | null
+      members?: unknown[] | null
+    }
+    return (
+      (row.status === "open" || row.status === "active") &&
+      (row.stock_locations?.length ?? 0) > 0 &&
+      (row.shipping_profiles?.length ?? 0) > 0 &&
+      (row.members?.length ?? 0) > 0
+    )
+  }) as
     | {
         id: string
         name: string
