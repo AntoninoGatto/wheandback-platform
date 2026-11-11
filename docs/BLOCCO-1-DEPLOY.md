@@ -132,7 +132,7 @@ Il `vercel.json` nella root del repo è il cron del prototipo Supabase. Non deve
 
 1. Vercel → progetto dello storefront (o New Project sullo stesso repo).
 2. **Settings → General → Root Directory** = `apps/storefront-next`.  
-   Framework Next.js. Install `npm ci`, build `npm run build` (già in `apps/storefront-next/vercel.json`). Node **22** (file `.node-version`).
+   Framework Next.js. Install `npm ci --include=dev`, build `npm run build` (già in `apps/storefront-next/vercel.json`). `--include=dev` serve perché Vercel imposta `NODE_ENV=production` e altrimenti salta Tailwind e TypeScript. Node **22** (file `.node-version`).
 3. Environment Variables (Production e Preview):
 
 | Nome | Valore |
