@@ -36,7 +36,7 @@ Node dell’immagine: **22** (allineato allo storefront e a `engines` `>=20` di 
 | Env di esempio API | `services/mercur-marketplace/packages/api/.env.example` (copia identica in `.env.template`) |
 | Env di esempio storefront | `apps/storefront-next/.env.example` |
 | Vercel (vale quando la Root Directory è lo storefront) | `apps/storefront-next/vercel.json`, `.node-version` (`22`) |
-| Build storefront inchiodato alla sua cartella | `apps/storefront-next/next.config.ts` (`turbopack.root` e `outputFileTracingRoot`) |
+| Build storefront inchiodato alla sua cartella | `apps/storefront-next/next.config.ts` (`turbopack.root`) |
 | CI | `.github/workflows/deploy-checks.yml` |
 
 Lo script di avvio esegue `medusa db:migrate --execute-safe-links` e poi `medusa start` in modalità `MEDUSA_WORKER_MODE=shared` (HTTP e worker nello stesso processo). **Una sola replica** in questo blocco: due processi che migrano insieme non sono coperti.
@@ -132,7 +132,7 @@ Il `vercel.json` nella root del repo è il cron del prototipo Supabase. Non deve
 
 1. Vercel → progetto dello storefront (o New Project sullo stesso repo).
 2. **Settings → General → Root Directory** = `apps/storefront-next`.  
-   Framework Next.js. Install `npm ci --include=dev`, build `npm run build` (già in `apps/storefront-next/vercel.json`). `--include=dev` serve perché Vercel imposta `NODE_ENV=production` e altrimenti salta Tailwind e TypeScript. Node **22** (file `.node-version`).
+   Framework Next.js. Non sovrascrivere Install/Build command: il default di Vercel installa anche le devDependencies e produce l’output Next. Un `npm ci` o `next build --webpack` custom ha fatto fallire i preview. Node **22** (file `.node-version`).
 3. Environment Variables (Production e Preview):
 
 | Nome | Valore |

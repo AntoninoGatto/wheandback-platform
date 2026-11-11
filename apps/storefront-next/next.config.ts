@@ -4,14 +4,13 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./src/lib/i18n/request.ts");
 
-// This app is not a workspace of the repo root. The prototype lockfile one
-// level up would otherwise become the Turbopack and file-tracing root on Vercel.
-const appRoot = path.join(__dirname);
-
+// The prototype lockfile one level up would otherwise become the Turbopack
+// root on Vercel. Do not set outputFileTracingRoot here: the last green
+// Vercel deploy used only this root, and a custom tracing root makes the
+// builder look for .next in the wrong directory.
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: appRoot,
   turbopack: {
-    root: appRoot,
+    root: path.join(__dirname),
   },
 };
 
