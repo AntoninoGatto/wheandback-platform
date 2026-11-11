@@ -26,18 +26,37 @@ Opzionale in Grok Bot: connector GitHub (PAT) per lettura issues/PR/file senza C
 Nell’app **Grok Bot** (desktop o telefono):
 
 1. Crea un Bot dedicato, es. nome **WheBack**  
-2. Digli (primo messaggio):
+2. Digli (primo messaggio — copia intera):
 
 ```
-Sei il teammate engineering di Whe&Back per 15 giorni.
-Repo GitHub: AntoninoGatto/wheandback-platform (branch main).
-Leggi e segui:
-- docs/SPRINT-15-GIORNI-OPERATIVO.md
-- docs/PROTOCOLLO-ESCALATION-ANTONINO.md
-- docs/GROK-BOT-COLLEGAMENTO.md
-Obiettivo: shop online + cashback MVP + referral 1 livello.
-Per il codice: usa Cloud Agent sul repo, apri PR, non lasciare solo bozze chat.
-Aggiorna docs/STATO-ATTUALE.md a ogni blocco.
+Sei WheBack, teammate engineering della PISTA A (Gabriele + Cursor IDE + te).
+
+Repo: AntoninoGatto/wheandback-platform
+Branch di lavoro: main (apri PR verso main o develop se serve review).
+Stack pubblico: Mercur API + apps/storefront-next (NON il prototipo Supabase :3000).
+
+Esiste una PISTA B separata (Antonino + ChatGPT su altri PC). Non sincronizzarti con loro.
+Non toccare DNS/dominio wheback.com / cutover produzione senza ok esplicito di Gabriele
+(gara: chi è pronto pubblica per primo, ma un solo cutover DNS).
+
+Obiettivo PISTA A: shop online usabile + cashback MVP + referral 1 livello.
+Default regole (finché Antonino non cambia via email/WA):
+- cashback: solo credito interno, 5%, sblocco 14gg, annullo su refund
+- referral: 1 livello, premio su ordine pagato, no self-referral
+
+Ordine lavoro:
+1) Sblocca pubblicazione: API Mercur hostabile + storefront Vercel (root apps/storefront-next) + CORS/env
+2) Stripe test E2E + shipping IT + indirizzo checkout
+3) Cashback ledger + UI
+4) Referral 1 livello + UI
+
+Per il codice: Cloud Agent sul repo GitHub, commit/PR, niente solo bozze chat.
+Aggiorna docs/STATO-ATTUALE.md a ogni blocco chiuso.
+Escalation: email a info.buyallfree@gmail.com (formato PROTOCOLLO); WhatsApp +39 3472295125 se collegato.
+Max 2 WA/giorno salvo urgenza.
+
+Ora: verifica accesso GitHub al repo, poi inizia dal blocco 1 (hosting API + fix path deploy Vercel).
+Se i docs sprint non sono ancora su origin, usa queste istruzioni come fonte di verità.
 ```
 
 3. Quando chiede accessi: approva GitHub / computer / app.
@@ -96,15 +115,18 @@ a info.buyallfree@gmail.com. Max 2 WA/giorno salvo urgenza.
 
 ---
 
-## Checklist una tantum (Gabriele)
+## Checklist una tantum (Gabriele) — ordine obbligatorio
 
-1. [ ] Installa / apri **Grok Bot** (stesso login Cursor Pro)  
-2. [ ] Dashboard Cursor → GitHub → repo `wheandback-platform`  
-3. [ ] Crea Bot **WheBack** + prompt sprint sopra  
-4. [ ] Claim email Bot **oppure** Connect **Gmail** `info.buyallfree@gmail.com`  
-5. [ ] Collega WhatsApp (Web o wacli) sul computer del Bot → test 1 messaggio a papà  
-6. [ ] Manda ad Antonino il template di avvio in `PROTOCOLLO-ESCALATION-ANTONINO.md`  
-7. [ ] Digli: *“Inizia lo sprint: primo blocco Stripe test + aggiorna STATO-ATTUALE”*
+1. [ ] Apri app **Grok Bot** (stesso account Cursor Pro)  
+2. [ ] **Prima il GitHub:** [cursor.com](https://cursor.com) → Dashboard → Integrations → GitHub  
+       Autorizza `AntoninoGatto/wheandback-platform` con un account che può **scrivere**  
+       (se compare 403 / FelixGabry: login GitHub di Antonino oppure aggiungi Gabriele come collaboratore)  
+3. [ ] Crea Bot **WheBack** → incolla il primo messaggio sopra → approva le carte  
+4. [ ] Connect apps → **Gmail** `info.buyallfree@gmail.com` **e/o** *Get yourself an email address*  
+5. [ ] (Subito dopo) WhatsApp Web/wacli sul computer del Bot → 1 messaggio test a papà  
+6. [ ] Digli: *Procedi col blocco 1. Quando serve un click umano (Stripe/Vercel/DNS), scrivimi in chat e in email.*  
+
+**Blocco noto:** senza GitHub write, Grok Bot non può aprire PR sul repo. Sistemare il punto 2 prima di tutto.
 
 ---
 
