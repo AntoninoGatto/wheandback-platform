@@ -20,6 +20,14 @@ export PORT="${PORT:-9000}"
 export NODE_ENV="${NODE_ENV:-production}"
 export MEDUSA_WORKER_MODE="${MEDUSA_WORKER_MODE:-shared}"
 
+# /app is root-owned. Tools such as npm follow HOME and otherwise try to
+# mkdir /app/.config, which EACCES-crashes the non-root user.
+if [ -z "${HOME:-}" ] || [ ! -w "${HOME}" ]; then
+  export HOME=/home/medusa
+fi
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+mkdir -p "$XDG_CONFIG_HOME"
+
 require() {
   for name in "$@"; do
     eval "value=\${$name-}"

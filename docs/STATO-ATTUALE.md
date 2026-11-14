@@ -1,16 +1,19 @@
 # STATO ATTUALE — Whe&Back®
 
-**Aggiornamento:** 2026-11-11  
+**Aggiornamento:** 2026-11-14  
 **Stack pubblico:** Mercur API (`services/mercur-marketplace`) + storefront Next (`apps/storefront-next`) + PostgreSQL + Redis.  
 **Prototipo Supabase (`:3000`):** congelato. Non è il sito che si pubblica. Le sezioni 1–11 sotto restano la fotografia del 2026-06-24.
 
-## Blocco 1 — pubblicazione (2026-11-11)
+## Blocco 1 — pubblicazione (aggiornato 2026-11-14)
 
 Obiettivo del blocco: API deployabile e storefront che builda su Vercel, senza DNS e senza cashback/referral.
 
+**Stato:** l’API è su Railway e lo storefront ha un preview Vercel verde. Si aspetta l’ok di Gabriele per il merge e per qualsiasi cutover. DNS e `wheback.com` restano fermi.
+
 ### Chiuso nel codice
 
-- Hosting API scelto: **Railway** (Dockerfile + `railway.toml` in `services/mercur-marketplace`). Motivazione e alternative in `docs/BLOCCO-1-DEPLOY.md`.
+- Hosting API scelto: **Railway** (Dockerfile + `railway.json` letto a ogni deploy; IaC in `.railway/railway.ts`, non ancora applicato). Motivazione e alternative in `docs/BLOCCO-1-DEPLOY.md`.
+- Il processo API non gira come root. Home e `XDG_CONFIG_HOME` sono `/home/medusa` (scrivibile). Non servono più `XDG_CONFIG_HOME=/tmp/.config` né `RAILWAY_RUN_UID=0`. L’entrypoint, da root, assegna il volume `/app/.medusa/server/static` all’utente `medusa` (uid 1001) e poi fa `runuser`.
 - Avvio di produzione: migrazione non interattiva (`medusa db:migrate --execute-safe-links`) poi `medusa start`. Seed e utente admin sono comandi separati, non partono a ogni boot.
 - `.env.example` API completo (Postgres, Redis, JWT/COOKIE, `STORE_CORS`, `ADMIN_CORS`, `AUTH_CORS`, `VENDOR_CORS`, URL pannelli e file, Stripe opzionale). Nessun segreto.
 - Storefront: Root Directory di progetto `apps/storefront-next`, `vercel.json` solo con il framework Next (niente install/build command custom: quelli facevano fallire il preview). Node 22. `turbopack.root` è la cartella dell’app, così il lockfile del prototipo non diventa la root. Montserrat è un font variabile. Il build di default è Turbopack, come l’ultimo deploy Vercel verde su `main`.
@@ -22,9 +25,10 @@ Obiettivo del blocco: API deployabile e storefront che builda su Vercel, senza D
 
 ### Resta a un umano
 
-- Creare il progetto Railway (root `services/mercur-marketplace`), Postgres, Redis, dominio `*.up.railway.app`, variabili. Poi shell una volta: seed + admin.
-- Nel progetto Vercel impostare Root Directory `apps/storefront-next` e le quattro env pubbliche. Redeploy.
-- Volume Railway su `/app/.medusa/server/static` se le immagini caricate devono sopravvivere al redeploy.
+- Ok di Gabriele per il merge della PR e, solo dopo, per il cutover DNS. Non unire finché non lo chiede.
+- Sul servizio Railway togliere le workaround `XDG_CONFIG_HOME=/tmp/.config` e `RAILWAY_RUN_UID=0`, poi redeploy di questa immagine.
+- Volume già previsto su `/app/.medusa/server/static`. L’entrypoint lo rende scrivibile da uid 1001 a ogni avvio.
+- Prima di `railway config apply`, controllare che il servizio si chiami `mercur-api`. Il file IaC non dichiara Postgres né Redis. Fino all’apply resta valido `services/mercur-marketplace/railway.json` (letto dal deploy fino al 2026-12-01).
 - Cambiare la password del vendor demo creato dal seed prima di clienti veri.
 
 ### Non è questo blocco

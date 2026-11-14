@@ -1,9 +1,12 @@
 # Blocco 1 — API Mercur online + storefront Vercel
 
 **Data:** 2026-11-11  
+**Aggiornamento:** 2026-11-14  
 **Stack pubblico:** Mercur API (`services/mercur-marketplace`) + storefront (`apps/storefront-next`).  
 **Non usare** il prototipo Supabase su `:3000`.  
 **Non fare in questo blocco:** DNS, dominio `wheback.com`, cutover, cashback, referral, chiavi Stripe live.
+
+**Stato:** API deployata su Railway, preview Vercel verde. In attesa dell’ok di Gabriele per merge e cutover. La PR non va unita da sola.
 
 Il codice di deploy è nel repo. I click su Railway e Vercel restano a un umano: questo ambiente non ha gli account e non deve ricevere segreti.
 
@@ -30,9 +33,10 @@ Node dell’immagine: **22** (allineato allo storefront e a `engines` `>=20` di 
 
 | Pezzo | Dove |
 | --- | --- |
-| Dockerfile + avvio (migrate poi start) | `services/mercur-marketplace/Dockerfile`, `docker/start.sh` |
+| Dockerfile + avvio (entrypoint, poi migrate e start) | `services/mercur-marketplace/Dockerfile`, `docker/entrypoint.sh`, `docker/start.sh` |
 | Seed e admin, solo a comando | `docker/seed.sh`, `docker/create-admin.sh` |
-| Config Railway | `services/mercur-marketplace/railway.toml` |
+| Config Railway letta a ogni deploy | `services/mercur-marketplace/railway.json` |
+| IaC Railway (non applicata) | `.railway/railway.ts` |
 | Env di esempio API | `services/mercur-marketplace/packages/api/.env.example` (copia identica in `.env.template`) |
 | Env di esempio storefront | `apps/storefront-next/.env.example` |
 | Vercel (vale quando la Root Directory è lo storefront) | `apps/storefront-next/vercel.json`, `.node-version` (`22`) |
@@ -40,6 +44,8 @@ Node dell’immagine: **22** (allineato allo storefront e a `engines` `>=20` di 
 | CI | `.github/workflows/deploy-checks.yml` |
 
 Lo script di avvio esegue `medusa db:migrate --execute-safe-links` e poi `medusa start` in modalità `MEDUSA_WORKER_MODE=shared` (HTTP e worker nello stesso processo). **Una sola replica** in questo blocco: due processi che migrano insieme non sono coperti.
+
+`railway.toml` è stato sostituito da `railway.json` (schema `https://railway.com/railway.schema.json`), che Railway legge ancora a ogni deploy fino al 2026-12-01. `.railway/railway.ts` è la stessa configurazione in Infrastructure as Code, con builder `DOCKERFILE` scritto esplicitamente (`railway config migrate` lo trasformerebbe in Railpack). Non è stato applicato: prima di `railway config plan` / `apply` il nome del servizio nel file (`mercur-api`) deve essere quello già presente su Railway, altrimenti il piano crea un secondo servizio. Postgres e Redis non sono nel file.
 
 `REDIS_URL` alimenta sessioni, event bus, cache, workflow engine e locking. Senza `STRIPE_API_KEY` il processo parte lo stesso; il provider Stripe si registra solo quando la chiave c’è.
 
@@ -52,7 +58,7 @@ Il seed **non** parte a ogni boot.
 1. Accedi a Railway con l’account del progetto (Gabriele).
 2. New Project → Deploy from GitHub → repo `wheandback-platform`.
 3. Sul servizio dell’API, **Settings → Root Directory** = `services/mercur-marketplace`.  
-   Railway deve vedere `Dockerfile` e `railway.toml` in quella cartella. Non lasciare la root del monorepo: lì c’è il prototipo Next.
+   Railway deve vedere `Dockerfile` e `railway.json` in quella cartella. Non lasciare la root del monorepo: lì c’è il prototipo Next.
 4. Nello stesso progetto aggiungi il plugin **PostgreSQL** e il plugin **Redis**.
 5. Collega le variabili al servizio API (reference Railway, non copiare a mano se il pannello offre “Add variable reference”):
    - `DATABASE_URL` = URL **privato** di Postgres
@@ -61,7 +67,8 @@ Il seed **non** parte a ogni boot.
 7. Imposta le variabili della tabella sotto. `MERCUR_BACKEND_URL` entra nel **build** dell’immagine (i pannelli Admin/Vendor ci scrivono l’origine). Se la imposti dopo il primo build, rifai il deploy.
 8. Volume (consigliato, altrimenti le immagini prodotto si perdono a ogni redeploy): mount path esatto  
    `/app/.medusa/server/static`  
-   Il provider file è quello locale già in `medusa-config.ts`. Non è uno storage S3. Va bene per sbloccare il primo deploy; non regge più di una replica.
+   Il provider file è quello locale già in `medusa-config.ts`. Non è uno storage S3. Va bene per sbloccare il primo deploy; non regge più di una replica.  
+   Il mount nasce di proprietà di root. `/docker/entrypoint.sh` parte come root, fa `chown` di quella cartella a `medusa` (uid 1001) e solo dopo esegue l’API con `runuser`. Non impostare `RAILWAY_RUN_UID=0`: il processo Medusa non deve restare root. Se nel volume ci sono file creati dal workaround come root, il `chown -R` all’avvio li riassegna.
 9. Deploy. Attendi che il healthcheck `GET /health` sia verde (la prima migrazione può impiegare qualche minuto; il timeout nel repo è 300 secondi).
 10. Apri la shell del servizio **una volta** ed esegui il seed demo:
     ```sh
@@ -112,6 +119,17 @@ Impostale sul servizio Railway. I valori di esempio stanno in `packages/api/.env
 | `ALLOW_INSECURE_SECRETS` | **non impostare**. Se vale `true` il processo accetta i placeholder |
 
 `PORT` la inietta Railway. Non fissarla a 9000 sul servizio.
+
+### Workaround Railway da togliere
+
+Dopo il deploy di questa immagine, sul servizio API elimina queste variabili se ci sono:
+
+| Nome | Perché non serve più |
+| --- | --- |
+| `XDG_CONFIG_HOME` | L’immagine imposta `HOME=/home/medusa` e `XDG_CONFIG_HOME=/home/medusa/.config`, cartelle scrivibili dall’utente `medusa`. Il valore `/tmp/.config` era il giro per l’`EACCES` su `/app/.config`. |
+| `RAILWAY_RUN_UID` | Teneva tutto il container a uid 0. L’entrypoint fa il `chown` del volume e poi avvia Medusa come uid 1001. |
+
+Non sostituirle con altri valori. Toglierle e rifare il deploy.
 
 ### CORS — copia il valore, non inventare il glob
 

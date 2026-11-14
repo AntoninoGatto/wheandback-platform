@@ -34,16 +34,24 @@ ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=9000
 ENV MEDUSA_WORKER_MODE=shared
+# Writable home. Do not point HOME at /app: that directory stays root-owned
+# and mkdir /app/.config then fails with EACCES.
+ENV HOME=/home/medusa
+ENV XDG_CONFIG_HOME=/home/medusa/.config
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends ca-certificates \
+  && apt-get install -y --no-install-recommends ca-certificates util-linux \
   && rm -rf /var/lib/apt/lists/* \
   && groupadd --system --gid 1001 medusa \
-  && useradd --system --uid 1001 --gid medusa --home-dir /app medusa
+  && useradd --system --uid 1001 --gid medusa --create-home --home-dir /home/medusa medusa \
+  && mkdir -p /home/medusa/.config /app/.medusa/server/static \
+  && chown -R medusa:medusa /home/medusa /app/.medusa
 COPY --from=build --chown=medusa:medusa /opt/server /app/.medusa/server
 COPY --chown=medusa:medusa docker /docker
 RUN chmod +x /docker/*.sh \
   && mkdir -p /app/.medusa/server/static \
-  && chown medusa:medusa /app/.medusa/server/static
-USER medusa
+  && chown -R medusa:medusa /home/medusa /app/.medusa/server
+# Root only for the entrypoint, which chowns the uploads volume and then
+# runuser's to medusa. The API process is not root.
+USER root
 EXPOSE 9000
-CMD ["/docker/start.sh"]
+CMD ["/docker/entrypoint.sh"]
