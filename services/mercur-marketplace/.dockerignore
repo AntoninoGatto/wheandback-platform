@@ -1,0 +1,13 @@
+node_modules
+**/node_modules
+**/.medusa
+**/dist
+**/.turbo
+**/.env
+**/.env.*
+.git
+**/*.md
+coverage
+**/.cache
+**/*.tsbuildinfo
+**/.DS_Store

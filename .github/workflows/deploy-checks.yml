@@ -1,0 +1,71 @@
+name: Deploy checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  storefront:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/storefront-next
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: apps/storefront-next/.node-version
+          cache: npm
+          cache-dependency-path: apps/storefront-next/package-lock.json
+      - run: npm ci --include=dev
+      - name: Build with .env.example
+        run: |
+          set -a
+          # shellcheck disable=SC1091
+          source .env.example
+          set +a
+          npm run build
+
+  mercur-api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: services/mercur-marketplace
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: wheback
+          POSTGRES_PASSWORD: wheback_dev
+          POSTGRES_DB: wheback_medusa
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd "pg_isready -U wheback -d wheback_medusa"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: apps/storefront-next/.node-version
+          cache: npm
+          cache-dependency-path: services/mercur-marketplace/package-lock.json
+      - name: Build, migrate, and start
+        env:
+          DATABASE_URL: postgres://wheback:wheback_dev@localhost:5433/wheback_medusa
+          REDIS_URL: redis://localhost:6379
+          ALLOW_INSECURE_SECRETS: "true"
+        run: bash scripts/verify-prod-boot.sh

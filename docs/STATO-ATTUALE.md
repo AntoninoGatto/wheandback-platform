@@ -1,8 +1,51 @@
-# STATO ATTUALE — Whe&Back® (prototipo Cursor)
+# STATO ATTUALE — Whe&Back®
+
+**Aggiornamento:** 2026-11-14  
+**Stack pubblico:** Mercur API (`services/mercur-marketplace`) + storefront Next (`apps/storefront-next`) + PostgreSQL + Redis.  
+**Prototipo Supabase (`:3000`):** congelato. Non è il sito che si pubblica. Le sezioni 1–11 sotto restano la fotografia del 2026-06-24.
+
+## Blocco 1 — pubblicazione (aggiornato 2026-11-14)
+
+Obiettivo del blocco: API deployabile e storefront che builda su Vercel, senza DNS e senza cashback/referral.
+
+**Stato:** l’API è su Railway e lo storefront ha un preview Vercel verde. Si aspetta l’ok di Gabriele per il merge e per qualsiasi cutover. DNS e `wheback.com` restano fermi.
+
+### Chiuso nel codice
+
+- Hosting API scelto: **Railway** (Dockerfile + `railway.json` letto a ogni deploy; IaC in `.railway/railway.ts`, non ancora applicato). Motivazione e alternative in `docs/BLOCCO-1-DEPLOY.md`.
+- Il processo API non gira come root. Home e `XDG_CONFIG_HOME` sono `/home/medusa` (scrivibile). Non servono più `XDG_CONFIG_HOME=/tmp/.config` né `RAILWAY_RUN_UID=0`. L’entrypoint, da root, assegna il volume `/app/.medusa/server/static` all’utente `medusa` (uid 1001) e poi fa `runuser`.
+- Avvio di produzione: migrazione non interattiva (`medusa db:migrate --execute-safe-links`) poi `medusa start`. Seed e utente admin sono comandi separati, non partono a ogni boot.
+- `.env.example` API completo (Postgres, Redis, JWT/COOKIE, `STORE_CORS`, `ADMIN_CORS`, `AUTH_CORS`, `VENDOR_CORS`, URL pannelli e file, Stripe opzionale). Nessun segreto.
+- Storefront: Root Directory di progetto `apps/storefront-next`, `vercel.json` solo con il framework Next (niente install/build command custom: quelli facevano fallire il preview). Node 22. `turbopack.root` è la cartella dell’app, così il lockfile del prototipo non diventa la root. Montserrat è un font variabile. Il build di default è Turbopack, come l’ultimo deploy Vercel verde su `main`.
+- `.env.example` storefront: `NEXT_PUBLIC_MEDUSA_BACKEND_URL`, publishable key, `NEXT_PUBLIC_DEFAULT_REGION_COUNTRY=it`, `NEXT_PUBLIC_STRIPE_PK`.
+- CORS allineato: localhost dello storefront e regex `https://*.vercel.app` (preview e production) su `STORE_CORS` e `AUTH_CORS`. `wheback.com` non è incluso.
+- Il carrello sceglie la region che contiene il paese `it` (il seed demo crea “Europe”, EUR, con l’Italia).
+- CI: `.github/workflows/deploy-checks.yml` (build storefront con l’example; build API + migrate + start + `/health`).
+- Verifica locale 2026-11-11: `npm ci` + build dello storefront con `.env.example`; build di produzione dell’API, migrazioni, Redis (event bus, cache, workflow, locking) e `GET /health` = 200. Senza `STRIPE_API_KEY` il processo parte; il provider Stripe si accende solo con la chiave.
+
+### Resta a un umano
+
+- Ok di Gabriele per il merge della PR e, solo dopo, per il cutover DNS. Non unire finché non lo chiede.
+- Sul servizio Railway togliere le workaround `XDG_CONFIG_HOME=/tmp/.config` e `RAILWAY_RUN_UID=0`, poi redeploy di questa immagine.
+- Volume già previsto su `/app/.medusa/server/static`. L’entrypoint lo rende scrivibile da uid 1001 a ogni avvio.
+- Prima di `railway config apply`, controllare che il servizio si chiami `mercur-api`. Il file IaC non dichiara Postgres né Redis. Fino all’apply resta valido `services/mercur-marketplace/railway.json` (letto dal deploy fino al 2026-12-01).
+- Cambiare la password del vendor demo creato dal seed prima di clienti veri.
+
+### Non è questo blocco
+
+- DNS GoDaddy, `wheback.com`, `api.wheback.com`, cutover.
+- Stripe live, webhook pubblico, spedizioni, email ordine, pagine legali.
+- Cashback e referral.
+
+Guida click-by-click: `docs/BLOCCO-1-DEPLOY.md`.
+
+---
+
+## Fotografia 2026-06-24 — prototipo Supabase (storico)
 
 **Data documento:** 2026-06-24  
 **Percorso locale:** `C:\Users\Nino\Desktop\wheback-platform`  
-**Stack attuale:** Next.js 16 + Supabase (PostgreSQL) + Stripe (placeholder) + CJ Dropshipping + OpenAI  
+**Stack di quella fotografia:** Next.js 16 + Supabase (PostgreSQL) + Stripe (placeholder) + CJ Dropshipping + OpenAI  
 **Destinazione approvata:** Medusa.js + Mercur + Next.js storefront + app mobile + PostgreSQL + Redis (vedi `DECISIONI-TECNICHE.md`)
 
 > **Regola operativa:** fino a completamento architettura e repository GitHub, **non aggiungere nuove funzionalità** al prototipo. Solo documentazione, fix critici e preparazione migrazione.

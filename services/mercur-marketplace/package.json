@@ -5,6 +5,8 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "dev:api": "npm run dev --workspace=@acme/api",
+    "db:migrate": "npm run db:migrate --workspace=@acme/api",
+    "verify:prod-boot": "bash scripts/verify-prod-boot.sh",
     "build:panels": "npm run build --workspace=@acme/admin && npm run build --workspace=@acme/vendor",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",

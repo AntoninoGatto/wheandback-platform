@@ -48,7 +48,7 @@ export default async function setupNew1Seller({ container }: ExecArgs) {
 
   for (const product of publishedProducts) {
     const already = (product.sales_channels || []).some(
-      (sc: { id: string }) => sc.id === SALES_CHANNEL_ID
+      (sc) => sc?.id === SALES_CHANNEL_ID
     )
     if (already) continue
     try {
@@ -146,7 +146,11 @@ export default async function setupNew1Seller({ container }: ExecArgs) {
   })
   const region = regions[0]
   const countries =
-    region?.countries?.map((c: { iso_2: string }) => c.iso_2) || ["it", "de", "fr"]
+    region?.countries?.flatMap((c) => (c?.iso_2 ? [c.iso_2] : [])) || [
+      "it",
+      "de",
+      "fr",
+    ]
 
   const { data: existingZones } = await query.graph({
     entity: "fulfillment_set",

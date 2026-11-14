@@ -1,8 +1,9 @@
 # Report pubblicazione — Whe&Back® pronto per il pubblico
 
 **Data:** 2026-10-22  
+**Aggiornamento 2026-11-11:** la config di deploy del Blocco 1 (Railway + Vercel, senza DNS) è in `docs/BLOCCO-1-DEPLOY.md` e in `docs/STATO-ATTUALE.md`. Questo report resta la fotografia del 22 ottobre.  
 **Stack di verità:** Mercur (`api`) + storefront Next (`apps/storefront-next`) — **non** il prototipo Supabase `:3000`.  
-**Dominio previsto:** `wheback.com` (GoDaddy) → Vercel (frontend) + host API separato.
+**Dominio previsto:** `wheback.com` (GoDaddy) → Vercel (frontend) + host API separato. Il cutover DNS non fa parte del Blocco 1.
 
 ---
 

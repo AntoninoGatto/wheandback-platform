@@ -1,3 +1,4 @@
+import { DEFAULT_REGION_COUNTRY } from "./config";
 import { medusaFetch } from "./http";
 
 export type StoreProduct = {
@@ -59,10 +60,30 @@ export async function ensureCartId(regionId?: string) {
   return data.cart.id;
 }
 
+export type StoreRegion = {
+  id: string;
+  name?: string;
+  currency_code?: string;
+  countries?: { iso_2?: string | null }[] | null;
+};
+
 export async function listRegions() {
-  return medusaFetch<{ regions: { id: string; name?: string; currency_code?: string }[] }>(
-    "/store/regions"
+  return medusaFetch<{ regions: StoreRegion[] }>("/store/regions");
+}
+
+/** Prefer the region that contains the default country (Italy), then EUR. */
+export function pickDefaultRegionId(regions: StoreRegion[] | undefined): string | undefined {
+  if (!regions?.length) return undefined;
+  const byCountry = regions.find((region) =>
+    region.countries?.some(
+      (country) => (country.iso_2 || "").toLowerCase() === DEFAULT_REGION_COUNTRY
+    )
   );
+  if (byCountry) return byCountry.id;
+  const byCurrency = regions.find(
+    (region) => (region.currency_code || "").toLowerCase() === "eur"
+  );
+  return (byCurrency ?? regions[0]).id;
 }
 
 export type StoreOffer = {

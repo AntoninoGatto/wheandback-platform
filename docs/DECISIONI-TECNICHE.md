@@ -182,10 +182,20 @@ wheandback-platform/
 
 | # | Domanda | Opzioni |
 |---|---------|---------|
-| 1 | Hosting produzione | Vercel + Railway? AWS? |
+| 1 | Hosting produzione | **Chiuso 2026-11-11:** Vercel (storefront) + Railway (API Mercur, Postgres, Redis). Vedi sotto. |
 | 2 | Email transazionali | Resend vs SendGrid |
 | 3 | Supabase prototipo vs DB Medusa | Tenere entrambi in fase transizione |
 
 ---
 
 *Ogni nuova decisione va aggiunta in fondo con data e motivazione.*
+
+## Decisione hosting — 2026-11-11 (Blocco 1)
+
+| Layer | Scelta | Perché |
+| --- | --- | --- |
+| Storefront | **Vercel**, root `apps/storefront-next` | Next.js, preview `*.vercel.app` |
+| API Mercur | **Railway** + Dockerfile del repo | Processo Node sempre acceso; Postgres e Redis come plugin; healthcheck `/health` |
+| Dominio | Invariato | Nessun cutover DNS in questo blocco |
+
+Render e Fly restano possibili sullo stesso Dockerfile. Non sono il percorso operativo scritto in `docs/BLOCCO-1-DEPLOY.md`.
