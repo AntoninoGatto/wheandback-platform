@@ -1,7 +1,9 @@
 import {
   IT_VAT_RATE,
+  italyShippingOptionPrices,
   netFromGrossInclusive,
   paymentsConfigured,
+  shippingOptionKind,
   shippingPriceCents,
   validateItAddress,
 } from "../rules"
@@ -35,6 +37,37 @@ describe("commerce rules", () => {
     expect(validateItAddress({ ...address, codice_fiscale: "ABC" })).toContain(
       "Codice fiscale non valido"
     )
+  })
+
+  it("prices Italy shipping in euros and zeroes standard above the threshold", () => {
+    const standard = italyShippingOptionPrices({
+      kind: "standard",
+      regionId: "reg_it",
+      thresholdCents: 4900,
+    })
+    expect(standard).toEqual([
+      { currency_code: "eur", amount: 5.9 },
+      { currency_code: "usd", amount: 10 },
+      {
+        currency_code: "eur",
+        amount: 0,
+        rules: [{ attribute: "item_total", operator: "gte", value: 49 }],
+      },
+      { region_id: "reg_it", amount: 5.9 },
+      {
+        region_id: "reg_it",
+        amount: 0,
+        rules: [{ attribute: "item_total", operator: "gte", value: 49 }],
+      },
+    ])
+    const express = italyShippingOptionPrices({ kind: "express", thresholdCents: 4900 })
+    expect(express).toEqual([
+      { currency_code: "eur", amount: 9.9 },
+      { currency_code: "usd", amount: 10 },
+    ])
+    expect(shippingOptionKind({ name: "Standard Shipping", typeCode: "standard" })).toBe("standard")
+    expect(shippingOptionKind({ name: "Express Shipping" })).toBe("express")
+    expect(shippingOptionKind({ name: "Ritiro" })).toBeNull()
   })
 
   it("treats missing Stripe secrets as payments not configured", () => {

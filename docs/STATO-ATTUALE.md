@@ -14,7 +14,7 @@ Obiettivo del blocco: API deployabile e storefront che builda su Vercel, senza D
 
 - Stripe test già condizionato alla chiave; webhook nativo `POST /hooks/payment/stripe`. Senza chiavi: «Pagamenti in configurazione».
 - Checkout con indirizzo IT (CAP, provincia, telefono, codice fiscale opzionale, fatturazione separata) e pagina di conferma.
-- Seed idempotente `seed-commerce-it.ts`: IVA 22% inclusa, region IT/EUR, placeholder Europa, spedizioni placeholder documentate.
+- Seed idempotente `seed-commerce-it.ts`: IVA 22% inclusa, region Italia (EUR) solo se `it` non è già in una region. La demo «Europe» non viene smontata. Lo stesso script aggiorna o crea Standard 5,90 EUR e Express 9,90 EUR, con regola `item_total` che azzera la standard sopra la soglia. Va rieseguito sul DB Railway (`npx medusa exec ./src/scripts/seed-commerce-it.ts`): il boot non lancia il seed.
 - Email ordine via Resend se `RESEND_API_KEY` e `RESEND_FROM` ci sono, altrimenti no-op.
 - Stripe Connect payout vendor: non attivato. Vedi `docs/BLOCCO-2-CHECKOUT.md`.
 

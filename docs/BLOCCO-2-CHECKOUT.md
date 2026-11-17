@@ -29,13 +29,15 @@ Script idempotente (da `packages/api`, con API e DB accesi):
 npx medusa exec ./src/scripts/seed-commerce-it.ts
 ```
 
-- Region che contiene `it`, valuta EUR. Se il seed demo ha già messo l’Italia in «Europe», non duplica la region.
+- Region che contiene `it`, valuta EUR. Se non esiste, lo script crea **Italia** (EUR, paese `it`).
+- Se il seed demo ha già messo l’Italia in **Europe** insieme ad altri paesi, **non la sposta**. Un paese sta in una sola region: toglierlo da Europe farebbe cadere i prezzi legati a quella region e i provider di pagamento già attivi, compresi i carrelli aperti. I prezzi di spedizione vengono scritti in EUR e sulla region che contiene già `it`, quindi valgono per tutta quella region finché l’Italia resta lì.
 - Aliquota **IVA 22%** (`it_vat_22`), prezzi trattati come **IVA inclusa**.
 - Region placeholder **Europa** sul paese `at`, senza IVA automatica.
-- Spedizione placeholder (non sono tariffe di un corriere reale):
-  - standard **€ 5,90**
+- Spedizione placeholder (non sono tariffe di un corriere reale). Lo script **aggiorna** le opzioni demo `Standard Shipping` / `Express Shipping` (oggi a 10 EUR sul DB Railway) oppure le **crea** sul service zone del seller se mancano:
+  - standard **€ 5,90** (`amount` 5.9, unità intere come nel seed Medusa)
   - express **€ 9,90**
-  - sopra `SHIPPING_FREE_THRESHOLD_CENTS` (default `4900`, cioè € 49 di prodotti) la standard è inclusa nel servizio. Non è «gratis».
+  - la standard ha anche un prezzo **0** con regola Medusa `item_total` `gte` soglia. La soglia è `SHIPPING_FREE_THRESHOLD_CENTS / 100` (default 49), perché il motore confronta `item_total` nella stessa unità di `amount`. Vince il prezzo con più regole soddisfatte, quindi sotto soglia resta 5,90. Non è «gratis»: è inclusa nel servizio.
+  - il prezzo USD del demo resta 10, così la valuta non usata dal checkout IT non sparisce.
 
 ## Email
 

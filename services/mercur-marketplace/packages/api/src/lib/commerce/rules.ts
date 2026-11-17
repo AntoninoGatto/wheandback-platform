@@ -12,6 +12,68 @@ export function freeShippingThresholdCents(): number {
   return Math.round(raw)
 }
 
+export type ShippingPriceRule = {
+  attribute: "item_total"
+  operator: "gte"
+  value: number
+}
+
+/** Medusa stores shipping amounts in major currency units (€10 is `amount: 10`). */
+export type ItalyShippingPrice =
+  | { currency_code: "eur" | "usd"; amount: number; rules?: ShippingPriceRule[] }
+  | { region_id: string; amount: number; rules?: ShippingPriceRule[] }
+
+/**
+ * Flat prices written by the Italy seed.
+ * Standard also gets a 0 amount when cart `item_total` is at least the threshold.
+ * Medusa picks the price with the most matching rules, so the 0 row wins only above the threshold.
+ * `item_total` and `amount` are major units (euros), the same unit as the demo seed (`amount: 10` = €10).
+ * The USD row stays at the demo placeholder of 10 so a currency the Italy checkout does not use is not dropped.
+ */
+export function italyShippingOptionPrices(input: {
+  kind: ShippingMethod
+  regionId?: string
+  thresholdCents?: number
+}): ItalyShippingPrice[] {
+  const amount =
+    (input.kind === "express" ? SHIPPING_EXPRESS_CENTS : SHIPPING_STANDARD_CENTS) / 100
+  const thresholdMajor = (input.thresholdCents ?? freeShippingThresholdCents()) / 100
+  const prices: ItalyShippingPrice[] = [
+    { currency_code: "eur", amount },
+    { currency_code: "usd", amount: 10 },
+  ]
+  if (input.kind === "standard") {
+    prices.push({
+      currency_code: "eur",
+      amount: 0,
+      rules: [{ attribute: "item_total", operator: "gte", value: thresholdMajor }],
+    })
+  }
+  if (input.regionId) {
+    prices.push({ region_id: input.regionId, amount })
+    if (input.kind === "standard") {
+      prices.push({
+        region_id: input.regionId,
+        amount: 0,
+        rules: [{ attribute: "item_total", operator: "gte", value: thresholdMajor }],
+      })
+    }
+  }
+  return prices
+}
+
+/** Match the demo options ("Standard Shipping" / "Express Shipping") and their type codes. */
+export function shippingOptionKind(option: {
+  name?: string | null
+  typeCode?: string | null
+}): ShippingMethod | null {
+  const code = (option.typeCode || "").toLowerCase()
+  const name = (option.name || "").toLowerCase()
+  if (code === "express" || name.includes("express")) return "express"
+  if (code === "standard" || name.includes("standard")) return "standard"
+  return null
+}
+
 /** Standard shipping is included in the service above the threshold. Never described as free. */
 export function shippingPriceCents(
   method: ShippingMethod,
