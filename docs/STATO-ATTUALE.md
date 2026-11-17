@@ -10,6 +10,14 @@ Obiettivo del blocco: API deployabile e storefront che builda su Vercel, senza D
 
 **Stato:** l’API è su Railway e lo storefront ha un preview Vercel verde. Si aspetta l’ok di Gabriele per il merge e per qualsiasi cutover. DNS e `wheback.com` restano fermi.
 
+### Blocco 2 — checkout (in corso sul branch `cursor/blocchi-2-4`)
+
+- Stripe test già condizionato alla chiave; webhook nativo `POST /hooks/payment/stripe`. Senza chiavi: «Pagamenti in configurazione».
+- Checkout con indirizzo IT (CAP, provincia, telefono, codice fiscale opzionale, fatturazione separata) e pagina di conferma.
+- Seed idempotente `seed-commerce-it.ts`: IVA 22% inclusa, region IT/EUR, placeholder Europa, spedizioni placeholder documentate.
+- Email ordine via Resend se `RESEND_API_KEY` e `RESEND_FROM` ci sono, altrimenti no-op.
+- Stripe Connect payout vendor: non attivato. Vedi `docs/BLOCCO-2-CHECKOUT.md`.
+
 ### Chiuso nel codice
 
 - Hosting API scelto: **Railway** (Dockerfile + `railway.json` letto a ogni deploy; IaC in `.railway/railway.ts`, non ancora applicato). Motivazione e alternative in `docs/BLOCCO-1-DEPLOY.md`.
