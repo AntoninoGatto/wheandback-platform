@@ -49,9 +49,11 @@ cleanup() {
 trap cleanup EXIT
 
 cp -a packages/api/.medusa/server/. "$STAGE/"
-# Reuse the lockfile install. A fresh npm install in the artifact
-# re-resolves ranges and can fail on unpublished peer versions.
-cp -a node_modules "$STAGE/node_modules"
+# Install outside the monorepo so npm does not treat this as a workspace.
+(
+  cd "$STAGE"
+  npm install --omit=dev
+)
 
 export MEDUSA_SERVER_DIR="$STAGE"
 LOG="${TMPDIR:-/tmp}/wheback-api-boot.log"
