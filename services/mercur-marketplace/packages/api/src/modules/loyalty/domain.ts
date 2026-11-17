@@ -5,6 +5,10 @@ export const DEFAULT_UNLOCK_DAYS = 14
 
 export type EntryType = "accrual_pending" | "unlock" | "cancel" | "redeem" | "adjust"
 
+export function actorId(req: { auth_context?: { actor_id?: string } }): string {
+  return req.auth_context?.actor_id || ""
+}
+
 export type LedgerEntry = {
   id: string
   customer_id: string

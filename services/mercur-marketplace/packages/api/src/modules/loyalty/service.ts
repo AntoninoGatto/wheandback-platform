@@ -1,5 +1,8 @@
 import { MedusaService } from "@medusajs/framework/utils"
 import CashbackEntry from "./models/cashback-entry"
+import LoyaltyPlan from "./models/loyalty-plan"
+import ReferralLink from "./models/referral-link"
+import RewardSnapshot from "./models/reward-snapshot"
 
 type EntryInput = {
   customer_id: string
@@ -13,7 +16,12 @@ type EntryInput = {
   actor_id?: string | null
 }
 
-class LoyaltyModuleService extends MedusaService({ CashbackEntry }) {
+class LoyaltyModuleService extends MedusaService({
+  CashbackEntry,
+  LoyaltyPlan,
+  ReferralLink,
+  RewardSnapshot,
+}) {
   async appendEntry(input: EntryInput) {
     const existing = await this.listCashbackEntries({ idempotency_key: input.idempotency_key })
     if (existing[0]) return existing[0]

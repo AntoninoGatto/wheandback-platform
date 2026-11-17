@@ -25,6 +25,14 @@ Obiettivo del blocco: API deployabile e storefront che builda su Vercel, senza D
 - Pagina storefront «Il mio cashback» e badge dal piano (`GET /store/loyalty/plan`).
 - Il credito non è convertibile in denaro né trasferibile. `CREDIT_EXPIRY_DAYS` vuoto = nessuna scadenza.
 
+### Blocco 4 — referral e piani
+
+- Referral a un livello: codice, cookie 30 giorni, niente auto-invito (cliente, email, impronta pagamento, indirizzo). Premio sul primo ordine pagato, fasce 35/27/21, tetto mensile, stesso sblocco a 14 giorni.
+- Piani commissione con priorità prodotto, vendor, categoria, default. Snapshot sulla riga. Bozza approvabile solo da un altro operatore.
+- Admin Mercur: pagina «Programma premi». Storefront: «Invita un amico» con simulatore.
+- Bozze legali marcate BOZZA DA VALIDARE, banner cookie, sitemap, robots, security headers.
+- Formulazione: «fino al 105% in credito WheBack». Non si usa «gratis» né «costo zero».
+
 ### Chiuso nel codice
 
 - Hosting API scelto: **Railway** (Dockerfile + `railway.json` letto a ogni deploy; IaC in `.railway/railway.ts`, non ancora applicato). Motivazione e alternative in `docs/BLOCCO-1-DEPLOY.md`.

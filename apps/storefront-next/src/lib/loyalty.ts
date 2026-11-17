@@ -6,6 +6,8 @@ export type LoyaltyPlan = {
   unlock_days: number;
   headline: string;
   badge: string;
+  referral_tiers?: { A: number; B: number; C: number };
+  referral_orders?: number;
 };
 
 const fallback: LoyaltyPlan = {

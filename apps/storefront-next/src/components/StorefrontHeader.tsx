@@ -23,6 +23,12 @@ export async function StorefrontHeader({ locale }: StorefrontHeaderProps) {
           <Link href={`/${locale}/cashback`} className="hover:opacity-80">
             Cashback
           </Link>
+          <Link href={`/${locale}/invita`} className="hover:opacity-80">
+            Invita
+          </Link>
+          <Link href={`/${locale}/legale/termini`} className="hover:opacity-80">
+            Note legali
+          </Link>
           <Link href={`/${locale}/auth/login`} className="hover:opacity-80">
             {tNav("login")}
           </Link>
