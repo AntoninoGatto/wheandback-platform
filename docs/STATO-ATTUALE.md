@@ -18,6 +18,13 @@ Obiettivo del blocco: API deployabile e storefront che builda su Vercel, senza D
 - Email ordine via Resend se `RESEND_API_KEY` e `RESEND_FROM` ci sono, altrimenti no-op.
 - Stripe Connect payout vendor: non attivato. Vedi `docs/BLOCCO-2-CHECKOUT.md`.
 
+### Blocco 3 — cashback ledger
+
+- Modulo Medusa `loyalty` con tabella append-only `cashback_entry` (accrual pending, unlock, cancel, redeem, adjust) e chiave di idempotenza.
+- 5% del netto prodotti (IVA esclusa; spedizione e credito usato fuori base), sblocco a 14 giorni (`src/jobs/unlock-cashback.ts`), annullo su cancel/reso.
+- Pagina storefront «Il mio cashback» e badge dal piano (`GET /store/loyalty/plan`).
+- Il credito non è convertibile in denaro né trasferibile. `CREDIT_EXPIRY_DAYS` vuoto = nessuna scadenza.
+
 ### Chiuso nel codice
 
 - Hosting API scelto: **Railway** (Dockerfile + `railway.json` letto a ogni deploy; IaC in `.railway/railway.ts`, non ancora applicato). Motivazione e alternative in `docs/BLOCCO-1-DEPLOY.md`.

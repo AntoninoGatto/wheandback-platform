@@ -20,6 +20,9 @@ export async function StorefrontHeader({ locale }: StorefrontHeaderProps) {
           <Link href={`/${locale}/shop`} className="hover:opacity-80">
             {tNav("shop")}
           </Link>
+          <Link href={`/${locale}/cashback`} className="hover:opacity-80">
+            Cashback
+          </Link>
           <Link href={`/${locale}/auth/login`} className="hover:opacity-80">
             {tNav("login")}
           </Link>

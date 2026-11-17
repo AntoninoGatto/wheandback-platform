@@ -69,6 +69,9 @@ module.exports = withMercur({
       }
     },
     {
+      resolve: './src/modules/loyalty',
+    },
+    {
       resolve: '@medusajs/medusa/file',
       options: {
         providers: [

@@ -16,6 +16,9 @@ export default async function HomePage({ params }: HomePageProps) {
       <StorefrontHeader locale={locale} />
 
       <div className="mx-auto w-full max-w-6xl px-6 py-16">
+        <p className="mb-4 inline-flex rounded-full bg-[#e7f8f5] px-3 py-1 text-sm font-semibold text-[#0b6b5c]">
+          fino al 105% in credito WheBack
+        </p>
         <h1 className="text-4xl font-extrabold tracking-tight text-[#253866]">
           Whe&Back<sup className="text-lg">®</sup>
         </h1>
