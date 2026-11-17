@@ -25,8 +25,7 @@ RUN test -n "$MERCUR_BACKEND_URL" || (echo "MERCUR_BACKEND_URL build-arg is requ
 RUN npm run build \
   && mkdir -p /opt/server \
   && cp -a packages/api/.medusa/server/. /opt/server/ \
-  && cd /opt/server \
-  && npm install --omit=dev
+  && cp -a node_modules /opt/server/node_modules
 
 FROM node:22-bookworm-slim AS runner
 WORKDIR /app

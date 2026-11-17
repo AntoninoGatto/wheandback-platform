@@ -34,7 +34,8 @@ node scripts/check-cors-example.mjs
 export NODE_ENV=production
 npm run build
 
-STAGE="$(mktemp -d)"
+# Outside the repo: npm must not walk up into the monorepo workspaces.
+STAGE="$(mktemp -d /tmp/wheback-medusa.XXXXXX)"
 PID=""
 cleanup() {
   if [[ -n "$PID" ]]; then
@@ -48,10 +49,9 @@ cleanup() {
 trap cleanup EXIT
 
 cp -a packages/api/.medusa/server/. "$STAGE/"
-(
-  cd "$STAGE"
-  npm install --omit=dev
-)
+# Reuse the lockfile install. A fresh npm install in the artifact
+# re-resolves ranges and can fail on unpublished peer versions.
+cp -a node_modules "$STAGE/node_modules"
 
 export MEDUSA_SERVER_DIR="$STAGE"
 LOG="${TMPDIR:-/tmp}/wheback-api-boot.log"
