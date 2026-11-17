@@ -2,6 +2,7 @@ import type { SubscriberArgs, SubscriberConfig } from "@medusajs/framework"
 import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
 import fs from "fs"
 import path from "path"
+import { sendTransactionalEmail } from "../lib/notifications/transactional"
 
 type OrderPlacedData = { id: string }
 
@@ -125,6 +126,10 @@ export default async function orderPlacedEmailHandler({
   }
 
   if (to) {
+    const delivered = await sendTransactionalEmail({ to, subject, text })
+    logger.info(
+      `order-placed-email: transactional ${delivered.provider} sent=${delivered.sent}`
+    )
     await notification.createNotifications({
       to,
       channel: "email",

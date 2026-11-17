@@ -10,6 +10,29 @@ Obiettivo del blocco: API deployabile e storefront che builda su Vercel, senza D
 
 **Stato:** l’API è su Railway e lo storefront ha un preview Vercel verde. Si aspetta l’ok di Gabriele per il merge e per qualsiasi cutover. DNS e `wheback.com` restano fermi.
 
+### Blocco 2 — checkout (in corso sul branch `cursor/blocchi-2-4`)
+
+- Stripe test già condizionato alla chiave; webhook nativo `POST /hooks/payment/stripe`. Senza chiavi: «Pagamenti in configurazione».
+- Checkout con indirizzo IT (CAP, provincia, telefono, codice fiscale opzionale, fatturazione separata) e pagina di conferma.
+- Seed idempotente `seed-commerce-it.ts`: IVA 22% inclusa, region Italia (EUR) solo se `it` non è già in una region. La demo «Europe» non viene smontata. Lo stesso script aggiorna o crea Standard 5,90 EUR e Express 9,90 EUR, con regola `item_total` che azzera la standard sopra la soglia. Va rieseguito sul DB Railway (`npx medusa exec ./src/scripts/seed-commerce-it.ts`): il boot non lancia il seed.
+- Email ordine via Resend se `RESEND_API_KEY` e `RESEND_FROM` ci sono, altrimenti no-op.
+- Stripe Connect payout vendor: non attivato. Vedi `docs/BLOCCO-2-CHECKOUT.md`.
+
+### Blocco 3 — cashback ledger
+
+- Modulo Medusa `loyalty` con tabella append-only `cashback_entry` (accrual pending, unlock, cancel, redeem, adjust) e chiave di idempotenza.
+- 5% del netto prodotti (IVA esclusa; spedizione e credito usato fuori base), sblocco a 14 giorni (`src/jobs/unlock-cashback.ts`), annullo su cancel/reso.
+- Pagina storefront «Il mio cashback» e badge dal piano (`GET /store/loyalty/plan`).
+- Il credito non è convertibile in denaro né trasferibile. `CREDIT_EXPIRY_DAYS` vuoto = nessuna scadenza.
+
+### Blocco 4 — referral e piani
+
+- Referral a un livello: codice, cookie 30 giorni, niente auto-invito (cliente, email, impronta pagamento, indirizzo). Premio sul primo ordine pagato, fasce 35/27/21, tetto mensile, stesso sblocco a 14 giorni.
+- Piani commissione con priorità prodotto, vendor, categoria, default. Snapshot sulla riga. Bozza approvabile solo da un altro operatore.
+- Admin Mercur: pagina «Programma premi». Storefront: «Invita un amico» con simulatore.
+- Bozze legali marcate BOZZA DA VALIDARE, banner cookie, sitemap, robots, security headers.
+- Formulazione: «fino al 105% in credito WheBack». Non si usa «gratis» né «costo zero».
+
 ### Chiuso nel codice
 
 - Hosting API scelto: **Railway** (Dockerfile + `railway.json` letto a ogni deploy; IaC in `.railway/railway.ts`, non ancora applicato). Motivazione e alternative in `docs/BLOCCO-1-DEPLOY.md`.

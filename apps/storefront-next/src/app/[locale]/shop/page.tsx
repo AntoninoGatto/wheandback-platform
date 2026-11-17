@@ -4,6 +4,8 @@ import { listProducts } from "@/lib/medusa/store";
 import { MedusaError } from "@/lib/medusa/http";
 import { StorefrontHeader } from "@/components/StorefrontHeader";
 import { DEMO_URLS } from "@/lib/demo-urls";
+import { getLoyaltyPlan } from "@/lib/loyalty";
+import { CashbackBadge } from "@/components/CashbackBadge";
 
 interface ShopPageProps {
   params: Promise<{ locale: string }>;
@@ -12,6 +14,7 @@ interface ShopPageProps {
 export default async function ShopPage({ params }: ShopPageProps) {
   const { locale } = await params;
   const t = await getTranslations("shop");
+  const plan = await getLoyaltyPlan();
 
   let products: Awaited<ReturnType<typeof listProducts>>["products"] = [];
   let count = 0;
@@ -104,7 +107,8 @@ export default async function ShopPage({ params }: ShopPageProps) {
                 href={`/${locale}/shop/${p.id}`}
                 className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow"
               >
-                <div className="text-sm font-semibold text-[#253866]">{p.title}</div>
+                <CashbackBadge label={plan.badge} />
+                <div className="mt-2 text-sm font-semibold text-[#253866]">{p.title}</div>
                 <div className="mt-1 text-xs text-gray-500">{p.id}</div>
               </Link>
             ))}

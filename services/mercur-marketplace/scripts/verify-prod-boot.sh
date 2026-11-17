@@ -34,7 +34,8 @@ node scripts/check-cors-example.mjs
 export NODE_ENV=production
 npm run build
 
-STAGE="$(mktemp -d)"
+# Outside the repo: npm must not walk up into the monorepo workspaces.
+STAGE="$(mktemp -d /tmp/wheback-medusa.XXXXXX)"
 PID=""
 cleanup() {
   if [[ -n "$PID" ]]; then
@@ -48,6 +49,7 @@ cleanup() {
 trap cleanup EXIT
 
 cp -a packages/api/.medusa/server/. "$STAGE/"
+# Install outside the monorepo so npm does not treat this as a workspace.
 (
   cd "$STAGE"
   npm install --omit=dev

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getProduct } from "@/lib/medusa/store";
 import { StorefrontHeader } from "@/components/StorefrontHeader";
+import { CashbackBadge } from "@/components/CashbackBadge";
+import { getLoyaltyPlan } from "@/lib/loyalty";
 
 interface ProductPageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -8,6 +10,7 @@ interface ProductPageProps {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { locale, id } = await params;
+  const plan = await getLoyaltyPlan();
   const { product } = await getProduct(id);
 
   return (
@@ -21,7 +24,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
           ← Torna allo Shop
         </Link>
 
-        <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-[#253866]">
+        <div className="mt-6">
+          <CashbackBadge label={plan.badge} />
+        </div>
+        <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-[#253866]">
           {product.title}
         </h1>
         {product.description ? (
