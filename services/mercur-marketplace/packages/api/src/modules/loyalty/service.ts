@@ -1,7 +1,7 @@
 import { MedusaService } from "@medusajs/framework/utils"
 import BenefitSnapshot from "./models/benefit-snapshot"
-import Campaign from "./models/campaign"
-import CampaignLine from "./models/campaign-line"
+import PromoCampaign from "./models/campaign"
+import PromoCampaignLine from "./models/campaign-line"
 import CashbackEntry from "./models/cashback-entry"
 import CodeReservation from "./models/code-reservation"
 import LoyaltyPlan from "./models/loyalty-plan"
@@ -29,8 +29,8 @@ class LoyaltyModuleService extends MedusaService({
   ReferralLink,
   RewardSnapshot,
   VariantEconomic,
-  Campaign,
-  CampaignLine,
+  PromoCampaign,
+  PromoCampaignLine,
   CodeReservation,
   BenefitSnapshot,
   SupportCase,

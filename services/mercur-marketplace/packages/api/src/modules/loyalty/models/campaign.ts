@@ -1,6 +1,6 @@
 import { model } from "@medusajs/framework/utils"
 
-const Campaign = model.define("campaign", {
+const PromoCampaign = model.define("promo_campaign", {
   id: model.id().primaryKey(),
   public_code: model.text(),
   version: model.text(),
@@ -15,4 +15,4 @@ const Campaign = model.define("campaign", {
   activated_at: model.text().nullable(),
 })
 
-export default Campaign
+export default PromoCampaign

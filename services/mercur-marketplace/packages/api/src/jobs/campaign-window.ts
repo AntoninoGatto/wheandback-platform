@@ -6,17 +6,17 @@ import { nextCampaignStatus } from "../modules/loyalty/campaigns"
 export default async function campaignWindow(container: MedusaContainer) {
   const loyalty = container.resolve(LOYALTY_MODULE)
   const now = new Date().toISOString()
-  const campaigns = await loyalty.listCampaigns({})
+  const campaigns = await loyalty.listPromoCampaigns({})
   let changed = false
   for (const campaign of campaigns) {
     const next = nextCampaignStatus(campaign.status, campaign.ends_at, now)
     if (next) {
-      await loyalty.updateCampaigns({ id: campaign.id, status: next })
+      await loyalty.updatePromoCampaigns({ id: campaign.id, status: next })
       changed = true
       continue
     }
     if (campaign.status === "approved" && !campaign.activated_at && Date.parse(campaign.starts_at) <= Date.parse(now)) {
-      await loyalty.updateCampaigns({ id: campaign.id, activated_at: now })
+      await loyalty.updatePromoCampaigns({ id: campaign.id, activated_at: now })
       changed = true
     }
   }

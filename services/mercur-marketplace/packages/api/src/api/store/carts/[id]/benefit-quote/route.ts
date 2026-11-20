@@ -77,12 +77,12 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
       referrer_email: link.referred_email,
     })
   }
-  const campaigns = await loyalty.listCampaigns({})
+  const campaigns = await loyalty.listPromoCampaigns({})
   const reservations = await loyalty.listCodeReservations({ status: "reserved" })
   const snapshots = await loyalty.listBenefitSnapshots({})
   const promos: PromoCode[] = []
   for (const campaign of campaigns) {
-    const lines = await loyalty.listCampaignLines({ campaign_id: campaign.id })
+    const lines = await loyalty.listPromoCampaignLines({ campaign_id: campaign.id })
     const consumed = new Set(
       snapshots.filter((row) => row.code === campaign.public_code && row.order_id).map((row) => row.order_id)
     ).size
@@ -145,7 +145,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
         : null,
       referral_bps_override: activeOverride
         ? num(
-            (await loyalty.listCampaignLines({ campaign_id: activeOverride.campaign_id, variant_id: item.variant_id })).find(
+            (await loyalty.listPromoCampaignLines({ campaign_id: activeOverride.campaign_id, variant_id: item.variant_id })).find(
               (line: { referral_bps_override?: string | null }) => line.referral_bps_override
             )?.referral_bps_override
           ) || null

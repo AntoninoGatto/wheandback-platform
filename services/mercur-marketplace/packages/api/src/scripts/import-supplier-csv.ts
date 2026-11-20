@@ -13,8 +13,8 @@ export default async function importSupplierCsv({ container }: ExecArgs) {
   if (!file) throw new Error("Passa il percorso di un file .csv")
   const loyalty = container.resolve(LOYALTY_MODULE) as {
     createVariantEconomics: (data: Record<string, string | null>) => Promise<unknown>
-    createCampaigns: (data: Record<string, string | null>) => Promise<{ id: string }>
-    createCampaignLines: (data: Record<string, string | null>) => Promise<unknown>
+    createPromoCampaigns: (data: Record<string, string | null>) => Promise<{ id: string }>
+    createPromoCampaignLines: (data: Record<string, string | null>) => Promise<unknown>
   }
   const rows = classifyImport(fs.readFileSync(file, "utf8"))
   const summary: { sku: string; status: "draft"; blocked: boolean; reasons: string[] }[] = []
@@ -27,8 +27,8 @@ export default async function importSupplierCsv({ container }: ExecArgs) {
 async function persistDraft(
   loyalty: {
     createVariantEconomics: (data: Record<string, string | null>) => Promise<unknown>
-    createCampaigns: (data: Record<string, string | null>) => Promise<{ id: string }>
-    createCampaignLines: (data: Record<string, string | null>) => Promise<unknown>
+    createPromoCampaigns: (data: Record<string, string | null>) => Promise<{ id: string }>
+    createPromoCampaignLines: (data: Record<string, string | null>) => Promise<unknown>
   },
   item: ClassifiedRow
 ) {
@@ -54,7 +54,7 @@ async function persistDraft(
     review_note: item.reasons.join("; ") || null,
   })
   if (row.public_code && row.discount_bps && row.starts_at && row.ends_at) {
-    const campaign = await loyalty.createCampaigns({
+    const campaign = await loyalty.createPromoCampaigns({
       public_code: row.public_code,
       version: "1",
       status: "draft",
@@ -67,7 +67,7 @@ async function persistDraft(
       approved_by: null,
       activated_at: null,
     })
-    await loyalty.createCampaignLines({
+    await loyalty.createPromoCampaignLines({
       campaign_id: campaign.id,
       variant_id: row.variant_id,
       discount_bps: numberOrZero(row.discount_bps),

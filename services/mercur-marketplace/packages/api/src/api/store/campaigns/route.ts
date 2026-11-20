@@ -17,7 +17,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   }
   const loyalty = req.scope.resolve(LOYALTY_MODULE)
   const now = new Date().toISOString()
-  const campaigns = await loyalty.listCampaigns({ status: "approved" })
+  const campaigns = await loyalty.listPromoCampaigns({ status: "approved" })
   const codes: {
     code: string
     variant_id: string
@@ -35,7 +35,7 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   }[] = []
   for (const campaign of campaigns) {
     if (Date.parse(campaign.starts_at) > Date.parse(now) || Date.parse(now) >= Date.parse(campaign.ends_at)) continue
-    const lines = await loyalty.listCampaignLines({ campaign_id: campaign.id })
+    const lines = await loyalty.listPromoCampaignLines({ campaign_id: campaign.id })
     for (const line of lines) {
       const economics = await loyalty.listVariantEconomics({ variant_id: line.variant_id })
       const row = economics[0]

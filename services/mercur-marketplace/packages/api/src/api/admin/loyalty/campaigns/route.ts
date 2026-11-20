@@ -13,7 +13,7 @@ function num(value: unknown): number {
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
   const loyalty = req.scope.resolve(LOYALTY_MODULE)
-  const campaigns = await loyalty.listCampaigns({})
+  const campaigns = await loyalty.listPromoCampaigns({})
   res.json({ campaigns })
 }
 
@@ -33,7 +33,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
     return
   }
   const loyalty = req.scope.resolve(LOYALTY_MODULE)
-  const created = await loyalty.createCampaigns({
+  const created = await loyalty.createPromoCampaigns({
     public_code: body.public_code.trim().toUpperCase(),
     version: String(body.version ?? 1),
     status: "draft",
@@ -47,7 +47,7 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
     activated_at: null,
   })
   for (const line of body.lines) {
-    await loyalty.createCampaignLines({
+    await loyalty.createPromoCampaignLines({
       campaign_id: created.id,
       variant_id: line.variant_id,
       discount_bps: String(line.discount_bps),
@@ -65,7 +65,7 @@ export async function PUT(req: MedusaRequest, res: MedusaResponse) {
   }
   const approverId = actorId(req as { auth_context?: { actor_id?: string } })
   const loyalty = req.scope.resolve(LOYALTY_MODULE)
-  const rows = await loyalty.listCampaigns({ id: body.id })
+  const rows = await loyalty.listPromoCampaigns({ id: body.id })
   const current = rows[0]
   if (!current) {
     res.status(404).json({ message: "Campagna non trovata" })
@@ -80,12 +80,12 @@ export async function PUT(req: MedusaRequest, res: MedusaResponse) {
     res.status(403).json({ message: error instanceof Error ? error.message : "Non approvabile" })
     return
   }
-  const lines = await loyalty.listCampaignLines({ campaign_id: current.id })
-  const existingCampaigns = await loyalty.listCampaigns({})
+  const lines = await loyalty.listPromoCampaignLines({ campaign_id: current.id })
+  const existingCampaigns = await loyalty.listPromoCampaigns({})
   const personal = await loyalty.listReferralLinks({})
   const windows: CampaignWindow[] = []
   for (const campaign of existingCampaigns) {
-    const campaignLines = campaign.id === current.id ? lines : await loyalty.listCampaignLines({ campaign_id: campaign.id })
+    const campaignLines = campaign.id === current.id ? lines : await loyalty.listPromoCampaignLines({ campaign_id: campaign.id })
     windows.push({
       id: campaign.id,
       public_code: campaign.public_code,
@@ -109,7 +109,7 @@ export async function PUT(req: MedusaRequest, res: MedusaResponse) {
     res.status(409).json({ message: error })
     return
   }
-  const updated = await loyalty.updateCampaigns({
+  const updated = await loyalty.updatePromoCampaigns({
     id: current.id,
     status: "approved",
     approved_by: approverId,

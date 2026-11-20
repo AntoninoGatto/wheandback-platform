@@ -28,7 +28,7 @@ export class Migration20261120203000 extends Migration {
     this.addSql(
       `CREATE UNIQUE INDEX IF NOT EXISTS "IDX_variant_economics_variant" ON "variant_economics" ("variant_id") WHERE deleted_at IS NULL;`
     )
-    this.addSql(`create table if not exists "campaign" (
+    this.addSql(`create table if not exists "promo_campaign" (
       "id" text not null,
       "public_code" text not null,
       "version" text not null,
@@ -44,9 +44,9 @@ export class Migration20261120203000 extends Migration {
       "created_at" timestamptz not null default now(),
       "updated_at" timestamptz not null default now(),
       "deleted_at" timestamptz null,
-      constraint "campaign_pkey" primary key ("id")
+      constraint "promo_campaign_pkey" primary key ("id")
     );`)
-    this.addSql(`create table if not exists "campaign_line" (
+    this.addSql(`create table if not exists "promo_campaign_line" (
       "id" text not null,
       "campaign_id" text not null,
       "variant_id" text not null,
@@ -55,7 +55,7 @@ export class Migration20261120203000 extends Migration {
       "created_at" timestamptz not null default now(),
       "updated_at" timestamptz not null default now(),
       "deleted_at" timestamptz null,
-      constraint "campaign_line_pkey" primary key ("id")
+      constraint "promo_campaign_line_pkey" primary key ("id")
     );`)
     this.addSql(`create table if not exists "code_reservation" (
       "id" text not null,
@@ -120,8 +120,8 @@ export class Migration20261120203000 extends Migration {
     this.addSql(`drop table if exists "support_case" cascade;`)
     this.addSql(`drop table if exists "benefit_snapshot" cascade;`)
     this.addSql(`drop table if exists "code_reservation" cascade;`)
-    this.addSql(`drop table if exists "campaign_line" cascade;`)
-    this.addSql(`drop table if exists "campaign" cascade;`)
+    this.addSql(`drop table if exists "promo_campaign_line" cascade;`)
+    this.addSql(`drop table if exists "promo_campaign" cascade;`)
     this.addSql(`drop table if exists "variant_economics" cascade;`)
     this.addSql(`alter table if exists "cashback_entry" drop column if exists "line_id";`)
   }

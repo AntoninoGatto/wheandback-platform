@@ -85,7 +85,7 @@ export function inclusiveCalendarEndUtc(lastInclusiveDay: string, timeZone = "Eu
 }
 
 export function nextCampaignStatus(
-  status: CampaignStatus,
+  status: string,
   endsAt: string,
   now: string
 ): CampaignStatus | null {

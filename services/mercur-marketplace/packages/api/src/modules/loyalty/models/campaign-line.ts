@@ -1,6 +1,6 @@
 import { model } from "@medusajs/framework/utils"
 
-const CampaignLine = model.define("campaign_line", {
+const PromoCampaignLine = model.define("promo_campaign_line", {
   id: model.id().primaryKey(),
   campaign_id: model.text(),
   variant_id: model.text(),
@@ -8,4 +8,4 @@ const CampaignLine = model.define("campaign_line", {
   referral_bps_override: model.text().nullable(),
 })
 
-export default CampaignLine
+export default PromoCampaignLine

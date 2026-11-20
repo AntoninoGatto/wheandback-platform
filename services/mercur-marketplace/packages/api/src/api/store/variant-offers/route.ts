@@ -39,11 +39,11 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
   }
   const flags = benefitFlags()
   const now = new Date().toISOString()
-  const campaigns = flags.promoEnabled ? await loyalty.listCampaigns({ status: "approved" }) : []
+  const campaigns = flags.promoEnabled ? await loyalty.listPromoCampaigns({ status: "approved" }) : []
   const codes: PublicCode[] = []
   for (const campaign of campaigns) {
     if (Date.parse(campaign.starts_at) > Date.parse(now) || Date.parse(now) >= Date.parse(campaign.ends_at)) continue
-    const lines = await loyalty.listCampaignLines({ campaign_id: campaign.id, variant_id: variantId })
+    const lines = await loyalty.listPromoCampaignLines({ campaign_id: campaign.id, variant_id: variantId })
     for (const line of lines) {
       codes.push({
         code: campaign.public_code,
