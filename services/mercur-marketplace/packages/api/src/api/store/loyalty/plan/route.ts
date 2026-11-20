@@ -1,20 +1,20 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { LOYALTY_MODULE } from "../../../../modules/loyalty"
-import { cashbackRate, unlockDays } from "../../../../modules/loyalty/domain"
-import { pickActivePlan, type CommissionPlan, type PlanStatus } from "../../../../modules/loyalty/plans"
+import { benefitFlags } from "../../../../modules/loyalty/flags"
 import { readPlanCache, writePlanCache } from "../../../../modules/loyalty/plan-cache"
+import { pickActivePlan, type CommissionPlan, type PlanStatus } from "../../../../modules/loyalty/plans"
 
-function builtin() {
-  const rate = cashbackRate()
+function noBenefit() {
+  const flags = benefitFlags()
   return {
-    source: "builtin",
-    plan_id: "builtin",
-    cashback_rate: rate,
-    unlock_days: unlockDays(),
-    referral_tiers: { A: 0.35, B: 0.27, C: 0.21 },
-    referral_orders: 1,
-    headline: "fino al 105% in credito WheBack",
-    badge: `fino al ${Math.round(rate * 100)}% in credito WheBack`,
+    source: "none",
+    plan_id: null,
+    cashback_rate: 0,
+    unlock_days: flags.rewardUnlockDays,
+    referral_tiers: null,
+    benefit: null,
+    headline: "",
+    badge: "",
   }
 }
 
@@ -44,19 +44,19 @@ export async function GET(req: MedusaRequest, res: MedusaResponse) {
       ? {
           source: "plan",
           plan_id: active.id,
-          cashback_rate: active.rules.find((rule) => rule.scope === "default")?.cashback_rate ?? cashbackRate(),
-          unlock_days: unlockDays(),
+          cashback_rate: 0,
+          unlock_days: benefitFlags().rewardUnlockDays,
           referral_tiers: active.tiers,
-          referral_orders: active.referral_orders,
-          headline: "fino al 105% in credito WheBack",
-          badge: `fino al ${Math.round((active.rules.find((rule) => rule.scope === "default")?.cashback_rate ?? cashbackRate()) * 100)}% in credito WheBack`,
+          benefit: null,
+          headline: "",
+          badge: "",
           starts_at: active.starts_at,
           ends_at: active.ends_at,
         }
-      : builtin()
+      : noBenefit()
     writePlanCache(body)
     res.json(body)
   } catch {
-    res.json(builtin())
+    res.json(noBenefit())
   }
 }

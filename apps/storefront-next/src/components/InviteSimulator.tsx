@@ -1,34 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
-
-export function ReferralCookie({ code }: { code?: string }) {
-  useEffect(() => {
-    if (!code) return;
-    document.cookie = `wb_ref=${encodeURIComponent(code)}; path=/; max-age=2592000; samesite=lax`;
-  }, [code]);
+/** Il codice personale si inserisce nel checkout di quell'ordine. Nessun cookie di attribuzione. */
+export function ReferralCookie() {
   return null;
 }
 
-export function InviteSimulator({
-  tiers,
-}: {
-  tiers: { A: number; B: number; C: number };
-}) {
+export function InviteSimulator() {
   return (
-    <form className="mt-8 rounded-2xl border border-gray-100 p-5" action="#" method="get">
-      <h2 className="font-extrabold text-[#253866]">Simulatore</h2>
-      <p className="mt-2 text-sm text-gray-600">
-        Su 100 € netti di prodotto, il piano attivo riconosce questi premi in credito WheBack.
-      </p>
-      <ul className="mt-4 space-y-2 text-sm">
-        {(["A", "B", "C"] as const).map((tier) => (
-          <li key={tier}>
-            Fascia {tier}: {Math.round(tiers[tier] * 100)}% → € {(100 * tiers[tier]).toFixed(2)} in
-            credito
-          </li>
-        ))}
-      </ul>
-    </form>
+    <section className="mt-8 rounded-2xl border border-[#F1F0F1] p-5 text-sm text-[#293241]">
+      <h2 className="font-extrabold text-[#253866]">Fasce</h2>
+      <p className="mt-2">Il premio usa la base senza IVA e si arrotonda una volta per riga.</p>
+    </section>
   );
 }

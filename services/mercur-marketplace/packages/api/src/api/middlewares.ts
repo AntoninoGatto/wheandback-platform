@@ -23,5 +23,15 @@ export default defineMiddlewares({
       method: ["POST"],
       middlewares: [rateLimit],
     },
+    {
+      matcher: "/store/carts/*/benefit-quote",
+      method: ["POST"],
+      middlewares: [rateLimit],
+    },
+    {
+      matcher: "/store/support*",
+      method: ["POST"],
+      middlewares: [rateLimit],
+    },
   ],
 })

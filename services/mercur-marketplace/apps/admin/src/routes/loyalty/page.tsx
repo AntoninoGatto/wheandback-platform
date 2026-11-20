@@ -9,6 +9,7 @@ const LoyaltyAdminPage = () => {
   const [ledger, setLedger] = useState("")
   const [planId, setPlanId] = useState("")
   const [message, setMessage] = useState("")
+  const [internalBalance, setInternalBalance] = useState("Caricamento quota interna…")
 
   useEffect(() => {
     fetch("/admin/loyalty/plans", { credentials: "include" })
@@ -19,6 +20,10 @@ const LoyaltyAdminPage = () => {
       .then((response) => response.text())
       .then(setLedger)
       .catch((error) => setLedger(String(error)))
+    fetch("/admin/loyalty/internal", { credentials: "include" })
+      .then((response) => response.text())
+      .then(setInternalBalance)
+      .catch((error) => setInternalBalance(String(error)))
   }, [])
 
   return (
@@ -49,6 +54,12 @@ const LoyaltyAdminPage = () => {
       {message ? <pre>{message}</pre> : null}
       <h2>Piani</h2>
       <pre style={{ whiteSpace: "pre-wrap" }}>{plans}</pre>
+      <h2>Quota interna promo_internal</h2>
+      <p>Maturato, rettifiche, impegnato, speso, disponibile. Nessun payout automatico.</p>
+      <pre style={{ whiteSpace: "pre-wrap" }}>{internalBalance}</pre>
+      <p>
+        <a href="/admin/loyalty/accounting">Esporta CSV contabile</a>
+      </p>
       <h2>Ledger</h2>
       <pre style={{ whiteSpace: "pre-wrap" }}>{ledger}</pre>
     </div>

@@ -1,8 +1,26 @@
-# STATO ATTUALE — Whe&Back®
+# STATO ATTUALE — Whe&Back
 
-**Aggiornamento:** 2026-11-14  
+**Aggiornamento:** 2026-11-20  
 **Stack pubblico:** Mercur API (`services/mercur-marketplace`) + storefront Next (`apps/storefront-next`) + PostgreSQL + Redis.  
 **Prototipo Supabase (`:3000`):** congelato. Non è il sito che si pubblica. Le sezioni 1–11 sotto restano la fotografia del 2026-06-24.
+
+## Modello a tre percorsi (20 novembre 2026)
+
+Chi compra non riceve cashback. Su ogni carrello sceglie un solo percorso, spento finché il flag non è `true`:
+
+1. `referrer` — un codice personale, prezzo pieno, premio in credito a chi segnala su ogni ordine. Niente legame fisso. Auto-segnalazione bloccata.
+2. `none` — campo vuoto, prezzo pieno, la stessa quota va al budget `promo_internal`.
+3. `coupons` — codici 3–13% , uno per riga. Premio e quota interna a zero su tutto l'ordine.
+
+La fascia si calcola prima di arrotondare, in basis point interi: ≥50% → 35%, ≥42% → 27%, ≥36% → 21%, altrimenti nessun premio (`BELOW_TIER_POLICY=inactive`). La base del premio è il prezzo senza IVA. Lo sconto del codice si applica al prezzo IVA inclusa.
+
+Il carrello di esempio usato nei test, in assenza del dossier da 94 scenari, è documentato nel test `benefit-model.unit.spec.ts`: lampada 122,00 € (base 100,00 €, fascia 35%), più 61,00 € (base 50,00 €, fascia 27%) e 24,40 € (base 20,00 €, fascia 21%). Da lì escono 52,70 € al segnalatore o al budget interno, 185,93 € pagati a novembre con i codici 13/8/3, e 192,15 € a dicembre con i codici 10/5 e la riga piccola scoperta. «Fino al 30/11 incluso» chiude alle 00:00 del 1° dicembre, fuso Europe/Rome.
+
+Il ledger storico non si cancella. I nuovi movimenti nascono alla cattura del pagamento, una riga per beneficiario, chiave `reward:<ordine>:<riga>`. Nessun payout automatico. Pagine legali spente finché `LEGAL_APPROVED` non è true. Sul logo: ® solo se `TRADEMARK_LICENSE_SIGNED=true`, altrimenti ™. Il testo «Whe&Back» non ha simbolo.
+
+Checklist ancora vuota: `docs/COLLAUDO-S01-S94.md`. DNS, `wheback.com` e le variabili di produzione non si toccano in questo ramo.
+
+## Blocco 1 — pubblicazione (aggiornato 2026-11-14)
 
 ## Blocco 1 — pubblicazione (aggiornato 2026-11-14)
 
@@ -31,7 +49,7 @@ Obiettivo del blocco: API deployabile e storefront che builda su Vercel, senza D
 - Piani commissione con priorità prodotto, vendor, categoria, default. Snapshot sulla riga. Bozza approvabile solo da un altro operatore.
 - Admin Mercur: pagina «Programma premi». Storefront: «Invita un amico» con simulatore.
 - Bozze legali marcate BOZZA DA VALIDARE, banner cookie, sitemap, robots, security headers.
-- Formulazione: «fino al 105% in credito WheBack». Non si usa «gratis» né «costo zero».
+- Formulazione storica del 14 novembre, sostituita il 20 novembre dal modello a tre percorsi descritto in cima. Non si usa più «fino al 105%».
 
 ### Chiuso nel codice
 

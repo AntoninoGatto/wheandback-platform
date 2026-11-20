@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start --port 3002",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --test src/lib/commerce/address.test.ts"
+    "test": "node --experimental-strip-types --test src/lib/commerce/address.test.ts src/lib/copy-guard.test.ts src/lib/offers-format.test.ts"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^6.8.0",

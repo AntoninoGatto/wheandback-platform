@@ -44,7 +44,7 @@ export default async function IstruzioniPage({ params }: IstruzioniPageProps) {
 
       <div className="mx-auto w-full max-w-3xl px-6 py-12">
         <p className="text-sm font-semibold uppercase tracking-wide text-[#00b295]">
-          Demo Whe&Back®
+          Demo Whe&Back
         </p>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-[#253866]">
           Istruzioni in 1 minuto

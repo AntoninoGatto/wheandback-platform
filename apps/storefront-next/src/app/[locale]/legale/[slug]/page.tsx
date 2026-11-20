@@ -1,29 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StorefrontHeader } from "@/components/StorefrontHeader";
+import { companyProfile, legalApproved } from "@/lib/company";
 
-const PAGES: Record<string, { title: string; body: string }> = {
-  privacy: {
-    title: "Privacy",
-    body: "Questa informativa descriverà titolare, basi giuridiche e diritti. Non è un testo legale valido.",
-  },
-  cookie: {
-    title: "Cookie",
-    body: "Cookie tecnici di sessione e, per gli inviti, un cookie di attribuzione per 30 giorni. Manca il dettaglio del fornitore.",
-  },
-  termini: {
-    title: "Termini",
-    body: "Condizioni di vendita da completare con ragione sociale, prezzi IVA inclusa e legge applicabile.",
-  },
-  recesso: {
-    title: "Recesso",
-    body: "Il diritto di recesso dei consumatori va descritto con tempi e modalità. Bozza vuota.",
-  },
-  regolamento: {
-    title: "Regolamento programma premi",
-    body: "Il credito WheBack non è denaro, non si trasferisce e non si converte in contanti. Percentuali e periodi dipendono dal piano approvato. Testo da far validare.",
-  },
-};
+const PAGES = ["privacy", "cookie", "termini", "recesso", "regolamento"] as const;
 
 interface LegalPageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -31,20 +11,44 @@ interface LegalPageProps {
 
 export default async function LegalPage({ params }: LegalPageProps) {
   const { locale, slug } = await params;
-  const page = PAGES[slug];
-  if (!page) notFound();
+  if (!PAGES.includes(slug as (typeof PAGES)[number])) notFound();
+  const seller = companyProfile();
+  const approved = legalApproved();
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
       <StorefrontHeader locale={locale} />
       <article className="mx-auto w-full max-w-3xl px-6 py-12">
-        <p className="rounded-xl border border-amber-300 bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-950">
-          BOZZA DA VALIDARE
-        </p>
-        <h1 className="mt-4 text-3xl font-extrabold text-[#253866]">{page.title}</h1>
-        <p className="mt-4 text-gray-700">{page.body}</p>
-        <Link href={`/${locale}`} className="mt-8 inline-flex text-sm font-semibold text-[#253866]">
-          Torna alla home
+        {approved ? (
+          <>
+            <h1 className="text-3xl font-extrabold text-[#253866]">{slug}</h1>
+            <p className="mt-4 text-[#293241]">
+              Venditore: {seller.legalName}, company number {seller.companyNumber}, {seller.addressLines.join(", ")}.
+              {seller.vatUk ? ` UK VAT ${seller.vatUk}.` : ""}
+              {seller.vatIt ? ` P. IVA ${seller.vatIt}.` : ""}
+            </p>
+            <p className="mt-4 text-[#293241]">
+              I beni hanno la garanzia legale di conformità di due anni. Il recesso del consumatore si esercita dalla
+              funzione online, con un numero di pratica e uno stato visibile.
+            </p>
+            <p className="mt-4 text-[#293241]">
+              Il credito di chi segnala non è denaro, non si trasferisce e non si converte in contanti. I codici sconto
+              e il codice personale sono alternativi sullo stesso ordine.
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="rounded-xl border border-amber-300 bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-950">
+              Pagina non pubblicata: in attesa di revisione legale.
+            </p>
+            <h1 className="mt-4 text-3xl font-extrabold text-[#253866]">Testo non disponibile</h1>
+            <p className="mt-4 text-[#293241]">
+              Il testo di questa pagina resta spento finché la revisione non è approvata.
+            </p>
+          </>
+        )}
+        <Link href={`/${locale}/recesso`} className="mt-8 inline-flex text-sm font-semibold text-[#253866]">
+          Apri la funzione di recesso
         </Link>
       </article>
     </main>

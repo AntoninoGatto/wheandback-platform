@@ -13,24 +13,25 @@
     "login": "Iniciar Sesión",
     "register": "Registrarse",
     "dashboard": "Panel de Control",
-    "logout": "Cerrar Sesión"
+    "logout": "Cerrar Sesión",
+    "bonus": "Códigos"
   },
   "home": {
     "hero": {
-      "badge": "Premio referral hasta el 35%",
-      "headline": "Regístrate gratis. Invita a quien quieras.",
-      "subline1": "El crédito referral va a quien invita: hasta el 35% en las compras de los clientes invitados",
+      "badge": "El premio va a quien te señala",
+      "headline": "Tres caminos, en cada pedido.",
+      "subline1": "Un código personal a precio completo, el campo vacío, o códigos de descuento.",
       "subline2": "Cada pedido destina el 1% a Il Segreto di Aladino para proyectos éticos",
-      "cta_register": "Regístrate gratis",
+      "cta_register": "Crear una cuenta",
       "cta_shop": "Descubre la Tienda",
       "microcopy": "Te conviertes en cliente con una sola compra, de cualquier importe. Siempre pagas el 100% del precio publicado."
     },
     "how_it_works": {
       "title": "Cómo Funciona",
-      "step1_title": "Regístrate gratis",
+      "step1_title": "Elige el camino",
       "step1_desc": "Crea tu cuenta en segundos, sin coste",
       "step2_title": "Compra",
-      "step2_desc": "Una compra de cualquier importe te convierte en cliente Whe&Back®",
+      "step2_desc": "Una compra de cualquier importe te convierte en cliente Whe&Back",
       "step3_title": "Invita amigos",
       "step3_desc": "Comparte tu enlace: recibe un premio referral hasta el 35% de sus compras",
       "step4_title": "Donas el 1%",
@@ -38,11 +39,11 @@
     },
     "referral_highlight": {
       "title": "Gana invitando",
-      "desc": "El crédito referral no va a quien compra, sino a quien compartió el enlace. Si invitas a un nuevo cliente, recibes hasta el 35% de lo que gaste. Crédito interno utilizable solo en Whe&Back®.",
+      "desc": "El crédito referral no va a quien compra, sino a quien compartió el enlace. Si invitas a un nuevo cliente, recibes hasta el 35% de lo que gaste. Crédito interno utilizable solo en Whe&Back.",
       "cta": "Obtén tu enlace referral"
     },
     "cta_grid": {
-      "register": "Regístrate gratis y empieza a ganar",
+      "register": "Regístrate con un account y empieza a ganar",
       "charity": "Descubre nuestras causas benéficas",
       "referral": "Invita amigos con tu enlace único",
       "shop": "Ir a la Tienda"
@@ -50,8 +51,8 @@
     "welcome": {
       "eyebrow": "La vida es un círculo",
       "title": "Bienvenidos",
-      "body": "Este es el primer verdadero e-commerce solidario del mundo. Regístrate gratis, invita a quien conozcas y recibe un premio referral hasta el 35% de sus compras. Cada pedido destina el 1% a Il Segreto di Aladino.",
-      "cta": "Regístrate gratis"
+      "body": "Este es el comercio con tres caminos de ventaja. Regístrate con un account, invita a quien conozcas y recibe un premio referral hasta el 35% de sus compras. Cada pedido destina el 1% a Il Segreto di Aladino.",
+      "cta": "Regístrate con un account"
     },
     "charity": {
       "badge": "Beneficencia",
@@ -99,7 +100,7 @@
     "download": "Descargar Documentación"
   },
   "auth": {
-    "login_title": "Iniciar sesión en Whe&Back®",
+    "login_title": "Iniciar sesión en Whe&Back",
     "register_title": "Crear tu Cuenta",
     "email": "Correo electrónico",
     "password": "Contraseña",

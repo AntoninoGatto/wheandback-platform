@@ -11,9 +11,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Whe&Back®",
+  title: "Whe&Back",
   description:
-    "Aiutami a Cambiare il Mondo, Compra e Vendi anche Tu! La piattaforma e-commerce etica con cashback e referral.",
+    "Tre percorsi per ordine: codice personale, nessun codice, oppure codici sconto.",
 };
 
 export default function RootLayout({

@@ -1,8 +1,14 @@
 import { MedusaService } from "@medusajs/framework/utils"
+import BenefitSnapshot from "./models/benefit-snapshot"
+import Campaign from "./models/campaign"
+import CampaignLine from "./models/campaign-line"
 import CashbackEntry from "./models/cashback-entry"
+import CodeReservation from "./models/code-reservation"
 import LoyaltyPlan from "./models/loyalty-plan"
 import ReferralLink from "./models/referral-link"
 import RewardSnapshot from "./models/reward-snapshot"
+import SupportCase from "./models/support-case"
+import VariantEconomic from "./models/variant-economic"
 
 type EntryInput = {
   customer_id: string
@@ -14,6 +20,7 @@ type EntryInput = {
   idempotency_key: string
   note?: string | null
   actor_id?: string | null
+  line_id?: string | null
 }
 
 class LoyaltyModuleService extends MedusaService({
@@ -21,6 +28,12 @@ class LoyaltyModuleService extends MedusaService({
   LoyaltyPlan,
   ReferralLink,
   RewardSnapshot,
+  VariantEconomic,
+  Campaign,
+  CampaignLine,
+  CodeReservation,
+  BenefitSnapshot,
+  SupportCase,
 }) {
   async appendEntry(input: EntryInput) {
     const existing = await this.listCashbackEntries({ idempotency_key: input.idempotency_key })

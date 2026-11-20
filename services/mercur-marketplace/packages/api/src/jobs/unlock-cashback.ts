@@ -1,8 +1,11 @@
 import type { MedusaContainer } from "@medusajs/framework/types"
 import { LOYALTY_MODULE } from "../modules/loyalty"
 import { accrualsReadyToUnlock, type EntryType, type LedgerEntry } from "../modules/loyalty/domain"
+import { benefitFlags } from "../modules/loyalty/flags"
 
 export default async function unlockCashback(container: MedusaContainer) {
+  const flags = benefitFlags()
+  if (flags.rewardUnlockEvent !== "payment.captured" || flags.rewardUnlockDays == null) return
   const loyalty = container.resolve(LOYALTY_MODULE)
   const rows = await loyalty.listCashbackEntries({})
   const entries: LedgerEntry[] = rows.map((row) => ({
@@ -15,7 +18,7 @@ export default async function unlockCashback(container: MedusaContainer) {
     idempotency_key: row.idempotency_key,
     created_at: new Date(row.created_at).toISOString(),
   }))
-  for (const accrual of accrualsReadyToUnlock(entries, new Date())) {
+  for (const accrual of accrualsReadyToUnlock(entries, new Date(), flags.rewardUnlockDays)) {
     await loyalty.appendEntry({
       customer_id: accrual.customer_id,
       order_id: accrual.order_id,

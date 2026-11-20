@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/lib/i18n/routing";
 import type { Locale } from "@/lib/i18n/routing";
 import { CookieBanner } from "@/components/CookieBanner";
+import { CompanyFooter } from "@/components/CompanyFooter";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   return (
     <NextIntlClientProvider messages={messages}>
       {children}
+      <CompanyFooter locale={locale} />
       <CookieBanner locale={locale} />
     </NextIntlClientProvider>
   );
