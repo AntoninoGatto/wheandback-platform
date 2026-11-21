@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { DEMO_URLS } from "@/lib/demo-urls";
-import { brandSymbol } from "@/lib/company";
+import { BrandMark } from "@/components/BrandMark";
 
 interface StorefrontHeaderProps {
   locale: string;
@@ -14,7 +14,7 @@ export async function StorefrontHeader({ locale }: StorefrontHeaderProps) {
     <header className="border-b border-gray-100 bg-white">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-4">
         <Link href={`/${locale}`} className="text-xl font-extrabold text-[#253866]">
-          Whe&Back<sup className="text-xs">{brandSymbol()}</sup>
+          <BrandMark />
         </Link>
 
         <nav className="flex flex-wrap items-center gap-3 text-sm font-semibold text-[#253866]">

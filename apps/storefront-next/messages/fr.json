@@ -31,7 +31,7 @@
       "step1_title": "Inscrivez-vous",
       "step1_desc": "Créez votre compte en quelques secondes, sans frais",
       "step2_title": "Achetez",
-      "step2_desc": "Un achat de n'importe quel montant fait de vous un client Whe&Back",
+      "step2_desc": "Un achat de n'importe quel montant fait de vous un client WheBack",
       "step3_title": "Invitez des amis",
       "step3_desc": "Partagez votre lien : recevez une prime de parrainage jusqu'à 35% sur leurs achats",
       "step4_title": "Donnez 1%",
@@ -39,7 +39,7 @@
     },
     "referral_highlight": {
       "title": "Gagnez en invitant",
-      "desc": "Le crédit de parrainage ne va pas à l'acheteur, mais à celui qui a partagé le lien. Si vous invitez un nouveau client, vous recevez jusqu'à 35% de son achat. Crédit interne utilisable uniquement sur Whe&Back.",
+      "desc": "Le crédit de parrainage ne va pas à l'acheteur, mais à celui qui a partagé le lien. Si vous invitez un nouveau client, vous recevez jusqu'à 35% de son achat. Crédit interne utilisable uniquement sur WheBack.",
       "cta": "Obtenir votre lien de parrainage"
     },
     "cta_grid": {
@@ -100,7 +100,7 @@
     "download": "Télécharger la Documentation"
   },
   "auth": {
-    "login_title": "Connexion à Whe&Back",
+    "login_title": "Connexion à WheBack",
     "register_title": "Créer votre Compte",
     "email": "Email",
     "password": "Mot de passe",

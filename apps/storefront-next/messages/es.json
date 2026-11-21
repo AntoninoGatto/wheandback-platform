@@ -31,7 +31,7 @@
       "step1_title": "Elige el camino",
       "step1_desc": "Crea tu cuenta en segundos, sin coste",
       "step2_title": "Compra",
-      "step2_desc": "Una compra de cualquier importe te convierte en cliente Whe&Back",
+      "step2_desc": "Una compra de cualquier importe te convierte en cliente WheBack",
       "step3_title": "Invita amigos",
       "step3_desc": "Comparte tu enlace: recibe un premio referral hasta el 35% de sus compras",
       "step4_title": "Donas el 1%",
@@ -39,7 +39,7 @@
     },
     "referral_highlight": {
       "title": "Gana invitando",
-      "desc": "El crédito referral no va a quien compra, sino a quien compartió el enlace. Si invitas a un nuevo cliente, recibes hasta el 35% de lo que gaste. Crédito interno utilizable solo en Whe&Back.",
+      "desc": "El crédito referral no va a quien compra, sino a quien compartió el enlace. Si invitas a un nuevo cliente, recibes hasta el 35% de lo que gaste. Crédito interno utilizable solo en WheBack.",
       "cta": "Obtén tu enlace referral"
     },
     "cta_grid": {
@@ -100,7 +100,7 @@
     "download": "Descargar Documentación"
   },
   "auth": {
-    "login_title": "Iniciar sesión en Whe&Back",
+    "login_title": "Iniciar sesión en WheBack",
     "register_title": "Crear tu Cuenta",
     "email": "Correo electrónico",
     "password": "Contraseña",

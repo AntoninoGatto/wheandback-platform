@@ -79,7 +79,7 @@ export default async function orderPlacedEmailHandler({
       ).toUpperCase()})`
     : "—"
 
-  const subject = `Whe&Back — conferma ordine ${display}`
+  const subject = `WheBack — conferma ordine ${display}`
   const text = [
     `Grazie per il tuo ordine ${display}!`,
     "",
@@ -97,7 +97,7 @@ export default async function orderPlacedEmailHandler({
   const html = `<!DOCTYPE html>
 <html><body style="font-family:system-ui,sans-serif;color:#253866">
   <h1>Ordine confermato ${display}</h1>
-  <p>Grazie per aver scelto Whe&amp;Back.</p>
+  <p>Grazie per aver scelto WheBack.</p>
   <pre style="background:#f5f5f5;padding:12px;border-radius:8px">${escapeHtml(
     lines || "(nessuna riga)"
   )}</pre>

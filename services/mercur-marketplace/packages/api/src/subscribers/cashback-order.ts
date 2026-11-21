@@ -153,7 +153,7 @@ export default async function rewardOnPaymentCaptured({
   if (order.email) {
     await sendTransactionalEmail({
       to: order.email,
-      subject: "Whe&Back — dettaglio del vantaggio",
+      subject: "WheBack — dettaglio del vantaggio",
       text: formatSnapshotText(textLines),
     })
   }

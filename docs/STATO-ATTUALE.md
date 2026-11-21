@@ -1,6 +1,6 @@
-# STATO ATTUALE — Whe&Back
+# STATO ATTUALE — WheBack
 
-**Aggiornamento:** 2026-11-20  
+**Aggiornamento:** 2026-11-21  
 **Stack pubblico:** Mercur API (`services/mercur-marketplace`) + storefront Next (`apps/storefront-next`) + PostgreSQL + Redis.  
 **Prototipo Supabase (`:3000`):** congelato. Non è il sito che si pubblica. Le sezioni 1–11 sotto restano la fotografia del 2026-06-24.
 
@@ -16,7 +16,9 @@ La fascia si calcola prima di arrotondare, in basis point interi: ≥50% → 35%
 
 Il carrello di esempio usato nei test, in assenza del dossier da 94 scenari, è documentato nel test `benefit-model.unit.spec.ts`: lampada 122,00 € (base 100,00 €, fascia 35%), più 61,00 € (base 50,00 €, fascia 27%) e 24,40 € (base 20,00 €, fascia 21%). Da lì escono 52,70 € al segnalatore o al budget interno, 185,93 € pagati a novembre con i codici 13/8/3, e 192,15 € a dicembre con i codici 10/5 e la riga piccola scoperta. «Fino al 30/11 incluso» chiude alle 00:00 del 1° dicembre, fuso Europe/Rome.
 
-Il ledger storico non si cancella. I nuovi movimenti nascono alla cattura del pagamento, una riga per beneficiario, chiave `reward:<ordine>:<riga>`. Nessun payout automatico. Pagine legali spente finché `LEGAL_APPROVED` non è true. Sul logo: ® solo se `TRADEMARK_LICENSE_SIGNED=true`, altrimenti ™. Il testo «Whe&Back» non ha simbolo.
+Il ledger storico non si cancella. I nuovi movimenti nascono alla cattura del pagamento, una riga per beneficiario, chiave `reward:<ordine>:<riga>`. Nessun payout automatico. Pagine legali spente finché `LEGAL_APPROVED` non è true.
+
+Il nome visibile è **WheBack**, senza e commerciale. Il marchio sul logo (header, footer, titolo della pagina) è ® se `TRADEMARK_LICENSE_SIGNED=true`, altrimenti ™. Il flag resta spento: la licenza non è firmata.
 
 Checklist ancora vuota: `docs/COLLAUDO-S01-S94.md`. DNS, `wheback.com` e le variabili di produzione non si toccano in questo ramo.
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { StorefrontHeader } from "@/components/StorefrontHeader";
+import { BrandMark } from "@/components/BrandMark";
 import { DEMO_URLS } from "@/lib/demo-urls";
 
 interface HomePageProps {
@@ -20,7 +21,7 @@ export default async function HomePage({ params }: HomePageProps) {
           {tHero("badge")}
         </p>
         <h1 className="text-4xl font-extrabold tracking-tight text-[#253866]">
-          Whe&Back
+          <BrandMark />
         </h1>
         <p className="mt-3 text-2xl font-bold text-[#253866]">{tHero("headline")}</p>
         <p className="mt-4 max-w-2xl text-lg text-gray-600">{tHero("subline1")}</p>
