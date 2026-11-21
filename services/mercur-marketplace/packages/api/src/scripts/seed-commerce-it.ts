@@ -2,9 +2,8 @@ import { ExecArgs } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
 import { updateShippingOptionsWorkflow } from "@medusajs/medusa/core-flows"
 import { createSellerShippingOptionsWorkflow } from "@mercurjs/core/workflows"
+import { commerceConfig } from "../lib/commerce/config"
 import {
-  SHIPPING_EXPRESS_CENTS,
-  SHIPPING_STANDARD_CENTS,
   ShippingMethod,
   freeShippingThresholdCents,
   italyShippingOptionPrices,
@@ -199,7 +198,7 @@ async function upsertItalyShipping(
   )
 
   logger.info(
-    `Shipping placeholders: standard ${SHIPPING_STANDARD_CENTS} cents (€${SHIPPING_STANDARD_CENTS / 100}), express ${SHIPPING_EXPRESS_CENTS} cents (€${SHIPPING_EXPRESS_CENTS / 100}). Standard amount is 0 when item_total >= ${thresholdCents / 100} (Medusa price rule, major units, same unit as amount). Updated ${updates.length}, created ${created}.`
+    `Shipping placeholders: standard ${commerceConfig().shippingStandardCents} cents (€${commerceConfig().shippingStandardCents / 100}), express ${commerceConfig().shippingExpressCents} cents (€${commerceConfig().shippingExpressCents / 100}). Standard amount is 0 when item_total >= ${thresholdCents / 100} (Medusa price rule, major units, same unit as amount). Updated ${updates.length}, created ${created}.`
   )
 }
 

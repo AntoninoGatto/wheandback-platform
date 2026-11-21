@@ -2,7 +2,7 @@
   "nav": {
     "home": "Home",
     "shop": "Shop",
-    "cashback": "Cashback",
+    "cashback": "Premi",
     "referral": "Referral",
     "charity": "Beneficenza",
     "producers": "Produttori",
@@ -13,51 +13,52 @@
     "login": "Accedi",
     "register": "Registrati",
     "dashboard": "Dashboard",
-    "logout": "Esci"
+    "logout": "Esci",
+    "bonus": "Codici"
   },
   "home": {
     "hero": {
-      "badge": "Premio referral fino al 35%",
-      "headline": "Registrati gratis. Invita chi ami.",
-      "subline1": "Il credito referral va a chi invita: fino al 35% sui acquisti dei clienti invitati",
-      "subline2": "Ogni ordine destina l'1% a Il Segreto di Aladino per progetti etici",
-      "cta_register": "Registrati gratis",
+      "badge": "Il premio va a chi ti segnala",
+      "headline": "Tre percorsi, a ogni ordine.",
+      "subline1": "Inserisci un codice personale e paghi il prezzo pieno, lasci il campo vuoto, oppure usi un codice sconto.",
+      "subline2": "Chi acquista non riceve un premio. Il credito, quando c'è, va a chi ha segnalato l'ordine.",
+      "cta_register": "Crea un account",
       "cta_shop": "Scopri lo Shop",
       "microcopy": "Diventi cliente con un solo acquisto, di qualsiasi importo. Paghi sempre il 100% del prezzo pubblicato."
     },
     "how_it_works": {
       "title": "Come Funziona",
-      "step1_title": "Registrati gratis",
-      "step1_desc": "Crea il tuo account in pochi secondi, senza costi",
+      "step1_title": "Scegli il percorso",
+      "step1_desc": "Per ogni carrello indichi un segnalatore, nessun codice, oppure uno o più codici sconto.",
       "step2_title": "Acquista",
-      "step2_desc": "Un acquisto di qualsiasi importo e sei cliente Whe&Back®",
-      "step3_title": "Invita amici",
-      "step3_desc": "Condividi il tuo link: ricevi un premio referral fino al 35% sui loro acquisti",
-      "step4_title": "Doni l'1%",
-      "step4_desc": "Ogni ordine finanzia progetti etici con Il Segreto di Aladino"
+      "step2_desc": "Paghi il prezzo pubblicato, con lo sconto solo se un codice copre quella riga.",
+      "step3_title": "Segnala un ordine",
+      "step3_desc": "Il codice personale vale per quell'ordine. Non resta un legame fisso con chi invita.",
+      "step4_title": "Codici sconto",
+      "step4_desc": "Un codice per riga, tra il 3% e il 13%. Le righe scoperte restano a prezzo pieno."
     },
     "referral_highlight": {
-      "title": "Guadagna invitando",
-      "desc": "Il credito referral non va a chi acquista, ma a chi ha condiviso il link. Se inviti un nuovo cliente, ricevi fino al 35% dell'importo da lui speso. Credito interno, utilizzabile solo per nuovi acquisti su Whe&Back®.",
-      "cta": "Ottieni il tuo link referral"
+      "title": "Premio a chi segnala",
+      "desc": "Il credito non va a chi acquista. Su ogni ordine puoi indicare un solo codice personale. L'auto-segnalazione è bloccata.",
+      "cta": "Come funziona il codice"
     },
     "cta_grid": {
-      "register": "Registrati gratis e inizia a guadagnare",
-      "charity": "Scopri le nostre cause benefiche",
-      "referral": "Invita amici con il tuo link unico",
+      "register": "Crea un account",
+      "charity": "La beneficenza non è attiva",
+      "referral": "Usa un codice personale in checkout",
       "shop": "Vai allo Shop"
     },
     "welcome": {
       "eyebrow": "La vita è un cerchio",
       "title": "Benvenuti",
-      "body": "Questo è il primo vero e-commerce solidale al mondo. Registrati gratis, invita chi conosci e ricevi un premio referral fino al 35% sui loro acquisti. Ogni ordine destina l'1% all'Associazione Il Segreto di Aladino.",
-      "cta": "Registrati gratis"
+      "body": "Per ogni carrello scegli un segnalatore, nessun vantaggio, oppure i codici sconto. Paghi il prezzo pubblicato, salvo lo sconto dei codici accettati.",
+      "cta": "Crea un account"
     },
     "charity": {
       "badge": "Beneficenza",
       "title": "Il Segreto di Aladino",
-      "stat_label": "di ogni fatturato mensile",
-      "desc": "L'1% di ogni fatturato viene donato mensilmente all'Associazione Il Segreto di Aladino per finanziare progetti etici e ambiziosi.",
+      "stat_label": "non attivo",
+      "desc": "Il programma beneficenza è spento.",
       "cta": "Scopri di più"
     },
     "featured_products": {
@@ -70,27 +71,27 @@
     "filters": "Filtri",
     "categories": "Categorie",
     "sort": "Ordina per",
-    "cashback_label": "Cashback",
+    "cashback_label": "Premio",
     "add_to_cart": "Aggiungi al Carrello",
     "no_products": "Nessun prodotto trovato"
   },
   "cashback": {
-    "title": "Il Tuo Cashback",
-    "balance": "Saldo Disponibile",
-    "pending": "In Attesa di Conferma",
-    "info_title": "Come funziona il Cashback",
-    "info_desc": "Il cashback si attiva solo dopo la consegna del prodotto e la scadenza del diritto di recesso (14 giorni). Il saldo è utilizzabile esclusivamente come credito per nuovi acquisti e non è mai prelevabile in denaro.",
-    "history": "Storico Cashback"
+    "title": "Come funziona il premio",
+    "balance": "Nessun premio per chi acquista",
+    "pending": "Il credito del segnalatore resta in attesa fino allo sblocco configurato",
+    "info_title": "Tre percorsi",
+    "info_desc": "Con un codice personale paghi il prezzo pieno e il premio va a chi ti segnala. Senza codice la stessa quota resta nel budget interno. Con i codici sconto paghi meno e premio e quota interna sono zero su tutto l'ordine.",
+    "history": "Il dettaglio sta nello snapshot dell'ordine"
   },
   "referral": {
-    "title": "Il Tuo Link Referral",
-    "desc": "Invita amici illimitati e guadagna premi multilivello",
-    "your_link": "Il Tuo Link Personale",
+    "title": "Codice personale",
+    "desc": "Il codice si sceglie a ogni ordine. Non crea un legame permanente e non è un premio multilivello.",
+    "your_link": "Il tuo codice",
     "copy_link": "Copia Link",
     "copied": "Copiato!",
-    "stats": "Le Tue Statistiche",
-    "invited": "Amici Invitati",
-    "earned": "Guadagnato con Referral"
+    "stats": "Niente contatori inventati",
+    "invited": "Ordini segnalati",
+    "earned": "Credito maturato"
   },
   "charity": {
     "title": "Beneficenza & Trasparenza",
@@ -99,7 +100,7 @@
     "download": "Scarica Documentazione"
   },
   "auth": {
-    "login_title": "Accedi a Whe&Back®",
+    "login_title": "Accedi a WheBack",
     "register_title": "Crea il tuo Account",
     "email": "Email",
     "password": "Password",

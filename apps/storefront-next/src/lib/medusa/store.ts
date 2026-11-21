@@ -135,6 +135,54 @@ export type StoreCart = {
   } | null;
 };
 
+export async function updateCart(cartId: string, body: Record<string, unknown>) {
+  return medusaFetch<{ cart: StoreCart }>(`/store/carts/${encodeURIComponent(cartId)}`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(body),
+  });
+}
+
+export type BenefitQuoteResponse = {
+  fingerprint: string;
+  quote: {
+    mode: string;
+    confirmations: { line_id: string; codes: string[]; suggested: string }[];
+    reasons: { code: string; reason: string }[];
+    totals: {
+      initial_price_cents: number;
+      discount_cents: number;
+      price_paid_cents: number;
+      reward_cents: number;
+      internal_cents: number;
+    };
+    lines: {
+      line_id: string;
+      sku: string;
+      qty: number;
+      initial_price_cents: number;
+      vat_rate_bps: number;
+      discount_cents: number;
+      price_paid_cents: number;
+      reward_cents: number;
+      internal_cents: number;
+      code: string | null;
+      campaign_version: number | null;
+    }[];
+  };
+};
+
+export async function quoteBenefit(cartId: string, body: Record<string, unknown>) {
+  return medusaFetch<BenefitQuoteResponse>(
+    `/store/carts/${encodeURIComponent(cartId)}/benefit-quote`,
+    {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(body),
+    }
+  );
+}
+
 export async function retrieveCart(cartId: string) {
   return medusaFetch<{ cart: StoreCart }>(
     `/store/carts/${encodeURIComponent(cartId)}?fields=*payment_collection,*payment_collection.payment_sessions`

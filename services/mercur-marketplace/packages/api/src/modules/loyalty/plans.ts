@@ -73,17 +73,17 @@ export type LineSnapshot = {
   plan_id: string
 }
 
+/** No plan and no matching rule → no benefit. There is no 5% fallback. */
 export function snapshotLine(
   plan: CommissionPlan | null,
-  input: { product_id: string; vendor_id?: string; category_id?: string },
-  fallbackCashback = 0.05
+  input: { product_id: string; vendor_id?: string; category_id?: string }
 ): LineSnapshot {
   const rule = plan ? resolveRule(plan, input) : null
   return {
     product_id: input.product_id,
-    cashback_rate: rule?.cashback_rate ?? fallbackCashback,
-    referral_rate: rule?.referral_rate ?? plan?.tiers.A ?? 0.35,
+    cashback_rate: rule?.cashback_rate ?? 0,
+    referral_rate: rule?.referral_rate ?? 0,
     rule_scope: rule?.scope ?? "none",
-    plan_id: plan?.id ?? "builtin",
+    plan_id: plan?.id ?? "none",
   }
 }

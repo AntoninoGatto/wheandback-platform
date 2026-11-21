@@ -1,9 +1,9 @@
 import { netFromGrossInclusive } from "../../lib/commerce/rules"
+import { benefitFlags } from "./flags"
 
-export const DEFAULT_CASHBACK_RATE = 0.05
-export const DEFAULT_UNLOCK_DAYS = 14
+export const PROMO_INTERNAL_ID = "promo_internal"
 
-export type EntryType = "accrual_pending" | "unlock" | "cancel" | "redeem" | "adjust"
+export type EntryType = "accrual_pending" | "unlock" | "cancel" | "redeem" | "adjust" | "reversal" | "accrued"
 
 export function actorId(req: { auth_context?: { actor_id?: string } }): string {
   return req.auth_context?.actor_id || ""
@@ -20,21 +20,27 @@ export type LedgerEntry = {
   created_at: string
 }
 
-export function cashbackRate(): number {
-  const raw = Number(process.env.CASHBACK_RATE)
-  if (!Number.isFinite(raw) || raw < 0 || raw > 1) return DEFAULT_CASHBACK_RATE
-  return raw
+/** No silent 5% rate. Unset or invalid → no buyer cashback. */
+export function cashbackRate(): number | null {
+  const raw = process.env.CASHBACK_RATE
+  if (raw == null || raw.trim() === "") return null
+  const parsed = Number(raw)
+  if (!Number.isFinite(parsed) || parsed < 0 || parsed > 1) return null
+  return parsed
 }
 
-export function unlockDays(): number {
-  const raw = Number(process.env.CASHBACK_UNLOCK_DAYS)
-  if (!Number.isFinite(raw) || raw < 0) return DEFAULT_UNLOCK_DAYS
-  return Math.round(raw)
+export function unlockDays(): number | null {
+  return benefitFlags().rewardUnlockDays
 }
 
-/** 5% of net paid product amount. Gross is IVA-inclusive and must already exclude shipping and credit. */
-export function accrualCents(productGrossInclVatCents: number, rate = cashbackRate()): number {
-  return Math.max(0, Math.round(netFromGrossInclusive(productGrossInclVatCents) * rate))
+/** Requires an explicit rate and VAT basis points. Missing either one yields 0. */
+export function accrualCents(
+  productGrossInclVatCents: number,
+  rate: number | null = cashbackRate(),
+  vatRateBps?: number | null
+): number {
+  if (rate == null || rate <= 0 || vatRateBps == null) return 0
+  return Math.max(0, Math.round(netFromGrossInclusive(productGrossInclVatCents, vatRateBps) * rate))
 }
 
 export function summarize(entries: LedgerEntry[]): {
@@ -48,14 +54,21 @@ export function summarize(entries: LedgerEntry[]): {
   const unlocked = new Set(
     entries.filter((entry) => entry.type === "unlock" && entry.source_entry_id).map((entry) => entry.source_entry_id)
   )
+  const reversed = new Map<string, number>()
+  for (const entry of entries) {
+    if (entry.type === "reversal" && entry.source_entry_id) {
+      reversed.set(entry.source_entry_id, (reversed.get(entry.source_entry_id) || 0) + entry.amount_cents)
+    }
+  }
   let pending = 0
   let available = 0
   let used = 0
   for (const entry of entries) {
     if (entry.type === "accrual_pending") {
       if (cancelled.has(entry.id)) continue
-      if (unlocked.has(entry.id)) available += entry.amount_cents
-      else pending += entry.amount_cents
+      const left = Math.max(0, entry.amount_cents - (reversed.get(entry.id) || 0))
+      if (unlocked.has(entry.id)) available += left
+      else pending += left
     } else if (entry.type === "redeem") {
       used += entry.amount_cents
       available -= entry.amount_cents
@@ -66,7 +79,8 @@ export function summarize(entries: LedgerEntry[]): {
   return { pending, available, used }
 }
 
-export function accrualsReadyToUnlock(entries: LedgerEntry[], now: Date, days = unlockDays()): LedgerEntry[] {
+export function accrualsReadyToUnlock(entries: LedgerEntry[], now: Date, days: number | null = unlockDays()): LedgerEntry[] {
+  if (days == null) return []
   const handled = new Set(
     entries
       .filter((entry) => (entry.type === "unlock" || entry.type === "cancel") && entry.source_entry_id)
@@ -84,6 +98,12 @@ export function accrualsReadyToUnlock(entries: LedgerEntry[], now: Date, days = 
 export function redeemQuote(availableCents: number, requestedCents: number): number {
   if (requestedCents <= 0 || availableCents <= 0) return 0
   return Math.min(availableCents, requestedCents)
+}
+
+/** Checkout redemption stays off until LOYALTY_REDEEM_ENABLED=true. */
+export function redeemAllowed(availableCents: number, requestedCents: number): number {
+  if (!benefitFlags().redeemEnabled) return 0
+  return redeemQuote(availableCents, requestedCents)
 }
 
 export function creditExpiryDays(): number | null {

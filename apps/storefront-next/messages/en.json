@@ -2,7 +2,7 @@
   "nav": {
     "home": "Home",
     "shop": "Shop",
-    "cashback": "Cashback",
+    "cashback": "Rewards",
     "referral": "Referral",
     "charity": "Charity",
     "producers": "Producers",
@@ -13,51 +13,52 @@
     "login": "Sign In",
     "register": "Sign Up",
     "dashboard": "Dashboard",
-    "logout": "Sign Out"
+    "logout": "Sign Out",
+    "bonus": "Codes"
   },
   "home": {
     "hero": {
-      "badge": "Referral reward up to 35%",
-      "headline": "Sign up free. Invite loved ones.",
-      "subline1": "Referral credit goes to the inviter: up to 35% on invited customers' purchases",
-      "subline2": "Every order donates 1% to Il Segreto di Aladino for ethical projects",
-      "cta_register": "Sign up free",
+      "badge": "The reward goes to the person who refers you",
+      "headline": "Three paths, on every order.",
+      "subline1": "Enter one personal code and pay full price, leave the field empty, or use discount codes.",
+      "subline2": "The buyer does not receive a reward.",
+      "cta_register": "Create an account",
       "cta_shop": "Browse the Shop",
       "microcopy": "Become a customer with a single purchase of any amount. You always pay 100% of the published price."
     },
     "how_it_works": {
       "title": "How It Works",
-      "step1_title": "Sign up free",
-      "step1_desc": "Create your account in seconds, at no cost",
+      "step1_title": "Choose a path",
+      "step1_desc": "For each cart you name a referrer, no code, or discount codes.",
       "step2_title": "Shop",
-      "step2_desc": "One purchase of any amount makes you a Whe&Back® customer",
-      "step3_title": "Invite friends",
-      "step3_desc": "Share your link: receive a referral reward up to 35% on their purchases",
-      "step4_title": "Give 1%",
-      "step4_desc": "Every order funds ethical projects with Il Segreto di Aladino"
+      "step2_desc": "You pay the published price, with a discount only when a code covers that line.",
+      "step3_title": "Refer one order",
+      "step3_desc": "The personal code applies to that order only.",
+      "step4_title": "Discount codes",
+      "step4_desc": "One code per line, from 3% to 13%."
     },
     "referral_highlight": {
-      "title": "Earn by inviting",
-      "desc": "Referral credit does not go to the buyer, but to whoever shared the link. If you invite a new customer, you receive up to 35% of what they spend. Internal credit for future Whe&Back® purchases only.",
-      "cta": "Get your referral link"
+      "title": "Reward for the referrer",
+      "desc": "Credit does not go to the buyer. One personal code per order. Self-referral is blocked.",
+      "cta": "How the code works"
     },
     "cta_grid": {
-      "register": "Sign up free and start earning",
-      "charity": "Discover our charitable causes",
+      "register": "Create an account",
+      "charity": "Charity is not active",
       "referral": "Invite friends with your unique link",
       "shop": "Go to the Shop"
     },
     "welcome": {
       "eyebrow": "Life is a circle",
       "title": "Welcome",
-      "body": "This is the world's first true solidarity e-commerce platform. Sign up free, invite people you know and receive a referral reward up to 35% on their purchases. Every order donates 1% to Il Segreto di Aladino.",
-      "cta": "Sign up free"
+      "body": "On each cart you choose a referrer, no benefit, or discount codes.",
+      "cta": "Create an account"
     },
     "charity": {
       "badge": "Charity",
       "title": "Il Segreto di Aladino",
       "stat_label": "of monthly revenue",
-      "desc": "1% of all revenue is donated monthly to Il Segreto di Aladino to fund ambitious ethical projects.",
+      "desc": "The charity programme is off.",
       "cta": "Learn more"
     },
     "featured_products": {
@@ -75,16 +76,16 @@
     "no_products": "No products found"
   },
   "cashback": {
-    "title": "Your Cashback",
+    "title": "How the reward works",
     "balance": "Available Balance",
     "pending": "Pending Confirmation",
     "info_title": "How Cashback Works",
-    "info_desc": "Cashback is activated only after product delivery and the expiry of the right of withdrawal (14 days). The balance can only be used as credit for new purchases and can never be withdrawn as cash.",
+    "info_desc": "A personal code keeps the full price and pays the referrer. An empty field keeps the same amount in the internal budget. Discount codes lower the price and set both reward and internal quota to zero for the whole order.",
     "history": "Cashback History"
   },
   "referral": {
-    "title": "Your Referral Link",
-    "desc": "Invite unlimited friends and earn multi-level rewards",
+    "title": "Personal code",
+    "desc": "The code is chosen per order. It does not create a permanent link.",
     "your_link": "Your Personal Link",
     "copy_link": "Copy Link",
     "copied": "Copied!",
@@ -99,7 +100,7 @@
     "download": "Download Documentation"
   },
   "auth": {
-    "login_title": "Sign in to Whe&Back®",
+    "login_title": "Sign in to WheBack",
     "register_title": "Create your Account",
     "email": "Email",
     "password": "Password",

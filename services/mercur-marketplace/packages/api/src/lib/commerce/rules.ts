@@ -1,15 +1,9 @@
-/** Placeholder carrier prices until a real IT courier is contracted. Amounts are IVA-inclusive EUR cents. */
-export const SHIPPING_STANDARD_CENTS = 590
-export const SHIPPING_EXPRESS_CENTS = 990
-export const DEFAULT_FREE_SHIPPING_THRESHOLD_CENTS = 4900
-export const IT_VAT_RATE = 0.22
+import { commerceConfig, type CommerceConfig } from "./config"
 
 export type ShippingMethod = "standard" | "express"
 
-export function freeShippingThresholdCents(): number {
-  const raw = Number(process.env.SHIPPING_FREE_THRESHOLD_CENTS)
-  if (!Number.isFinite(raw) || raw < 0) return DEFAULT_FREE_SHIPPING_THRESHOLD_CENTS
-  return Math.round(raw)
+export function freeShippingThresholdCents(config: CommerceConfig = commerceConfig()): number {
+  return config.freeShippingThresholdCents
 }
 
 export type ShippingPriceRule = {
@@ -34,10 +28,12 @@ export function italyShippingOptionPrices(input: {
   kind: ShippingMethod
   regionId?: string
   thresholdCents?: number
+  config?: CommerceConfig
 }): ItalyShippingPrice[] {
+  const config = input.config ?? commerceConfig()
   const amount =
-    (input.kind === "express" ? SHIPPING_EXPRESS_CENTS : SHIPPING_STANDARD_CENTS) / 100
-  const thresholdMajor = (input.thresholdCents ?? freeShippingThresholdCents()) / 100
+    (input.kind === "express" ? config.shippingExpressCents : config.shippingStandardCents) / 100
+  const thresholdMajor = (input.thresholdCents ?? config.freeShippingThresholdCents) / 100
   const prices: ItalyShippingPrice[] = [
     { currency_code: "eur", amount },
     { currency_code: "usd", amount: 10 },
@@ -78,16 +74,18 @@ export function shippingOptionKind(option: {
 export function shippingPriceCents(
   method: ShippingMethod,
   productGrossCents: number,
-  threshold = freeShippingThresholdCents()
+  threshold?: number,
+  config: CommerceConfig = commerceConfig()
 ): number {
-  if (method === "standard" && productGrossCents >= threshold) return 0
-  return method === "express" ? SHIPPING_EXPRESS_CENTS : SHIPPING_STANDARD_CENTS
+  const appliedThreshold = threshold ?? config.freeShippingThresholdCents
+  if (method === "standard" && productGrossCents >= appliedThreshold) return 0
+  return method === "express" ? config.shippingExpressCents : config.shippingStandardCents
 }
 
-/** Prices are IVA-inclusive. Net excludes VAT. */
-export function netFromGrossInclusive(grossCents: number, vatRate = IT_VAT_RATE): number {
-  if (grossCents <= 0) return 0
-  return Math.round(grossCents / (1 + vatRate))
+/** Gross inclusive cents → net cents. `vatRateBps` is per product or per country (2200 = 22%). */
+export function netFromGrossInclusive(grossCents: number, vatRateBps: number): number {
+  if (grossCents <= 0 || vatRateBps < 0) return 0
+  return Math.round((grossCents * 10000) / (10000 + vatRateBps))
 }
 
 export type ItAddress = {

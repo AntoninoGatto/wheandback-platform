@@ -1,12 +1,13 @@
 import { createHash } from "crypto"
-import { accrualCents } from "./domain"
+import { netFromGrossInclusive } from "../../lib/commerce/rules"
+import { lineRewardCents } from "./tiers"
 
 export type ReferralTier = "A" | "B" | "C"
 
-export const DEFAULT_TIERS: Record<ReferralTier, number> = {
-  A: 0.35,
-  B: 0.27,
-  C: 0.21,
+export const TIER_BPS: Record<ReferralTier, number> = {
+  A: 3500,
+  B: 2700,
+  C: 2100,
 }
 
 export function normalizeEmail(email?: string | null): string {
@@ -56,21 +57,32 @@ export function isSelfReferral(input: {
   return false
 }
 
+/**
+ * Reward on every order that names this referrer. There is no permanent invitee link
+ * and no "first order only" gate. `monthlyCapCents` null means no cap.
+ */
 export function referralRewardCents(input: {
-  productGrossInclVatCents: number
+  productGrossInclVatCents?: number
+  rewardBaseCents?: number
+  vatRateBps?: number
   tier: ReferralTier
-  tiers?: Record<ReferralTier, number>
-  paidOrderIndex: number
-  maxRewardedOrders: number
+  tierBps?: number
+  qty?: number
+  paidOrderIndex?: number
+  maxRewardedOrders?: number
   selfReferral: boolean
-  alreadyRewardedCentsThisMonth: number
-  monthlyCapCents: number
+  alreadyRewardedCentsThisMonth?: number
+  monthlyCapCents?: number | null
 }): number {
   if (input.selfReferral) return 0
-  if (input.paidOrderIndex < 1 || input.paidOrderIndex > input.maxRewardedOrders) return 0
-  const rate = (input.tiers || DEFAULT_TIERS)[input.tier]
-  const reward = accrualCents(input.productGrossInclVatCents, rate)
-  const room = Math.max(0, input.monthlyCapCents - input.alreadyRewardedCentsThisMonth)
+  const base =
+    input.rewardBaseCents ??
+    (input.productGrossInclVatCents != null && input.vatRateBps != null
+      ? netFromGrossInclusive(input.productGrossInclVatCents, input.vatRateBps)
+      : 0)
+  const reward = lineRewardCents(base, input.qty ?? 1, input.tierBps ?? TIER_BPS[input.tier])
+  if (input.monthlyCapCents == null) return reward
+  const room = Math.max(0, input.monthlyCapCents - (input.alreadyRewardedCentsThisMonth || 0))
   return Math.min(reward, room)
 }
 

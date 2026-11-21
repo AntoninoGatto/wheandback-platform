@@ -38,45 +38,43 @@ describe("commission plans and referral", () => {
     expect(pickActivePlan([{ ...plan, status: "draft" }], new Date("2026-06-01"))).toBeNull()
   })
 
-  it("pays the first referred order only and rejects self-referral", () => {
+  it("rewards every order from the net base and rejects self-referral", () => {
     expect(
       isSelfReferral({
         referrer_customer_id: "a",
         referred_customer_id: "a",
       })
     ).toBe(true)
+    expect(snapshotLine(null, { product_id: "prod_1" })).toMatchObject({
+      cashback_rate: 0,
+      referral_rate: 0,
+      plan_id: "none",
+    })
     expect(
       referralRewardCents({
-        productGrossInclVatCents: 12200,
-        tier: "A",
-        paidOrderIndex: 1,
-        maxRewardedOrders: 1,
-        selfReferral: false,
-        alreadyRewardedCentsThisMonth: 0,
-        monthlyCapCents: 100000,
-      })
-    ).toBe(3500)
-    expect(
-      referralRewardCents({
-        productGrossInclVatCents: 12200,
+        rewardBaseCents: 10000,
         tier: "A",
         paidOrderIndex: 2,
         maxRewardedOrders: 1,
         selfReferral: false,
-        alreadyRewardedCentsThisMonth: 0,
-        monthlyCapCents: 100000,
+        monthlyCapCents: null,
       })
-    ).toBe(0)
+    ).toBe(3500)
     expect(
       referralRewardCents({
-        productGrossInclVatCents: 12200,
+        rewardBaseCents: 10000,
         tier: "B",
-        paidOrderIndex: 1,
-        maxRewardedOrders: 1,
         selfReferral: false,
         alreadyRewardedCentsThisMonth: 9900,
         monthlyCapCents: 10000,
       })
     ).toBe(100)
+    expect(
+      referralRewardCents({
+        rewardBaseCents: 10000,
+        tier: "A",
+        selfReferral: true,
+      })
+    ).toBe(0)
   })
 })

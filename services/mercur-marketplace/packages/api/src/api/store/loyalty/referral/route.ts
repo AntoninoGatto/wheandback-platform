@@ -36,13 +36,10 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
     res.status(422).json({ message: "Auto-invito non consentito" })
     return
   }
-  const saved = await loyalty.createReferralLinks({
+  res.json({
+    code: link.code,
     referrer_customer_id: link.referrer_customer_id,
-    code: body.code,
-    referred_customer_id: body.referred_customer_id || null,
-    referred_email: normalizeEmail(body.referred_email) || null,
-    payment_fingerprint: body.payment_fingerprint || null,
-    address_fingerprint: body.address_fingerprint || null,
+    linked: false,
+    email: normalizeEmail(body.referred_email) || null,
   })
-  res.status(201).json({ attribution: saved })
 }

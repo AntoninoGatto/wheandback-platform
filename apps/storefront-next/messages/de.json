@@ -13,24 +13,25 @@
     "login": "Anmelden",
     "register": "Registrieren",
     "dashboard": "Dashboard",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "bonus": "Codes"
   },
   "home": {
     "hero": {
-      "badge": "Referral-Prämie bis zu 35%",
-      "headline": "Kostenlos registrieren. Liebste einladen.",
-      "subline1": "Das Referral-Guthaben geht an den Einladenden: bis zu 35% auf Einkäufe eingeladener Kunden",
+      "badge": "Die Prämie geht an die werbende Person",
+      "headline": "Drei Wege, bei jeder Bestellung.",
+      "subline1": "Ein persönlicher Code zum vollen Preis, ein leeres Feld oder Rabattcodes.",
       "subline2": "Jede Bestellung spendet 1% an Il Segreto di Aladino für ethische Projekte",
-      "cta_register": "Kostenlos registrieren",
+      "cta_register": "Konto erstellen",
       "cta_shop": "Shop entdecken",
       "microcopy": "Werden Sie Kunde mit einem einzigen Einkauf in beliebiger Höhe. Sie zahlen immer 100% des veröffentlichten Preises."
     },
     "how_it_works": {
       "title": "So Funktioniert Es",
-      "step1_title": "Kostenlos registrieren",
+      "step1_title": "Weg wählen",
       "step1_desc": "Erstellen Sie Ihr Konto in Sekunden, ohne Kosten",
       "step2_title": "Einkaufen",
-      "step2_desc": "Ein Einkauf in beliebiger Höhe macht Sie zum Whe&Back®-Kunden",
+      "step2_desc": "Ein Einkauf in beliebiger Höhe macht Sie zum WheBack-Kunden",
       "step3_title": "Freunde einladen",
       "step3_desc": "Teilen Sie Ihren Link: erhalten Sie eine Referral-Prämie bis zu 35% auf deren Einkäufe",
       "step4_title": "1% spenden",
@@ -38,7 +39,7 @@
     },
     "referral_highlight": {
       "title": "Verdienen durch Einladen",
-      "desc": "Das Referral-Guthaben geht nicht an den Käufer, sondern an die Person, die den Link geteilt hat. Wenn Sie einen neuen Kunden einladen, erhalten Sie bis zu 35% dessen, was er ausgibt. Internes Guthaben nur für Whe&Back®-Einkäufe.",
+      "desc": "Das Referral-Guthaben geht nicht an den Käufer, sondern an die Person, die den Link geteilt hat. Wenn Sie einen neuen Kunden einladen, erhalten Sie bis zu 35% dessen, was er ausgibt. Internes Guthaben nur für WheBack-Einkäufe.",
       "cta": "Ihren Referral-Link erhalten"
     },
     "cta_grid": {
@@ -50,7 +51,7 @@
     "welcome": {
       "eyebrow": "Das Leben ist ein Kreis",
       "title": "Willkommen",
-      "body": "Dies ist der erste echte Solidaritäts-E-Commerce der Welt. Registrieren Sie sich kostenlos, laden Sie Bekannte ein und erhalten Sie eine Referral-Prämie bis zu 35% auf deren Einkäufe. Jede Bestellung spendet 1% an Il Segreto di Aladino.",
+      "body": "Dies ist der Shop mit drei Vorteilswegen. Registrieren Sie sich kostenlos, laden Sie Bekannte ein und erhalten Sie eine Referral-Prämie bis zu 35% auf deren Einkäufe. Jede Bestellung spendet 1% an Il Segreto di Aladino.",
       "cta": "Kostenlos registrieren"
     },
     "charity": {
@@ -99,7 +100,7 @@
     "download": "Dokumentation Herunterladen"
   },
   "auth": {
-    "login_title": "Bei Whe&Back® Anmelden",
+    "login_title": "Bei WheBack Anmelden",
     "register_title": "Konto Erstellen",
     "email": "E-Mail",
     "password": "Passwort",

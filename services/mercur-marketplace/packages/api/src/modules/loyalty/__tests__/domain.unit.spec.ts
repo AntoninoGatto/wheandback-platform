@@ -14,8 +14,10 @@ const entry = (partial: Partial<LedgerEntry> & Pick<LedgerEntry, "id" | "type" |
 })
 
 describe("cashback ledger", () => {
-  it("accrues 5% of the net amount", () => {
-    expect(accrualCents(12200, 0.05)).toBe(500)
+  it("accrues a given rate of the net amount only when VAT is explicit", () => {
+    expect(accrualCents(12200, 0.05, 2200)).toBe(500)
+    expect(accrualCents(12200, null, 2200)).toBe(0)
+    expect(accrualCents(12200, 0.05)).toBe(0)
   })
 
   it("keeps credit pending until unlock and releases it once", () => {

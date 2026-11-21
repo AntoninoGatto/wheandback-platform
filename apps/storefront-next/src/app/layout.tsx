@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { brandSymbol } from "@/lib/company";
 import "./globals.css";
 
 // Variable font: one file per subset. Listing every weight makes Turbopack
@@ -10,11 +11,13 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Whe&Back®",
-  description:
-    "Aiutami a Cambiare il Mondo, Compra e Vendi anche Tu! La piattaforma e-commerce etica con cashback e referral.",
-};
+export function generateMetadata(): Metadata {
+  return {
+    title: `WheBack${brandSymbol()}`,
+    description:
+      "Tre percorsi per ordine: codice personale, nessun codice, oppure codici sconto.",
+  };
+}
 
 export default function RootLayout({
   children,

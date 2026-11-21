@@ -52,14 +52,10 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
     created_by: creatorId,
     starts_at: body.starts_at || new Date().toISOString(),
     ends_at: body.ends_at || null,
-    referral_orders: String(body.referral_orders ?? 1),
-    monthly_cap_cents: String(body.monthly_cap_cents ?? 100000),
-    tiers_json: JSON.stringify(body.tiers || { A: 0.35, B: 0.27, C: 0.21 }),
-    rules_json: JSON.stringify(
-      body.rules || [
-        { id: "default", scope: "default", scope_id: null, cashback_rate: 0.05, referral_rate: 0.35 },
-      ]
-    ),
+    referral_orders: String(body.referral_orders ?? 0),
+    monthly_cap_cents: String(body.monthly_cap_cents ?? 0),
+    tiers_json: JSON.stringify(body.tiers || { A: 0, B: 0, C: 0 }),
+    rules_json: JSON.stringify(body.rules || []),
   })
   invalidatePlanCache()
   res.status(201).json({ plan: created })

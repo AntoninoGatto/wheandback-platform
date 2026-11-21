@@ -1,5 +1,6 @@
+import { commerceConfig } from "../config"
+import { toCents } from "../money"
 import {
-  IT_VAT_RATE,
   italyShippingOptionPrices,
   netFromGrossInclusive,
   paymentsConfigured,
@@ -26,8 +27,19 @@ describe("commerce rules", () => {
     expect(shippingPriceCents("express", 10000, 4900)).toBe(990)
   })
 
-  it("strips 22% IVA from inclusive prices", () => {
-    expect(netFromGrossInclusive(12200, IT_VAT_RATE)).toBe(10000)
+  it("strips VAT using an explicit basis-point rate", () => {
+    expect(netFromGrossInclusive(12200, 2200)).toBe(10000)
+    expect(netFromGrossInclusive(11900, 1900)).toBe(10000)
+    const de = commerceConfig({ VAT_RATE_BPS_BY_COUNTRY: "{\"de\":1900}", SHIPPING_STANDARD_CENTS: "700" })
+    expect(de.vatRateBpsByCountry.de).toBe(1900)
+    expect(de.shippingStandardCents).toBe(700)
+    expect(shippingPriceCents("express", 10000, 4900, de)).toBe(990)
+    expect(shippingPriceCents("standard", 100, 4900, de)).toBe(700)
+  })
+
+  it("converts 1200 euro with an explicit unit", () => {
+    expect(toCents(1200, "major")).toBe(120000)
+    expect(toCents(1200, "cents")).toBe(1200)
   })
 
   it("accepts a complete Italian address and an optional fiscal code", () => {

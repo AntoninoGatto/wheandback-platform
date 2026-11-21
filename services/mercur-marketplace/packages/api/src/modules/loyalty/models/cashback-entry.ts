@@ -11,6 +11,7 @@ const CashbackEntry = model.define("cashback_entry", {
   idempotency_key: model.text(),
   note: model.text().nullable(),
   actor_id: model.text().nullable(),
+  line_id: model.text().nullable(),
 })
 
 export default CashbackEntry

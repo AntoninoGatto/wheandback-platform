@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { StorefrontHeader } from "@/components/StorefrontHeader";
+import { BrandMark } from "@/components/BrandMark";
 import { DEMO_URLS } from "@/lib/demo-urls";
 
 interface HomePageProps {
@@ -16,11 +17,11 @@ export default async function HomePage({ params }: HomePageProps) {
       <StorefrontHeader locale={locale} />
 
       <div className="mx-auto w-full max-w-6xl px-6 py-16">
-        <p className="mb-4 inline-flex rounded-full bg-[#e7f8f5] px-3 py-1 text-sm font-semibold text-[#0b6b5c]">
-          fino al 105% in credito WheBack
+        <p className="mb-4 inline-flex rounded-full bg-[#BEEE62] px-3 py-1 text-sm font-semibold text-[#253866]">
+          {tHero("badge")}
         </p>
         <h1 className="text-4xl font-extrabold tracking-tight text-[#253866]">
-          Whe&Back<sup className="text-lg">®</sup>
+          <BrandMark />
         </h1>
         <p className="mt-3 text-2xl font-bold text-[#253866]">{tHero("headline")}</p>
         <p className="mt-4 max-w-2xl text-lg text-gray-600">{tHero("subline1")}</p>
